@@ -1,0 +1,65 @@
+#!/bin/bash
+
+coffeelint_alt="node_modules/.bin/coffeelint coffeelint"
+
+config=`git config --get coffeelint.config`
+if [ -z "$config" ]; then
+    config=`dirname $0`"/../coffeelint"
+    config=`readlink -f "$config"`
+    if [ ! -e "$config" ]; then
+        config=''
+    fi
+fi
+
+function run_coffeelint {
+    if [ -n "$config" ]; then
+        $coffeelint -f "${config}" ${@}
+    else
+        $coffeelint ${@}
+    fi
+}
+
+function changed_files {
+    git diff --cached --name-only --diff-filter=ACM
+}
+
+function write_staged {
+    while read file; do
+        name=`echo "$file" | sed 's:/:-:g'`
+        tmpfile=`mktemp /tmp/XXXXX-${name}`
+        git show ":$file" > $tmpfile
+        echo "$tmpfile"
+    done
+}
+
+case "${1}" in
+    --about )
+        if [ -z "$config" ]; then
+            config='default config'
+        fi
+        echo "Perform static analysis of coffee-script files (${config})"
+        ;;
+    * )
+        for coffeelint in $coffeelint_alt; do
+            if which $coffeelint > /dev/null 2>&1; then
+                found_coffeelint=1
+                break
+            fi
+        done
+
+        if test "$found_coffeelint" != 1; then
+            echo "Please install coffeelint: npm install -g coffeelint"
+            exit 0
+        fi
+
+        # call out to tools
+        files=`changed_files | grep -e '\.coffee$' | write_staged`
+        if [ -z "$files" ]; then
+            exit 0
+        fi
+        run_coffeelint $files
+        status=$?
+        rm $files
+        exit $status
+        ;;
+esac
