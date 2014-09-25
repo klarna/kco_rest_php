@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ticket=$(git symbolic-ref HEAD | grep -oE "[A-Z]{4}-[0-9]*")
+ticket=$(git symbolic-ref HEAD | sed -E "s/refs\/heads\/([A-Z]+-[0-9]+).+/\1/")
 
 if [ ! -z $ticket ]; then
     if ! grep -qE "^$ticket" $1; then
