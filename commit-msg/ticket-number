@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ticket=$(git symbolic-ref HEAD | sed -E "s/refs\/heads\/([A-Z]+-[0-9]+).+/\1/")
+
+if [ ! -z $ticket ]; then
+    if ! grep -qE "^$ticket" $1; then
+       echo >> $1
+       echo $ticket >> $1
+    fi
+fi
