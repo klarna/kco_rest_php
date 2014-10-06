@@ -1,5 +1,14 @@
 #!/bin/bash
 
+case "$1" in
+    --about)
+        echo "Append ticket number to commit message"
+        exit 0
+        ;;
+    *)
+        ;;
+esac
+
 ticket=$(git symbolic-ref HEAD | sed -E "s/refs\/heads\/([A-Z]+-[0-9]+).+/\1/")
 
 if [ ! -z $ticket ]; then
