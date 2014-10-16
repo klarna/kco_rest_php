@@ -1,0 +1,30 @@
+{
+    "name": "klarna/kco_rest_php",
+    "description": "Klarna Checkout PHP SDK",
+    "homepage": "http://developers.klarna.com",
+    "license": "Apache-2.0",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Klarna AB",
+            "email": "integration@klarna.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "4.2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.2.*",
+        "squizlabs/php_codesniffer": "1.5.*",
+        "phpmd/phpmd": "2.1.*",
+        "phploc/phploc": "2.0.*",
+        "sebastian/phpcpd": "2.0.*"
+    }
+}
