@@ -5,7 +5,9 @@ coffeelint_alt="node_modules/.bin/coffeelint coffeelint"
 config=`git config --get coffeelint.config`
 if [ -z "$config" ]; then
     config=`dirname $0`"/../coffeelint"
-    config=`readlink -f "$config"`
+    readlink=`which greadlink readlink 2&>1`
+    config=`"$readlink" -f "$config"`
+
     if [ ! -e "$config" ]; then
         config=''
     fi
