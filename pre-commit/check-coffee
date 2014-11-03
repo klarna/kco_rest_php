@@ -5,7 +5,12 @@ coffeelint_alt="node_modules/.bin/coffeelint coffeelint"
 config=`git config --get coffeelint.config`
 if [ -z "$config" ]; then
     config=`dirname $0`"/../coffeelint"
-    readlink=`which greadlink readlink 2&>1`
+    readlink="readlink"
+
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        readlink="greadlink"
+    fi
+
     config=`"$readlink" -f "$config"`
 
     if [ ! -e "$config" ]; then
