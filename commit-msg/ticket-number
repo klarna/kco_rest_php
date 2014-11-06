@@ -1,19 +1,26 @@
 #!/bin/bash
 
-case "$1" in
-    --about)
-        echo "Append ticket number to commit message"
+function run_test
+{
+    ticket=$(git symbolic-ref HEAD | grep -oP "([A-Z]+)-([0-9]+)")
+
+    if [ -z $ticket ]; then
         exit 0
+    fi
+
+    if grep -q "^$ticket" $1; then
+        exit 0
+    fi
+
+    echo >> $1
+    echo $ticket >> $1
+}
+
+case "${1}" in
+    --about )
+        echo "Append ticket number to commit message"
         ;;
-    *)
+    * )
+        run_test "$@"
         ;;
 esac
-
-ticket=$(git symbolic-ref HEAD | sed -E "s/refs\/heads\/([A-Z]+-[0-9]+).+/\1/")
-
-if [ ! -z $ticket ]; then
-    if ! grep -qE "^$ticket" $1; then
-       echo >> $1
-       echo $ticket >> $1
-    fi
-fi
