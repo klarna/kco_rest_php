@@ -173,6 +173,38 @@ class ConnectorTest extends TestCase
     }
 
     /**
+     * Make sure that an exception without data but with json content-type is
+     * re-thrown.
+     *
+     * @return void
+     */
+    public function testSendConnectorExceptionEmptyJson()
+    {
+        $this->response->expects($this->once())
+            ->method('getHeader')
+            ->with('Content-Type')
+            ->will($this->returnValue('application/json'));
+
+        $exception = new RequestException(
+            'Something went terribly wrong',
+            $this->request,
+            $this->response
+        );
+
+        $this->client->expects($this->once())
+            ->method('send')
+            ->with($this->request)
+            ->will($this->throwException($exception));
+
+        $this->setExpectedException(
+            'GuzzleHttp\Exception\RequestException',
+            'Something went terribly wrong'
+        );
+
+        $this->object->send($this->request);
+    }
+
+    /**
      * Make sure that an exception without a proper JSON response is re-thrown.
      *
      * @return void
