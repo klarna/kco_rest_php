@@ -15,6 +15,7 @@
     "strict"       : true,  // Require 'use strict'
     "trailing"     : true,  // Prohibit trailing spaces
     "undef"        : true,  // Prohibit undeclared variables
+    "unused"       : true,  // Prohibit unused variables
 
     // RELAX
     "asi"          : false, // Allow missing semicolons due to automatic insertion
@@ -22,7 +23,6 @@
     "boss"         : false, // Allow advanced usage of assignments
     "debug"        : false, // Allow debugger statements
     "eqnull"       : false, // Allow "== null"
-    "es5"          : false, // Allow ES 5 statements
     "esnext"       : false, // Allow ES.next statements
     "evil"         : false, // Allow eval
     "expr"         : false, // Allow expressions instead of assignments/function calls
@@ -53,37 +53,17 @@
     "indent"       : 4,     // Check that indentation is X spaces
     "maxlen"       : 100,   // Maximum characters/line
 
-    // ENVIRONMENT (GLOBALS
-    "browser"      : true, // Browser (setTimeout, document,..)
+    // ENVIRONMENT (GLOBALS)
+    "browser"      : true,  // Browser (setTimeout, document,..)
     "couch"        : false, // CouchDB
     "devel"        : false, // Development (console, alert,..)
     "dojo"         : false,
     "jquery"       : false,
     "mootools"     : false,
     "node"         : false,
+    "mocha"        : true,
     "prototypejs"  : false,
     "rhino"        : false,
-    "wsh"          : false, // Window Scripting Host
-    "predef"       : [      // Other globals
-        "Klarna",
-
-        "require", // AMD
-        "define",
-
-        "pavlov", // Testing
-        "describe",
-        "before",
-        "after",
-        "given",
-        "it",
-
-        "ok",
-        "assert",
-        "expect",
-
-        "async",
-        "pause",
-        "resume"
-    ]
+    "wsh"          : false // Window Scripting Host
 }
 
