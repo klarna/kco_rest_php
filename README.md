@@ -1,4 +1,8 @@
 # Klarna Checkout REST PHP SDK
+[![Packagist Version][packagist-image]](https://packagist.org/packages/klarna/kco_rest)
+[![Build Status][travis-image]](https://travis-ci.org/klarna/kco_rest_php)
+[![Coverage Status][coveralls-image]](https://coveralls.io/r/klarna/kco_rest_php?branch=v1.0)
+
 Klarna Checkout is a revolutionary new payment solution that is changing the way
 people shop online. First, consumers verify their purchase with a minimal
 amount of information through intelligent identification, securing your order
@@ -49,3 +53,7 @@ To contribute, the following criteria needs to be fulfilled:
 ## License
 Klarna Checkout REST PHP SDK is licensed under
 [Apache License, Version 2.0](http://www.apache.org/LICENSE-2.0)
+
+[packagist-image]: https://img.shields.io/packagist/v/klarna/kco_rest.svg?style=flat
+[travis-image]: https://img.shields.io/travis/klarna/kco_rest_php/v1.0.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/klarna/kco_rest_php/v1.0.svg?style=flat
