@@ -15,7 +15,7 @@
     "strict"       : true,  // Require 'use strict'
     "trailing"     : true,  // Prohibit trailing spaces
     "undef"        : true,  // Prohibit undeclared variables
-    "unused"       : true,  // Prohibit unused variables
+    "unused"       : "vars",// Prohibit unused variables
 
     // RELAX
     "asi"          : false, // Allow missing semicolons due to automatic insertion
