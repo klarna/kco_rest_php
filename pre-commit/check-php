@@ -3,14 +3,19 @@
 phpcs_alt="vendor/bin/phpcs bin/phpcs ~/.composer/vendor/bin/phpcs phpcs"
 phpmd_alt="vendor/bin/phpmd bin/phpmd ~/.composer/vendor/bin/phpmd phpmd"
 
+phpcs_standard='PSR2'
+if [ -e "phpcs.xml" ]; then
+    phpcs_standard="./phpcs.xml"
+fi
+
 phpmd_output=text
-phpmd_rules='misc/phpmd.xml'
+phpmd_rules='phpmd.xml'
 if [ ! -e "$phpmd_rules" ]; then
     phpmd_rules='codesize,design,naming,unusedcode'
 fi
 
 function run_phpcs {
-    $phpcs --report-emacs ${@}
+    $phpcs --report-emacs --standard="$phpcs_standard" ${@}
 }
 
 function run_phpmd {
