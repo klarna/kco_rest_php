@@ -26,16 +26,17 @@ case "${1}" in
         echo "Perform static analysis of python source files"
         ;;
     * )
-        if ! which pep8 pyflakes > /dev/null; then
-            echo "Please install pep8 and pyflakes: pip install pep8 pyflakes"
-            exit 0
-        fi
-
         # call out to tools
         files=`changed_files | grep -e '\.py$' | write_staged`
         if [ -z "$files" ]; then
             exit 0
         fi
+
+        if ! which pep8 pyflakes > /dev/null; then
+            echo "Please install pep8 and pyflakes: pip install pep8 pyflakes"
+            exit 0
+        fi
+
         run_pep8 $files
         pep8_status=$?
         run_pyflakes $files
