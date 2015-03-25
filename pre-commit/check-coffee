@@ -5,14 +5,6 @@ coffeelint_alt="node_modules/.bin/coffeelint coffeelint"
 config=`git config --get coffeelint.config`
 if [ -z "$config" ]; then
     config=`dirname $0`"/../coffeelint"
-    readlink="readlink"
-
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        readlink="greadlink"
-    fi
-
-    config=`"$readlink" -f "$config"`
-
     if [ ! -e "$config" ]; then
         config=''
     fi
@@ -47,23 +39,20 @@ case "${1}" in
         echo "Perform static analysis of coffee-script files (${config})"
         ;;
     * )
-        for coffeelint in $coffeelint_alt; do
-            if which $coffeelint > /dev/null 2>&1; then
-                found_coffeelint=1
-                break
-            fi
-        done
+        coffeelint=`which $jshint_alt 2>/dev/null | head -n 1`
 
-        if test "$found_coffeelint" != 1; then
+        # call out to tools
+        files=`changed_files | grep -e '\.coffee$' | write_staged`
+
+        if [ -z "$files" ]; then
+            exit 0
+        fi
+
+        if test -z "$coffeelint"; then
             echo "Please install coffeelint: npm install -g coffeelint"
             exit 0
         fi
 
-        # call out to tools
-        files=`changed_files | grep -e '\.coffee$' | write_staged`
-        if [ -z "$files" ]; then
-            exit 0
-        fi
         run_coffeelint $files
         status=$?
         rm $files

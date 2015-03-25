@@ -5,7 +5,6 @@ jshint_alt="node_modules/.bin/jshint jshint"
 config=`git config --get jshint.config`
 if [ -z "$config" ]; then
     config=`dirname $0`"/../jshint"
-    config=`readlink -f "$config"`
     if [ ! -e "$config" ]; then
         config=''
     fi
@@ -40,23 +39,20 @@ case "${1}" in
         echo "Perform static analysis of js source files (${config})"
         ;;
     * )
-        for jshint in $jshint_alt; do
-            if which $jshint > /dev/null 2>&1; then
-                found_jshint=1
-                break
-            fi
-        done
+        jshint=`which $jshint_alt 2>/dev/null | head -n 1`
 
-        if test "$found_jshint" != 1; then
+        # call out to tools
+        files=`changed_files | grep -e '\.js$' | write_staged`
+
+        if [ -z "$files" ]; then
+            exit 0
+        fi
+
+        if test -z "$jshint"; then
             echo "Please install jshint: npm install -g jshint"
             exit 0
         fi
 
-        # call out to tools
-        files=`changed_files | grep -e '\.js$' | write_staged`
-        if [ -z "$files" ]; then
-            exit 0
-        fi
         run_jshint $files
         status=$?
         rm $files
