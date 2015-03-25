@@ -1,5 +1,5 @@
 {
-    "name": "klarna/kco_rest_php",
+    "name": "klarna/kco_rest",
     "description": "Klarna Checkout PHP SDK",
     "homepage": "http://developers.klarna.com",
     "license": "Apache-2.0",
