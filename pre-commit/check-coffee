@@ -2,13 +2,11 @@
 
 coffeelint_alt="node_modules/.bin/coffeelint coffeelint"
 
-config=`git config --get coffeelint.config`
-if [ -z "$config" ]; then
-    config=`dirname $0`"/../coffeelint"
-    if [ ! -e "$config" ]; then
-        config=''
+for c in 'coffeelint.json' "`dirname $0`/../coffeelint"; do
+    if [ -e "$c" ]; then
+        config="$c"
     fi
-fi
+done
 
 function run_coffeelint {
     if [ -n "$config" ]; then
