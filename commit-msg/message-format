@@ -1,4 +1,5 @@
 #!/bin/bash
+# http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 
 case "${1}" in
     --about )
@@ -27,7 +28,7 @@ NR == 2 {
 
 {
     if (length > 72) {
-        print "line ", FNR, " is to long";
+        print "line ", FNR, " is too long";
     }
 }' "${1}"
 esac
