@@ -26,9 +26,11 @@
         "phpmd/phpmd": "2.1.*",
         "phploc/phploc": "2.0.*",
         "sebastian/phpcpd": "2.0.*",
-        "satooshi/php-coveralls": "0.6.*"
+        "satooshi/php-coveralls": "0.6.*",
+        "apigen/apigen": "~4.0"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit --colors"
+        "test": "vendor/bin/phpunit --colors",
+        "reference": "vendor/bin/apigen generate -s src -d docs/reference"
     }
 }
