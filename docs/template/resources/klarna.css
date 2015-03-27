@@ -1,0 +1,76 @@
+.navbar-inner {
+	padding-left:20px;
+	padding-right:20px;
+	background-color:#0074c8;
+	background-image:-moz-linear-gradient(top,#0074c8,#0074c8);
+	background-image:-ms-linear-gradient(top,#0074c8,#0074c8);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#0074c8),to(#0074c8));
+	background-image:-webkit-linear-gradient(top,#0074c8,#0074c8);
+	background-image:-o-linear-gradient(top,#0074c8,#0074c8);
+	background-image:linear-gradient(top,#0074c8,#0074c8);
+	background-repeat:repeat-x;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0074c8',endColorstr='#0074c8',GradientType=0);
+}
+.btn-navbar {
+	background-color:#0074c8;
+	background-image:-moz-linear-gradient(top,#0074c8,#0074c8);
+	background-image:-ms-linear-gradient(top,#0074c8,#0074c8);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#0074c8),to(#0074c8));
+	background-image:-webkit-linear-gradient(top,#0074c8,#0074c8);
+	background-image:-o-linear-gradient(top,#0074c8,#0074c8);
+	background-image:linear-gradient(top,#0074c8,#0074c8);
+	background-repeat:repeat-x;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0074c8',endColorstr='#0074c8',GradientType=0);
+	border-color:#0074c8 #0074c8 #0074c8;
+}
+
+.btn-navbar:hover,.btn-navbar:active,.btn-navbar.active,.btn-navbar.disabled,.btn-navbar[disabled] {
+	background-color:white;
+	color: #1a8cdc;
+}
+
+.navbar .nav>li>a {
+	float:none;
+	padding:10px 10px 11px;
+	line-height:19px;
+	color: white;
+	text-decoration:none;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.25)
+}
+
+.navbar .nav > li > span {
+	display: block;
+	color: white;
+	line-height: 19px;
+	padding: 10px 10px 11px;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.navbar .nav > li.active > span {
+	background-color: #054269;
+	color: #ffffff;
+}
+
+
+.navbar .nav>li>a:hover {
+	background-color:#1a8cdc;
+	color: white;
+	text-decoration:none
+}
+
+.navbar .nav .active>a,.navbar .nav .active>a:hover {
+	color:#fff;
+	text-decoration:none;
+	background-color:#0074c8;
+	color:white;
+}
+
+.navbar-inner::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: url(https://cdn.klarna.com/1.0/shared/image/generic/logo/global/tagline/horizontal-white.png?width=200) no-repeat;
+  width: 200px;
+  height: 100%;
+}
