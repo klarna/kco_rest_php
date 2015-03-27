@@ -31,6 +31,6 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit --colors",
-        "reference": "vendor/bin/apigen generate -s src -d docs/reference"
+	    "reference": "vendor/bin/apigen generate -s src -d docs/reference --template-config='docs/template/config.neon'"
     }
 }
