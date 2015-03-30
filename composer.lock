@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fe252265aad4302d9b18b7aa7456fc41",
+    "hash": "6415532e10dfb5f5499c9f1cbf9582c3",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -584,16 +584,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "680d026082c3aa234b2d8617c50e9c73999913ba"
+                "reference": "2465fe486c864e30badaa4d005ebdf89dbc503f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/680d026082c3aa234b2d8617c50e9c73999913ba",
-                "reference": "680d026082c3aa234b2d8617c50e9c73999913ba",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/2465fe486c864e30badaa4d005ebdf89dbc503f3",
+                "reference": "2465fe486c864e30badaa4d005ebdf89dbc503f3",
                 "shasum": ""
             },
             "require": {
@@ -646,7 +646,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2015-03-23 20:38:38"
+            "time": "2015-03-27 16:41:39"
         },
         {
             "name": "kdyby/events",
@@ -732,6 +732,50 @@
             "time": "2015-02-01 22:25:59"
         },
         {
+            "name": "klarna/apigen-theme",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/klarna/klarna-apigen-theme.git",
+                "reference": "1ffcd0e4ea5620d50dbfb74639e4aa4113924911"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/klarna/klarna-apigen-theme/zipball/1ffcd0e4ea5620d50dbfb74639e4aa4113924911",
+                "reference": "1ffcd0e4ea5620d50dbfb74639e4aa4113924911",
+                "shasum": ""
+            },
+            "require": {
+                "latte/latte": "~2.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomáš Votruba",
+                    "email": "tomas.vot@gmail.com"
+                },
+                {
+                    "name": "Olivier Laviale",
+                    "homepage": "https://github.com/olvlvl"
+                },
+                {
+                    "name": "David Keijser",
+                    "email": "david.keijser@klarna.com"
+                },
+                {
+                    "name": "Petros Gkourasas",
+                    "email": "petros.gkourasas@klarna.com"
+                }
+            ],
+            "description": "Klarna theme for ApiGen",
+            "homepage": "http://klarna.com/",
+            "time": "2015-03-30 15:27:12"
+        },
+        {
             "name": "kukulich/fshl",
             "version": "2.1.0",
             "source": {
@@ -775,16 +819,16 @@
         },
         {
             "name": "latte/latte",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "020300e124d8aa2fb324d5830ec4862b6b9ab1da"
+                "reference": "6ff30144454e73fa1affc476c268ff196d918e22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/020300e124d8aa2fb324d5830ec4862b6b9ab1da",
-                "reference": "020300e124d8aa2fb324d5830ec4862b6b9ab1da",
+                "url": "https://api.github.com/repos/nette/latte/zipball/6ff30144454e73fa1affc476c268ff196d918e22",
+                "reference": "6ff30144454e73fa1affc476c268ff196d918e22",
                 "shasum": ""
             },
             "require": {
@@ -831,7 +875,7 @@
                 "templating",
                 "twig"
             ],
-            "time": "2015-02-24 22:10:51"
+            "time": "2015-03-27 10:53:51"
         },
         {
             "name": "michelf/php-markdown",
@@ -886,21 +930,20 @@
         },
         {
             "name": "nette/application",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/application.git",
-                "reference": "6144b265234b31a48ca795e0efce392cfca1def7"
+                "reference": "be8e35bf81300694fd496e15d5f5fb0fa0fded0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/application/zipball/6144b265234b31a48ca795e0efce392cfca1def7",
-                "reference": "6144b265234b31a48ca795e0efce392cfca1def7",
+                "url": "https://api.github.com/repos/nette/application/zipball/be8e35bf81300694fd496e15d5f5fb0fa0fded0e",
+                "reference": "be8e35bf81300694fd496e15d5f5fb0fa0fded0e",
                 "shasum": ""
             },
             "require": {
                 "nette/component-model": "~2.2",
-                "nette/di": "~2.3",
                 "nette/http": "~2.2",
                 "nette/reflection": "~2.2",
                 "nette/security": "~2.2",
@@ -912,6 +955,7 @@
             },
             "require-dev": {
                 "latte/latte": "~2.3",
+                "nette/di": "~2.3",
                 "nette/forms": "~2.2",
                 "nette/robot-loader": "~2.2",
                 "nette/tester": "~1.3"
@@ -949,20 +993,20 @@
             ],
             "description": "Nette Application MVC Component",
             "homepage": "http://nette.org",
-            "time": "2015-02-25 22:44:23"
+            "time": "2015-03-23 22:45:31"
         },
         {
             "name": "nette/bootstrap",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/bootstrap.git",
-                "reference": "5b7c055f38e8d329bc8f4b4504899b5b39be5199"
+                "reference": "e24c5000c022336b8c0a6409bfd8d1ff63ede8f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/bootstrap/zipball/5b7c055f38e8d329bc8f4b4504899b5b39be5199",
-                "reference": "5b7c055f38e8d329bc8f4b4504899b5b39be5199",
+                "url": "https://api.github.com/repos/nette/bootstrap/zipball/e24c5000c022336b8c0a6409bfd8d1ff63ede8f6",
+                "reference": "e24c5000c022336b8c0a6409bfd8d1ff63ede8f6",
                 "shasum": ""
             },
             "require": {
@@ -1020,20 +1064,20 @@
             ],
             "description": "Nette Bootstrap",
             "homepage": "http://nette.org",
-            "time": "2015-02-20 19:43:56"
+            "time": "2015-03-09 23:19:17"
         },
         {
             "name": "nette/caching",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/caching.git",
-                "reference": "e9508220f5628d9ac075ec3c13ba1e053dbd7944"
+                "reference": "f562d4a00b73e4cf030e400ed1787596d86d7320"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/caching/zipball/e9508220f5628d9ac075ec3c13ba1e053dbd7944",
-                "reference": "e9508220f5628d9ac075ec3c13ba1e053dbd7944",
+                "url": "https://api.github.com/repos/nette/caching/zipball/f562d4a00b73e4cf030e400ed1787596d86d7320",
+                "reference": "f562d4a00b73e4cf030e400ed1787596d86d7320",
                 "shasum": ""
             },
             "require": {
@@ -1078,7 +1122,7 @@
             ],
             "description": "Nette Caching Component",
             "homepage": "http://nette.org",
-            "time": "2015-02-18 02:23:54"
+            "time": "2015-03-24 16:06:30"
         },
         {
             "name": "nette/component-model",
@@ -1132,16 +1176,16 @@
         },
         {
             "name": "nette/di",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/di.git",
-                "reference": "440d9bab1857b34ce6d0c24e023748c012d53686"
+                "reference": "85ba123b193a8b0d666bfe0222b31a460f122465"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/di/zipball/440d9bab1857b34ce6d0c24e023748c012d53686",
-                "reference": "440d9bab1857b34ce6d0c24e023748c012d53686",
+                "url": "https://api.github.com/repos/nette/di/zipball/85ba123b193a8b0d666bfe0222b31a460f122465",
+                "reference": "85ba123b193a8b0d666bfe0222b31a460f122465",
                 "shasum": ""
             },
             "require": {
@@ -1185,7 +1229,7 @@
             ],
             "description": "Nette Dependency Injection Component",
             "homepage": "http://nette.org",
-            "time": "2015-02-24 21:31:57"
+            "time": "2015-03-27 09:46:44"
         },
         {
             "name": "nette/finder",
@@ -1363,16 +1407,16 @@
         },
         {
             "name": "nette/neon",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/neon.git",
-                "reference": "c14c3ae106fbf11bef6dfc3ec7668c59bdd7f58e"
+                "reference": "59638065c0f339a25b3eeb765e35a314d8736ea5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/neon/zipball/c14c3ae106fbf11bef6dfc3ec7668c59bdd7f58e",
-                "reference": "c14c3ae106fbf11bef6dfc3ec7668c59bdd7f58e",
+                "url": "https://api.github.com/repos/nette/neon/zipball/59638065c0f339a25b3eeb765e35a314d8736ea5",
+                "reference": "59638065c0f339a25b3eeb765e35a314d8736ea5",
                 "shasum": ""
             },
             "require": {
@@ -1411,7 +1455,7 @@
             ],
             "description": "Nette NEON: parser & generator for Nette Object Notation",
             "homepage": "http://ne-on.org",
-            "time": "2015-02-17 21:10:16"
+            "time": "2015-03-26 20:37:13"
         },
         {
             "name": "nette/php-generator",
@@ -1691,16 +1735,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "29bfb4424689014e0749e14eef8de18c4b0fd020"
+                "reference": "cda96ff718e7bad5e949527dbfa1d6d0498181d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/29bfb4424689014e0749e14eef8de18c4b0fd020",
-                "reference": "29bfb4424689014e0749e14eef8de18c4b0fd020",
+                "url": "https://api.github.com/repos/nette/utils/zipball/cda96ff718e7bad5e949527dbfa1d6d0498181d9",
+                "reference": "cda96ff718e7bad5e949527dbfa1d6d0498181d9",
                 "shasum": ""
             },
             "require": {
@@ -1747,7 +1791,7 @@
             ],
             "description": "Nette Utility Classes",
             "homepage": "http://nette.org",
-            "time": "2015-02-24 21:21:17"
+            "time": "2015-03-17 21:49:28"
         },
         {
             "name": "pdepend/pdepend",
@@ -2673,24 +2717,24 @@
         },
         {
             "name": "sebastian/phpcpd",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpcpd.git",
-                "reference": "a9462153f2dd90466a010179901d31fbff598365"
+                "reference": "d3ad100fdf15805495f6ff19f473f4314c99390c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpcpd/zipball/a9462153f2dd90466a010179901d31fbff598365",
-                "reference": "a9462153f2dd90466a010179901d31fbff598365",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpcpd/zipball/d3ad100fdf15805495f6ff19f473f4314c99390c",
+                "reference": "d3ad100fdf15805495f6ff19f473f4314c99390c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "phpunit/php-timer": ">=1.0.4",
-                "sebastian/finder-facade": ">=1.1.0",
-                "sebastian/version": ">=1.0.3",
-                "symfony/console": ">=2.2.0",
+                "phpunit/php-timer": "~1.0",
+                "sebastian/finder-facade": "~1.1",
+                "sebastian/version": "~1.0",
+                "symfony/console": "~2.2",
                 "theseer/fdomdocument": "~1.4"
             },
             "bin": [
@@ -2720,7 +2764,7 @@
             ],
             "description": "Copy/Paste Detector (CPD) for PHP code.",
             "homepage": "https://github.com/sebastianbergmann/phpcpd",
-            "time": "2014-03-31 09:25:30"
+            "time": "2015-03-26 14:47:38"
         },
         {
             "name": "sebastian/recursion-context",
@@ -3447,16 +3491,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "0203000762fcadb4b00bcda5d5a2cf84348f3272"
+                "reference": "02030152bb068614fb6ff58cf00d1a6c8622c455"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/0203000762fcadb4b00bcda5d5a2cf84348f3272",
-                "reference": "0203000762fcadb4b00bcda5d5a2cf84348f3272",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/02030152bb068614fb6ff58cf00d1a6c8622c455",
+                "reference": "02030152bb068614fb6ff58cf00d1a6c8622c455",
                 "shasum": ""
             },
             "require": {
@@ -3503,7 +3547,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2015-02-24 21:00:38"
+            "time": "2015-03-27 10:21:19"
         }
     ],
     "aliases": [],
