@@ -39,6 +39,7 @@ class OrderTest extends TestCase
     {
         $order = new Order($this->connector, '12345');
         $this->assertEquals('12345', $order->getId());
+        $this->assertEquals('/ordermanagement/v1/orders/12345', $order->getLocation());
     }
 
     /**

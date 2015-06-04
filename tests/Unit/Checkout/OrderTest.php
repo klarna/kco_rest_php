@@ -40,9 +40,10 @@ class OrderTest extends TestCase
         $order = new Order($this->connector);
         $this->assertNull($order->getId());
 
-        $order = new Order($this->connector, '/checkout/v3/orders/12345');
+        $order = new Order($this->connector, '12345');
         $order['order_id'] = '12345';
         $this->assertEquals('12345', $order->getId());
+        $this->assertEquals('/checkout/v3/orders/12345', $order->getLocation());
     }
 
     /**
@@ -200,7 +201,7 @@ class OrderTest extends TestCase
             ->method('json')
             ->will($this->returnValue($data));
 
-        $order = new Order($this->connector, '/checkout/v3/orders/12345');
+        $order = new Order($this->connector, '12345');
         $order['order_id'] = '12345';
         $order['data'] = 'is overwritten';
 
@@ -324,7 +325,7 @@ class OrderTest extends TestCase
             ->method('json')
             ->will($this->returnValue($data));
 
-        $order = new Order($this->connector, '/checkout/v3/orders/12345');
+        $order = new Order($this->connector, '12345');
         $order['data'] = 'is overwritten';
 
         $order->fetch();
@@ -358,7 +359,7 @@ class OrderTest extends TestCase
             ->method('getStatusCode')
             ->will($this->returnValue('204'));
 
-        $order = new Order($this->connector, '/checkout/v3/orders/12345');
+        $order = new Order($this->connector, '12345');
         $order['data'] = 'is overwritten';
 
         $this->setExpectedException(
@@ -404,7 +405,7 @@ class OrderTest extends TestCase
             ->with('Content-Type')
             ->will($this->returnValue('text/plain'));
 
-        $order = new Order($this->connector, '/checkout/v3/orders/12345');
+        $order = new Order($this->connector, '12345');
         $order['data'] = 'is overwritten';
 
         $this->setExpectedException(

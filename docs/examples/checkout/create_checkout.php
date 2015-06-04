@@ -48,8 +48,8 @@ $checkout->create([
     ],
     "merchant_urls" => [
         "terms" => "http://www.merchant.com/toc",
-        "checkout" => "http://www.merchant.com/checkout?klarna_order_url={checkout.order.url}",
-        "confirmation" => "http://www.merchant.com/thank-you?klarna_order_url={checkout.order.url}",
+        "checkout" => "http://www.merchant.com/checkout?klarna_order_id={checkout.order.id}",
+        "confirmation" => "http://www.merchant.com/thank-you?klarna_order_id={checkout.order.id}",
         "push" => "http://www.merchant.com/create_order?klarna_order_id={checkout.order.id}"
     ]
 ]);
