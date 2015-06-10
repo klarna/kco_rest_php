@@ -79,7 +79,7 @@ JSON;
             )
         );
 
-        $order = new Order($this->connector, '/checkout/v3/orders/0001');
+        $order = new Order($this->connector, '0001');
         $order['updated'] = 'not from json';
 
         $order->update(['data' => 'sent in']);
@@ -118,7 +118,7 @@ JSON;
             )
         );
 
-        $order = new Order($this->connector, '/checkout/v3/orders/0002');
+        $order = new Order($this->connector, '0002');
         $order['updated'] = 'not from json';
 
         $order->fetch();

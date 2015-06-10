@@ -47,14 +47,15 @@ class Order extends Resource
      * Constructs an order instance.
      *
      * @param Connector $connector HTTP transport connector
-     * @param string    $orderUrl  Resource location
+     * @param string    $orderId   Order ID
      */
-    public function __construct(Connector $connector, $orderUrl = null)
+    public function __construct(Connector $connector, $orderId = null)
     {
         parent::__construct($connector);
 
-        if ($orderUrl !== null) {
-            $this->setLocation($orderUrl);
+        if ($orderId !== null) {
+            $this->setLocation(self::$path . "/{$orderId}");
+            $this[static::ID_FIELD] = $orderId;
         }
     }
 
