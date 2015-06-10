@@ -35,14 +35,24 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 interface ConnectorInterface
 {
     /**
-     * API base URL.
+     * API base URL for Europe.
      */
-    const BASE_URL = 'https://api.klarna.com';
+    const EU_BASE_URL = 'https://api.klarna.com';
 
     /**
-     * Testing API base URL.
+     * Testing API base URL for Europe.
      */
-    const TEST_BASE_URL = 'https://api.playground.klarna.com';
+    const EU_TEST_BASE_URL = 'https://api.playground.klarna.com';
+
+    /**
+     * API base URL for North America.
+     */
+    const NA_BASE_URL = 'https://api-na.klarna.com';
+
+    /**
+     * Testing API base URL for North America.
+     */
+    const NA_TEST_BASE_URL = 'https://api-na.playground.klarna.com';
 
     /**
      * Creates a request object.
