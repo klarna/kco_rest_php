@@ -56,5 +56,5 @@ $checkout->create([
 
 $checkout->fetch();
 
-// Store checkout order url
-$checkoutUrl = $checkout->getLocation();
+// Store checkout order id
+$orderId = $checkout->getId();
