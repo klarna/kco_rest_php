@@ -176,7 +176,7 @@ class Connector implements ConnectorInterface
     public static function create(
         $merchantId,
         $sharedSecret,
-        $baseUrl = self::BASE_URL,
+        $baseUrl = self::EU_BASE_URL,
         UserAgentInterface $userAgent = null
     ) {
         $client = new Client(['base_url' => $baseUrl]);

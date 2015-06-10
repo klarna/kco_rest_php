@@ -11,7 +11,7 @@ $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
 $connector = Klarna\Rest\Transport\Connector::create(
     $merchantId,
     $sharedSecret,
-    Klarna\Rest\Transport\ConnectorInterface::TEST_BASE_URL
+    Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL
 );
 
 $checkout = new Klarna\Rest\Checkout\Order($connector);
@@ -56,5 +56,5 @@ $checkout->create([
 
 $checkout->fetch();
 
-// Store checkout order url
-$checkoutUrl = $checkout->getLocation();
+// Store checkout order id
+$orderId = $checkout->getId();

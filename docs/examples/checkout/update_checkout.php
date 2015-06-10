@@ -12,7 +12,7 @@ $orderId = getenv('ORDER_ID') ?: '12345';
 $connector = Klarna\Rest\Transport\Connector::create(
     $merchantId,
     $sharedSecret,
-    Klarna\Rest\Transport\ConnectorInterface::TEST_BASE_URL
+    Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL
 );
 
 $checkout = new Klarna\Rest\Checkout\Order($connector, $orderId);
