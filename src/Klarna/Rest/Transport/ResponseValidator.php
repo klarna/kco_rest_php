@@ -64,7 +64,7 @@ class ResponseValidator
      */
     public function status($status)
     {
-        $httpStatus = $this->response->getStatusCode();
+        $httpStatus = (string) $this->response->getStatusCode();
         if ($httpStatus !== $status) {
             throw new \RuntimeException(
                 "Unexpected response status code: {$httpStatus}"
