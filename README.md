@@ -50,6 +50,14 @@ To contribute, the following criteria needs to be fulfilled:
 * All tests should pass
 
 
+## Acknowledgements
+* Christer Gustavsson ([@ChristerGustavsson](https://github.com/ChristerGustavsson))
+* David Keijser ([@keis](https://github.com/keis))
+* Joakim Löfgren ([@JoakimLofgren](https://github.com/JoakimLofgren))
+* Majid Garmaroudi ([@dijam](https://github.com/dijam))
+* Omer Karadagli ([@ockcyp](https://github.com/ockcyp))
+
+
 ## License
 Klarna Checkout REST PHP SDK is licensed under
 [Apache License, Version 2.0](http://www.apache.org/LICENSE-2.0)
