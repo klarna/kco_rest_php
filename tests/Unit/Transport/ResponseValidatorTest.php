@@ -193,6 +193,23 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Make sure that multiple status codes are asserted properly.
+     *
+     * @return void
+     */
+    public function testStatuses()
+    {
+        $this->response->expects($this->once())
+            ->method('getStatusCode')
+            ->will($this->returnValue('204'));
+
+        $this->assertSame(
+            $this->validator,
+            $this->validator->status(['201', '204'])
+        );
+    }
+
+    /**
      * Make sure that a different status code throws an exception.
      *
      * @return void
@@ -209,5 +226,24 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->validator->status('200');
+    }
+
+    /**
+     * Make sure that a different status code throws an exception.
+     *
+     * @return void
+     */
+    public function testStatusesException()
+    {
+        $this->response->expects($this->once())
+            ->method('getStatusCode')
+            ->will($this->returnValue('200'));
+
+        $this->setExpectedException(
+            'RuntimeException',
+            'Unexpected response status code: 200'
+        );
+
+        $this->validator->status(['201', '204']);
     }
 }

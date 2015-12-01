@@ -56,7 +56,7 @@ class ResponseValidator
     /**
      * Asserts the HTTP response status code.
      *
-     * @param string $status Expected status code
+     * @param string|string[] $status Expected status code(s)
      *
      * @throws \RuntimeException If status code does not match
      *
@@ -65,7 +65,13 @@ class ResponseValidator
     public function status($status)
     {
         $httpStatus = (string) $this->response->getStatusCode();
-        if ($httpStatus !== $status) {
+        if (is_array($status) && !in_array($httpStatus, $status)) {
+            throw new \RuntimeException(
+                "Unexpected response status code: {$httpStatus}"
+            );
+        }
+
+        if (is_string($status) && $httpStatus !== $status) {
             throw new \RuntimeException(
                 "Unexpected response status code: {$httpStatus}"
             );
