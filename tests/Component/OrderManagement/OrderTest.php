@@ -271,6 +271,31 @@ JSON;
     }
 
     /**
+     * Make sure that the request sent is correct when performing a refund.
+     *
+     * @return void
+     */
+    public function testRefund201()
+    {
+        $this->mock->addResponse(new Response(201));
+
+        $order = new Order($this->connector, '0002');
+        $order->refund(['data' => 'sent in']);
+
+        $request = $this->history->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            '/ordermanagement/v1/orders/0002/refunds',
+            $request->getPath()
+        );
+
+        $this->assertEquals('application/json', $request->getHeader('Content-Type'));
+        $this->assertEquals('{"data":"sent in"}', strval($request->getBody()));
+
+        $this->assertAuthorization($request);
+    }
+
+    /**
      * Make sure that the request sent is correct and that the location is updated
      * when creating an order.
      *
