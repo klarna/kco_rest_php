@@ -191,6 +191,11 @@ abstract class Resource extends \ArrayObject
      */
     protected function post($url, array $data = null)
     {
-        return $this->request('POST', $url, ['Content-Type' => 'application/json'], \json_encode((array)$data));
+        return $this->request(
+            'POST',
+            $url,
+            ['Content-Type' => 'application/json'],
+            $data !== null ? \json_encode($data) : null
+        );
     }
 }
