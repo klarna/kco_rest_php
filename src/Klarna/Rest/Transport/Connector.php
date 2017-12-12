@@ -180,7 +180,7 @@ class Connector implements ConnectorInterface
         $baseUrl = self::EU_BASE_URL,
         UserAgentInterface $userAgent = null
     ) {
-        $client = new Client(['base_url' => $baseUrl]);
+        $client = new Client(['base_uri' => $baseUrl]);
 
         return new static($client, $merchantId, $sharedSecret, $userAgent);
     }

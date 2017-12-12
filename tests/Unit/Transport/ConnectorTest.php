@@ -284,7 +284,7 @@ class ConnectorTest extends TestCase
         $client = $connector->getClient();
         $this->assertInstanceOf('GuzzleHttp\ClientInterface', $client);
 
-        $this->assertEquals(self::BASE_URL, $client->getConfig('base_url'));
+        $this->assertEquals(self::BASE_URL, $client->getConfig('base_uri'));
 
         $userAgent = $connector->getUserAgent();
 

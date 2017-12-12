@@ -139,6 +139,6 @@ JSON;
         );
 
         $this->assertSame($userAgent, $connector->getUserAgent());
-        $this->assertEquals(self::BASE_URL, $connector->getClient()->getConfig('base_url'));
+        $this->assertEquals(self::BASE_URL, $connector->getClient()->getConfig('base_uri'));
     }
 }
