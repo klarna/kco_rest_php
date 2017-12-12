@@ -1,3 +1,7 @@
+## v3.0.0 - 2017-12-12
+
+- support for guzzle >6.0
+
 ## v2.2.0 - 2015-12-7
 - **NEW META-13** Allow for 201 response on refund - *Joakim.L*
 
