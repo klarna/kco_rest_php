@@ -19,7 +19,8 @@
 
 namespace Klarna\Rest\Tests\Component;
 
-use GuzzleHttp\Message\RequestInterface;
+use Psr\Http\Message\RequestInterface;
+
 
 /**
  * Resource base test case class.
@@ -35,7 +36,8 @@ abstract class ResourceTestCase extends TestCase
      */
     protected function assertAuthorization(RequestInterface $request)
     {
-        list($alg, $digest) = explode(' ', $request->getHeader('Authorization'));
+        $this->assertTrue($request->hasHeader('Authorization'), 'Authorization Header missing');
+        list($alg, $digest) = explode(' ', $request->getHeader('Authorization')[0]);
 
         $this->assertEquals('Basic', $alg);
 

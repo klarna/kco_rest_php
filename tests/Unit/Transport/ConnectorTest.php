@@ -19,10 +19,12 @@
 
 namespace Klarna\Rest\Tests\Unit\Transport;
 
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
+use Klarna\Rest\Transport\UserAgent;
 
 /**
  * Unit test cases for the connector class.
@@ -59,10 +61,10 @@ class ConnectorTest extends TestCase
     {
         parent::setUp();
 
-        $this->client = $this->getMockBuilder('GuzzleHttp\ClientInterface')
+        $this->client = $this->getMockBuilder(ClientInterface::class)
             ->getMock();
 
-        $this->userAgent = $this->getMockBuilder('Klarna\Rest\Transport\UserAgent')
+        $this->userAgent = $this->getMockBuilder(UserAgent::class)
             ->getMock();
 
         $this->userAgent->expects($this->any())
@@ -77,27 +79,6 @@ class ConnectorTest extends TestCase
         );
     }
 
-    /**
-     * Make sure that the request is created as intended.
-     *
-     * @return void
-     */
-    public function testCreateRequest()
-    {
-        $options = [
-            'opt' => 'val',
-            'auth' => [self::MERCHANT_ID, self::SHARED_SECRET],
-            'headers' => ['User-Agent' => 'a-user-agent']
-        ];
-
-        $this->client->expects($this->any())
-            ->method('createRequest')
-            ->with('uri', 'method', $options)
-            ->will($this->returnValue($this->request));
-
-        $request = $this->object->createRequest('method', 'uri', ['opt' => 'val']);
-        $this->assertSame($this->request, $request);
-    }
 
     /**
      * Make sure that the request is sent and a response is returned.
@@ -151,7 +132,7 @@ class ConnectorTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue(''));
+            ->will($this->returnValue([]));
 
         $exception = new RequestException(
             'Something went terribly wrong',
@@ -183,7 +164,8 @@ class ConnectorTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
+
 
         $exception = new RequestException(
             'Something went terribly wrong',
@@ -214,13 +196,13 @@ class ConnectorTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
 
         $data = [];
 
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue($data));
+            ->method('getBody')
+            ->will($this->returnValue(\json_encode($data)));
 
         $exception = new RequestException(
             'Something went terribly wrong',
@@ -251,7 +233,7 @@ class ConnectorTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
 
         $data = [
             'error_code' => 'ERROR_CODE_1',
@@ -263,8 +245,8 @@ class ConnectorTest extends TestCase
         ];
 
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue($data));
+            ->method('getBody')
+            ->will($this->returnValue(json_encode($data)));
 
         $exception = new RequestException(
             'Something went terribly wrong',
@@ -302,7 +284,7 @@ class ConnectorTest extends TestCase
         $client = $connector->getClient();
         $this->assertInstanceOf('GuzzleHttp\ClientInterface', $client);
 
-        $this->assertEquals(self::BASE_URL, $client->getBaseUrl());
+        $this->assertEquals(self::BASE_URL, $client->getConfig('base_url'));
 
         $userAgent = $connector->getUserAgent();
 

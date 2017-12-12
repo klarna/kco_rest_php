@@ -126,19 +126,17 @@ abstract class Resource extends \ArrayObject
     /**
      * Sends a HTTP request to the specified url.
      *
-     * @param string $method  HTTP method, e.g. 'GET'
-     * @param string $url     Request destination
-     * @param array  $options Request options
+     * @param string $method HTTP method, e.g. 'GET'
+     * @param string $url Request destination
+     * @param array $headers
+     * @param string $body
      *
-     * @throws ConnectorException When the API replies with an error response
-     * @throws RequestException   When an error is encountered
-     * @throws \LogicException    When Guzzle cannot populate the response
+     * @return ResponseValidator When the API replies with an error response
      *
-     * @return ResponseValidator
      */
-    protected function request($method, $url, array $options = [])
+    protected function request($method, $url, array $headers = [], $body = '')
     {
-        $request = $this->connector->createRequest($url, $method, $options);
+        $request = $this->connector->createRequest($url, $method, $headers, $body);
 
         return new ResponseValidator($this->connector->send($request));
     }
@@ -173,7 +171,7 @@ abstract class Resource extends \ArrayObject
      */
     protected function patch($url, array $data)
     {
-        return $this->request('PATCH', $url, ['json' => $data]);
+        return $this->request('PATCH', $url, ['Content-Type' => 'application/json'], json_encode($data));
     }
 
     /**
@@ -190,11 +188,6 @@ abstract class Resource extends \ArrayObject
      */
     protected function post($url, array $data = null)
     {
-        $options = [];
-        if ($data !== null) {
-            $options['json'] = $data;
-        }
-
-        return $this->request('POST', $url, $options);
+        return $this->request('POST', $url, ['Content-Type' => 'application/json'], \json_encode((array)$data));
     }
 }

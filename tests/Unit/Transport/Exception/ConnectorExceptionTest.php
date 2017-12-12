@@ -21,6 +21,8 @@ namespace Klarna\Rest\Tests\Unit\Transport\Exception;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Transport\Exception\ConnectorException;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Unit test cases for the ConnectorException.
@@ -43,9 +45,9 @@ class ConnectorExceptionTest extends \PHPUnit_Framework_TestCase
             'correlation_id' => 'corr_id_1'
         ];
 
-        $request = $this->getMockBuilder('GuzzleHttp\Message\RequestInterface')
+        $request = $this->getMockBuilder(RequestInterface::class)
             ->getMock();
-        $response = $this->getMockBuilder('GuzzleHttp\Message\ResponseInterface')
+        $response = $this->getMockBuilder(ResponseInterface::class)
             ->getMock();
 
         $response->expects($this->once())

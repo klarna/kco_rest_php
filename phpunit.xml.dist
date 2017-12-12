@@ -11,8 +11,7 @@
     processIsolation="false"
     stopOnFailure="false"
     syntaxCheck="false"
-    verbose="true"
-    strict="true">
+    verbose="true">
 
     <testsuites>
         <testsuite name="Unit Tests">

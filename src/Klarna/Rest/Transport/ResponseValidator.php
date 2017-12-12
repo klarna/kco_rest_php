@@ -19,7 +19,7 @@
 
 namespace Klarna\Rest\Transport;
 
-use GuzzleHttp\Message\ResponseInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * HTTP response validator helper class.
@@ -97,9 +97,10 @@ class ResponseValidator
         }
 
         $contentType = $this->response->getHeader('Content-Type');
-        if ($contentType !== $mediaType) {
+
+        if (!in_array($mediaType, $contentType)) {
             throw new \RuntimeException(
-                "Unexpected Content-Type header received: {$contentType}"
+                'Unexpected Content-Type header received: ' . implode(',', $contentType)
             );
         }
 
@@ -116,7 +117,7 @@ class ResponseValidator
      */
     public function getJson()
     {
-        return $this->response->json();
+        return \json_decode($this->response->getBody(), true);
     }
 
     /**
@@ -132,6 +133,6 @@ class ResponseValidator
             throw new \RuntimeException('Response is missing a Location header');
         }
 
-        return $this->response->getHeader('Location');
+        return $this->response->getHeader('Location')[0];
     }
 }

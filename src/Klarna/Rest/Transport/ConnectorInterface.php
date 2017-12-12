@@ -21,9 +21,9 @@ namespace Klarna\Rest\Transport;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\RequestInterface;
-use GuzzleHttp\Message\ResponseInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * HTTP transport connector interface used to authenticate and make HTTP requests
@@ -57,13 +57,14 @@ interface ConnectorInterface
     /**
      * Creates a request object.
      *
-     * @param string $url     URL
-     * @param string $method  HTTP method
-     * @param array  $options Request options
-     *
+     * @param string $url URL
+     * @param string $method HTTP method
+     * @param array $headers
+     * @param string $body
      * @return RequestInterface
+     *
      */
-    public function createRequest($url, $method = 'GET', array $options = []);
+    public function createRequest($url, $method = 'GET', array $headers = [], $body = '');
 
     /**
      * Sends the request.
