@@ -131,6 +131,9 @@ abstract class Resource extends \ArrayObject
      * @param array $headers
      * @param string $body
      *
+     * @throws ConnectorException When the API replies with an error response		+     * @return ResponseValidator When the API replies with an error response
+     * @throws RequestException   When an error is encountered
+     * @throws \LogicException    When Guzzle cannot populate the response'
      * @return ResponseValidator When the API replies with an error response
      *
      */
