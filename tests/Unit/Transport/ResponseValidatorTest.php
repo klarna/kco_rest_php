@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Tests\Unit\Transport;
 
 use Klarna\Rest\Transport\ResponseValidator;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Unit test cases for the ResponseValidator class.
@@ -27,7 +28,7 @@ use Klarna\Rest\Transport\ResponseValidator;
 class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var GuzzleHttp\Message\ResponseInterface
+     * @var ResponseInterface
      */
     protected $response;
 
@@ -41,8 +42,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $interface = 'GuzzleHttp\Message\ResponseInterface';
-        $this->response = $this->getMockBuilder($interface)
+        $this->response = $this->getMockBuilder(ResponseInterface::class)
             ->getMock();
 
         $this->validator = new ResponseValidator($this->response);
@@ -66,8 +66,8 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     public function testGetJson()
     {
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue('json response'));
+            ->method('getBody')
+            ->will($this->returnValue(json_encode('json response')));
 
         $this->assertEquals('json response', $this->validator->getJson());
     }
@@ -86,7 +86,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Location')
-            ->will($this->returnValue('a location'));
+            ->will($this->returnValue(['a location']));
 
         $this->assertEquals('a location', $this->validator->getLocation());
     }
@@ -125,7 +125,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('text/plain'));
+            ->will($this->returnValue(['text/plain']));
 
         $this->assertSame(
             $this->validator,
@@ -168,7 +168,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('text/plain'));
+            ->will($this->returnValue(['text/plain']));
 
         $this->setExpectedException(
             'RuntimeException',

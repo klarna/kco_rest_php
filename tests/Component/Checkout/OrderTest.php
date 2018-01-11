@@ -19,11 +19,10 @@
 
 namespace Klarna\Rest\Tests\Component\Checkout;
 
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7\Response;
+use function GuzzleHttp\Psr7\stream_for;
 use Klarna\Rest\Checkout\Order;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
-use Klarna\Rest\Transport\Connector;
 
 /**
  * Component test cases for the checkout order resource.
@@ -37,7 +36,7 @@ class OrderTest extends ResourceTestCase
      */
     public function testCreate()
     {
-        $this->mock->addResponse(
+        $this->mock->append(
             new Response(201, ['Location' => 'http://somewhere/a-path'])
         );
 
@@ -47,10 +46,10 @@ class OrderTest extends ResourceTestCase
 
         $this->assertEquals('http://somewhere/a-path', $location);
 
-        $request = $this->history->getLastRequest();
+        $request = $this->mock->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals('/checkout/v3/orders', $request->getPath());
-        $this->assertEquals('application/json', $request->getHeader('Content-Type'));
+        $this->assertEquals('/checkout/v3/orders', $request->getUri()->getPath());
+        $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
         $this->assertEquals('{"data":"goes here"}', strval($request->getBody()));
 
         $this->assertAuthorization($request);
@@ -71,11 +70,11 @@ class OrderTest extends ResourceTestCase
 }
 JSON;
 
-        $this->mock->addResponse(
+        $this->mock->append(
             new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                Stream::factory($json)
+                $json
             )
         );
 
@@ -87,10 +86,11 @@ JSON;
         $this->assertEquals('from json', $order['updated']);
         $this->assertEquals('0001', $order->getId());
 
-        $request = $this->history->getLastRequest();
+
+        $request = $this->mock->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals('/checkout/v3/orders/0001', $request->getPath());
-        $this->assertEquals('application/json', $request->getHeader('Content-Type'));
+        $this->assertEquals('/checkout/v3/orders/0001', $request->getUri()->getPath());
+        $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
         $this->assertEquals('{"data":"sent in"}', strval($request->getBody()));
 
         $this->assertAuthorization($request);
@@ -110,11 +110,11 @@ JSON;
 }
 JSON;
 
-        $this->mock->addResponse(
+        $this->mock->append(
             new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                Stream::factory($json)
+                stream_for($json)
             )
         );
 
@@ -126,9 +126,9 @@ JSON;
         $this->assertEquals('from json', $order['updated']);
         $this->assertEquals('0002', $order->getId());
 
-        $request = $this->history->getLastRequest();
+        $request = $this->mock->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/checkout/v3/orders/0002', $request->getPath());
+        $this->assertEquals('/checkout/v3/orders/0002', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);
     }

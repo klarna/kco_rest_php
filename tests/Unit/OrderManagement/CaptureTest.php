@@ -77,8 +77,7 @@ class CaptureTest extends TestCase
             ->method('createRequest')
             ->with(
                 '/orders/1/captures/2',
-                'GET',
-                []
+                'GET'
             )
             ->will($this->returnValue($this->request));
 
@@ -99,7 +98,7 @@ class CaptureTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
 
         $data = [
             'data' => 'from response json',
@@ -107,8 +106,8 @@ class CaptureTest extends TestCase
         ];
 
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue($data));
+            ->method('getBody')
+            ->will($this->returnValue(\GuzzleHttp\json_encode($data)));
 
         $capture = new Capture($this->connector, '/orders/1', '2');
         $capture['data'] = 'is overwritten';
@@ -130,8 +129,7 @@ class CaptureTest extends TestCase
             ->method('createRequest')
             ->with(
                 '/orders/1/captures/2',
-                'GET',
-                []
+                'GET'
             )
             ->will($this->returnValue($this->request));
 
@@ -166,8 +164,7 @@ class CaptureTest extends TestCase
             ->method('createRequest')
             ->with(
                 '/orders/1/captures/2',
-                'GET',
-                []
+                'GET'
             )
             ->will($this->returnValue($this->request));
 
@@ -188,7 +185,7 @@ class CaptureTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('text/plain'));
+            ->will($this->returnValue(['text/plain']));
 
         $capture = new Capture($this->connector, '/orders/1', '2');
         $capture['data'] = 'is overwritten';
@@ -215,7 +212,8 @@ class CaptureTest extends TestCase
             ->with(
                 '/orders/1/captures',
                 'POST',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -236,7 +234,7 @@ class CaptureTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Location')
-            ->will($this->returnValue('http://somewhere/a-path'));
+            ->will($this->returnValue(['http://somewhere/a-path']));
 
         $capture = new Capture($this->connector, '/orders/1');
         $location = $capture->create($data)
@@ -324,7 +322,8 @@ class CaptureTest extends TestCase
             ->with(
                 '/orders/1/captures/2/shipping-info',
                 'POST',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -355,7 +354,8 @@ class CaptureTest extends TestCase
             ->with(
                 '/orders/1/captures/2/shipping-info',
                 'POST',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -392,7 +392,8 @@ class CaptureTest extends TestCase
             ->with(
                 '/orders/1/captures/2/customer-details',
                 'PATCH',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -423,7 +424,8 @@ class CaptureTest extends TestCase
             ->with(
                 '/orders/1/captures/2/customer-details',
                 'PATCH',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -458,7 +460,7 @@ class CaptureTest extends TestCase
             ->with(
                 '/orders/1/captures/2/trigger-send-out',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -487,7 +489,7 @@ class CaptureTest extends TestCase
             ->with(
                 '/orders/1/captures/2/trigger-send-out',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 

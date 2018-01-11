@@ -60,7 +60,8 @@ class OrderTest extends TestCase
             ->with(
                 '/checkout/v3/orders',
                 'POST',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -81,7 +82,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Location')
-            ->will($this->returnValue('http://somewhere/a-path'));
+            ->will($this->returnValue(['http://somewhere/a-path']));
 
         $order = new Order($this->connector);
         $location = $order->create($data)
@@ -169,7 +170,8 @@ class OrderTest extends TestCase
             ->with(
                 '/checkout/v3/orders/12345',
                 'POST',
-                ['json' => $updateData]
+                ['Content-Type' => 'application/json'],
+                \json_encode($updateData)
             )
             ->will($this->returnValue($this->request));
 
@@ -190,7 +192,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
 
         $data = [
             'data' => 'from response json',
@@ -198,8 +200,8 @@ class OrderTest extends TestCase
         ];
 
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue($data));
+            ->method('getBody')
+            ->will($this->returnValue(\GuzzleHttp\json_encode($data)));
 
         $order = new Order($this->connector, '12345');
         $order['order_id'] = '12345';
@@ -269,7 +271,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('text/plain'));
+            ->will($this->returnValue(['text/plain']));
 
         $order = new Order($this->connector);
 
@@ -314,7 +316,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
 
         $data = [
             'data' => 'from response json',
@@ -322,8 +324,8 @@ class OrderTest extends TestCase
         ];
 
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue($data));
+            ->method('getBody')
+            ->will($this->returnValue(\GuzzleHttp\json_encode($data)));
 
         $order = new Order($this->connector, '12345');
         $order['data'] = 'is overwritten';
@@ -403,7 +405,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('text/plain'));
+            ->will($this->returnValue(['text/plain']));
 
         $order = new Order($this->connector, '12345');
         $order['data'] = 'is overwritten';

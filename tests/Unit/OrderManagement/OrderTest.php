@@ -20,6 +20,7 @@
 namespace Klarna\Tests\Unit\Rest\OrderManagement;
 
 use GuzzleHttp\Exception\RequestException;
+use Klarna\Rest\OrderManagement\Capture;
 use Klarna\Rest\OrderManagement\Order;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
@@ -53,8 +54,7 @@ class OrderTest extends TestCase
             ->method('createRequest')
             ->with(
                 '/ordermanagement/v1/orders/12345',
-                'GET',
-                []
+                'GET'
             )
             ->will($this->returnValue($this->request));
 
@@ -75,7 +75,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
 
         $data = [
             'data' => 'from response json',
@@ -93,8 +93,8 @@ class OrderTest extends TestCase
         ];
 
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue($data));
+            ->method('getBody')
+            ->will($this->returnValue(\GuzzleHttp\json_encode($data)));
 
         $order = new Order($this->connector, '12345');
         $order['data'] = 'is overwritten';
@@ -186,7 +186,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('text/plain'));
+            ->will($this->returnValue(['text/plain']));
 
         $order = new Order($this->connector, '12345');
         $order['data'] = 'is overwritten';
@@ -211,7 +211,7 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/acknowledge',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -240,7 +240,7 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/acknowledge',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -275,7 +275,7 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/cancel',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -304,7 +304,7 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/cancel',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -341,7 +341,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/authorization',
                 'PATCH',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -372,7 +373,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/authorization',
                 'PATCH',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -407,7 +409,7 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/extend-authorization-time',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -436,7 +438,7 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/extend-authorization-time',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -473,7 +475,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/merchant-references',
                 'PATCH',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -504,7 +507,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/merchant-references',
                 'PATCH',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -541,7 +545,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/customer-details',
                 'PATCH',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -572,7 +577,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/customer-details',
                 'PATCH',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -609,7 +615,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/refunds',
                 'POST',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -640,7 +647,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/refunds',
                 'POST',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                \json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -675,7 +683,7 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/release-remaining-authorization',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -704,7 +712,7 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/release-remaining-authorization',
                 'POST',
-                []
+                ['Content-Type' => 'application/json']
             )
             ->will($this->returnValue($this->request));
 
@@ -741,7 +749,8 @@ class OrderTest extends TestCase
             ->with(
                 '/ordermanagement/v1/orders/12345/captures',
                 'POST',
-                ['json' => $data]
+                ['Content-Type' => 'application/json'],
+                json_encode($data)
             )
             ->will($this->returnValue($this->request));
 
@@ -762,7 +771,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Location')
-            ->will($this->returnValue('http://somewhere/a-path'));
+            ->will($this->returnValue(['http://somewhere/a-path']));
 
         $order = new Order($this->connector, '12345');
         $capture = $order->createCapture($data);
@@ -781,8 +790,7 @@ class OrderTest extends TestCase
             ->method('createRequest')
             ->with(
                 '/ordermanagement/v1/orders/12345/captures/2',
-                'GET',
-                []
+                'GET'
             )
             ->will($this->returnValue($this->request));
 
@@ -803,7 +811,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
 
         $data = [
             'data' => 'from response json',
@@ -811,8 +819,8 @@ class OrderTest extends TestCase
         ];
 
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue($data));
+            ->method('getBody')
+            ->will($this->returnValue(\GuzzleHttp\json_encode($data)));
 
         $order = new Order($this->connector, '12345');
         $capture = $order->fetchCapture('2');
@@ -833,7 +841,7 @@ class OrderTest extends TestCase
 
         $order = new Order($this->connector, '12345');
 
-        $order['captures'][] = $this->getMockBuilder('Klarna\Rest\OrderManagement\Capture')
+        $order['captures'][] = $this->getMockBuilder(Capture::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -844,7 +852,7 @@ class OrderTest extends TestCase
         $order['captures'][0]->expects($this->never())
             ->method('fetch');
 
-        $order['captures'][] = $this->getMockBuilder('Klarna\Rest\OrderManagement\Capture')
+        $order['captures'][] = $this->getMockBuilder(Capture::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -870,8 +878,7 @@ class OrderTest extends TestCase
             ->method('createRequest')
             ->with(
                 '/ordermanagement/v1/orders/12345/captures/2',
-                'GET',
-                []
+                'GET'
             )
             ->will($this->returnValue($this->request));
 
@@ -892,7 +899,7 @@ class OrderTest extends TestCase
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
-            ->will($this->returnValue('application/json'));
+            ->will($this->returnValue(['application/json']));
 
         $data = [
             'data' => 'from response json',
@@ -900,11 +907,11 @@ class OrderTest extends TestCase
         ];
 
         $this->response->expects($this->once())
-            ->method('json')
-            ->will($this->returnValue($data));
+            ->method('getBody')
+            ->will($this->returnValue(\GuzzleHttp\json_encode($data)));
 
         $order = new Order($this->connector, '12345');
-        $order['captures'][] = $this->getMockBuilder('Klarna\Rest\OrderManagement\Capture')
+        $order['captures'][] = $this->getMockBuilder(Capture::class)
             ->disableOriginalConstructor()
             ->getMock();
 
