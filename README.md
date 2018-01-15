@@ -15,7 +15,7 @@ administration, costs and integration time.
 ## Get started
 
 ### Prerequisites
-* PHP 5.6 or above
+* PHP 5.5 or above
 * API credentials
 
 
