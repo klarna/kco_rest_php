@@ -20,8 +20,6 @@
 namespace Klarna\Rest\Tests\Component\Transport;
 
 use GuzzleHttp\Psr7\Response;
-use function GuzzleHttp\Psr7\str;
-use function GuzzleHttp\Psr7\stream_for;
 use GuzzleHttp\Psr7\Uri;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Tests\Component\TestCase;
@@ -92,7 +90,7 @@ JSON;
         $response = new Response(
             500,
             ['Content-Type' => 'application/json'],
-            stream_for($json)
+            $json
         );
         $this->mock->append($response);
 
