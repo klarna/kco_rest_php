@@ -1,3 +1,6 @@
+## v3.0.1 - 2017-01-16
+- smaller fixes
+
 ## v3.0.0 - 2017-12-12
 
 - support for guzzle >6.0
