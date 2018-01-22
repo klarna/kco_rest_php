@@ -60,7 +60,7 @@ JSON;
 
         $request = $this->mock->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/path/captures/1002', $request->getUri());
+        $this->assertEquals('/path/captures/1002', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);
     }

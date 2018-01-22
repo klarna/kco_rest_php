@@ -20,7 +20,6 @@
 namespace Klarna\Rest\Tests\Component\Checkout;
 
 use GuzzleHttp\Psr7\Response;
-use function GuzzleHttp\Psr7\stream_for;
 use Klarna\Rest\Checkout\Order;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
@@ -114,7 +113,7 @@ JSON;
             new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                stream_for($json)
+                $json
             )
         );
 

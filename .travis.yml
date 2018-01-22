@@ -1,5 +1,6 @@
 language: php
 php:
+  - '5.5'
   - '5.6'
   - '7.0'
   - '7.1'
@@ -10,10 +11,6 @@ php:
 matrix:
   allow_failures:
     - php: nightly
-
-branches:
-    only:
-        - /^v\d\.\d/
 
 cache:
   directories:
