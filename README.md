@@ -12,19 +12,60 @@ merchants to offer all payment methods through one supplier, minimizing
 administration, costs and integration time.
 
 
-## Get started
+## Getting started
 
 ### Prerequisites
 * PHP 5.5 or above
-* API credentials
+* [API credentials](#api-credentials)
 
 
-### Usage
-Example files can be found in the [docs/](docs/) directory.
+### API Credentials
+
+Before getting a production account you can get a playground one.
+Register here to be able to test your SDK integration before go live:
+
+- https://playground.eu.portal.klarna.com/developer-sign-up - for EU countries
+- https://playground.us.portal.klarna.com/developer-sign-up - for the US
+
+Later you need to register as a Klarna merchant to get a production credentials
+
+- https://developers.klarna.com/en/gb/kco-v3
 
 
-## Documentation
+
+
+## PHP SDK Installation and Usage
+
+To install the PHP SDK from the Central Composer repository use composer:
+
+```
+composer require klarna/kco_rest
+```
+
+Highly recommended to use version tag when installing SDK.
+
+```
+composer require klarna/kco_rest:1.2.3.4
+```
+
+Detailed information about the PHP SDK package and a list of available versions can be found here:
+https://packagist.org/packages/klarna/kco_rest
+
+Include the SDK into your PHP file using the Composer autoloader:
+
+```
+<?php
+
+require('vendor/autoload.php');
+```
+
+
+
+## Documentation and Examples
+
+Example files can be found in the [docs/](docs/) directory.  
 Additional documentation can be found at https://developers.klarna.com.
+
 
 
 ## Questions and feedback
@@ -56,6 +97,7 @@ To contribute, the following criteria needs to be fulfilled:
 * Joakim Löfgren ([@JoakimLofgren](https://github.com/JoakimLofgren))
 * Majid Garmaroudi ([@dijam](https://github.com/dijam))
 * Omer Karadagli ([@ockcyp](https://github.com/ockcyp))
+* Alexander Zinovev ([@alexions](https://github.com/alexions))
 
 
 ## License
