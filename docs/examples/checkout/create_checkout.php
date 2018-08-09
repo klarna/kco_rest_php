@@ -20,8 +20,8 @@ try {
         "purchase_country" => "gb",
         "purchase_currency" => "gbp",
         "locale" => "en-gb",
-        "order_amount" => 20000,
-        "order_tax_amount" => 1000,
+        "order_amount" => 10000,
+        "order_tax_amount" => 2000,
         "order_lines" => [
             [
                 "type" => "physical",
@@ -68,3 +68,4 @@ ORDER;
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
 }
+
