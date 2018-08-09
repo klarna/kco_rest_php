@@ -46,7 +46,7 @@ class Capture extends Resource
     public static $path = '/captures';
 
     /**
-     * Constructs an order instance.
+     * Constructs a Capture instance.
      *
      * @param Connector $connector HTTP transport connector
      * @param string    $orderUrl  Parent order resource url
