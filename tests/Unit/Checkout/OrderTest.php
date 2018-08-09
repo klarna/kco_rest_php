@@ -75,14 +75,16 @@ class OrderTest extends TestCase
             ->will($this->returnValue('201'));
 
         $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Location')
-            ->will($this->returnValue(true));
+            ->method('getBody')
+            ->will($this->returnValue('{}'));
 
-        $this->response->expects($this->once())
-            ->method('getHeader')
-            ->with('Location')
-            ->will($this->returnValue(['http://somewhere/a-path']));
+        $this->response->method('hasHeader')
+            ->withConsecutive(['Content-Type'], ['Location'])
+            ->willReturnOnConsecutiveCalls(true, true);
+
+        $this->response->method('getHeader')
+            ->withConsecutive(['Content-Type'], ['Location'])
+            ->willReturnOnConsecutiveCalls(['application/json'], ['http://somewhere/a-path']);
 
         $order = new Order($this->connector);
         $location = $order->create($data)
@@ -126,6 +128,44 @@ class OrderTest extends TestCase
      *
      * @return void
      */
+    public function testCreateNoContentType()
+    {
+        $this->connector->expects($this->once())
+            ->method('createRequest')
+            ->will($this->returnValue($this->request));
+
+        $this->connector->expects($this->once())
+            ->method('send')
+            ->with($this->request)
+            ->will($this->returnValue($this->response));
+
+        $this->response->expects($this->once())
+            ->method('getStatusCode')
+            ->will($this->returnValue('201'));
+
+        $this->response->method('hasHeader')
+            ->withConsecutive(['Content-Type'], ['Location'])
+            ->willReturnOnConsecutiveCalls(false, true);
+
+        $this->response->method('getHeader')
+            ->withConsecutive(['Content-Type'], ['Location'])
+            ->willReturnOnConsecutiveCalls([], []);
+
+        $order = new Order($this->connector);
+
+        $this->setExpectedException(
+            'RuntimeException',
+            'Response is missing a Content-Type header'
+        );
+
+        $order->create(['data' => 'goes here']);
+    }
+
+    /**
+     * Make sure a missing location header in the response results in an exception.
+     *
+     * @return void
+     */
     public function testCreateNoLocation()
     {
         $this->connector->expects($this->once())
@@ -142,9 +182,16 @@ class OrderTest extends TestCase
             ->will($this->returnValue('201'));
 
         $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Location')
-            ->will($this->returnValue(false));
+            ->method('getBody')
+            ->will($this->returnValue('{}'));
+
+        $this->response->method('hasHeader')
+            ->withConsecutive(['Content-Type'], ['Location'])
+            ->willReturnOnConsecutiveCalls(true, false);
+
+        $this->response->method('getHeader')
+            ->withConsecutive(['Content-Type'], ['Location'])
+            ->willReturnOnConsecutiveCalls(['application/json'], null);
 
         $order = new Order($this->connector);
 

@@ -75,11 +75,12 @@ class Order extends Resource
      */
     public function create(array $data)
     {
-        $url = $this->post(self::$path, $data)
+        $data = $this->post(self::$path, $data)
             ->status('201')
-            ->getLocation();
+            ->contentType('application/json');
 
-        $this->setLocation($url);
+        $this->exchangeArray($data->getJson());
+        $this->setLocation($data->getLocation());
 
         return $this;
     }
