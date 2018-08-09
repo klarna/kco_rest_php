@@ -42,7 +42,8 @@ class ConnectorExceptionTest extends \PHPUnit_Framework_TestCase
                 'Oh dear...',
                 'Oh no...'
             ],
-            'correlation_id' => 'corr_id_1'
+            'correlation_id' => 'corr_id_1',
+            'service_version' => 123,
         ];
 
         $request = $this->getMockBuilder(RequestInterface::class)
@@ -75,7 +76,7 @@ class ConnectorExceptionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($previous, $exception->getPrevious());
         $this->assertEquals(
-            'ERROR_CODE_1: Oh dear..., Oh no... (#corr_id_1)',
+            'ERROR_CODE_1: Oh dear..., Oh no... (#corr_id_1) ServiceVersion: 123',
             $exception->getMessage()
         );
     }
