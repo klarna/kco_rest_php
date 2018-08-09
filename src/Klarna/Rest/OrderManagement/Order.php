@@ -138,7 +138,7 @@ class Order extends Resource
     }
 
     /**
-     * Updates the authorization data.
+     * Updates the authorization data. Sets new order amount and order lines
      *
      * @param array $data Authorization data
      *
@@ -313,5 +313,29 @@ class Order extends Resource
         $this['captures'][] = $capture;
 
         return $capture;
+    }
+
+    /**
+     * Fetches all captures.
+     *
+     * @throws ConnectorException        When the API replies with an error response
+     * @throws RequestException          When an error is encountered
+     * @throws \RuntimeException         On an unexpected API response
+     * @throws \RuntimeException         If the response content type is not JSON
+     * @throws \InvalidArgumentException If the JSON cannot be parsed
+     * @throws \LogicException           When Guzzle cannot populate the response
+     *
+     * @return Capture[]
+     */
+    public function fetchCaptures()
+    {
+        $captures = new Capture($this->connector, $this->getLocation());
+        $captures = $captures->fetch()->getArrayCopy();
+
+        foreach ($captures as $id => $capture) {
+            $captures[$id] = new Capture($this->connector, $this->getLocation(), $capture['capture_id']);
+            $captures[$id]->exchangeArray($capture);
+        }
+        return $captures;
     }
 }
