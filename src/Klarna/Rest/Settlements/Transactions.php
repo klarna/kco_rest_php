@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * File containing the Tokens class.
+ * File containing the Transactions class.
  */
 
 namespace Klarna\Rest\Settlements;
@@ -46,7 +46,7 @@ class Transactions extends Resource
     }
 
     /**
-     * Not applicable
+     * Not applicable.
      *
      * @throws NonApplicableException
      */

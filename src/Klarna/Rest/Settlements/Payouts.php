@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * File containing the Tokens class.
+ * File containing the Payouts class.
  */
 
 namespace Klarna\Rest\Settlements;
@@ -51,7 +51,7 @@ class Payouts extends Resource
     }
 
     /**
-     * Not applicable
+     * Not applicable.
      *
      * @throws NonApplicableException
      */
