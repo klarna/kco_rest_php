@@ -20,12 +20,13 @@
 namespace Klarna\Rest\Settlements;
 
 use GuzzleHttp\Exception\RequestException;
+use Klarna\Exception\NonApplicableException;
 use Klarna\Rest\Resource;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
- * Tokens resource.
+ * Payouts resource.
  */
 class Payouts extends Resource
 {
@@ -40,13 +41,23 @@ class Payouts extends Resource
     public static $path = '/settlements/v1/payouts';
 
     /**
-     * Constructs a Tokens instance.
+     * Constructs Payouts instance.
      *
      * @param Connector $connector HTTP transport connector
      */
     public function __construct(Connector $connector)
     {
         parent::__construct($connector);
+    }
+
+    /**
+     * Not applicable
+     *
+     * @throws NonApplicableException
+     */
+    public function fetch()
+    {
+        throw NonApplicableException('Not applicable');
     }
 
     /**
@@ -74,7 +85,7 @@ class Payouts extends Resource
     /**
      * Returns a collection of payouts.
      * 
-     * @param array $params Additional query params to filter payouts
+     * @param array $params Additional query params to filter payouts.
      *              https://developers.klarna.com/api/#settlements-api-get-all-payouts
      *
      * @throws ConnectorException        When the API replies with an error response
@@ -97,7 +108,7 @@ class Payouts extends Resource
     /**
      * Returns a summary of payouts for each currency code in a date range.
      * 
-     * @param array $params Additional query params to filter summary data
+     * @param array $params Additional query params to filter summary data.
      *              https://developers.klarna.com/api/#settlements-api-get-summary-of-payouts
      *
      * @throws ConnectorException        When the API replies with an error response
