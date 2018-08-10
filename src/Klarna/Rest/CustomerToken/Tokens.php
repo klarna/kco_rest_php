@@ -17,7 +17,7 @@
  * File containing the Tokens class.
  */
 
-namespace Klarna\Rest\OrderManagement;
+namespace Klarna\Rest\CustomerToken;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
