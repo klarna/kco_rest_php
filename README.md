@@ -14,6 +14,8 @@ administration, costs and integration time.
 
 ## Getting started
 
+SDK covers Klarna API: https://developers.klarna.com/api/
+
 ### Prerequisites
 * PHP 5.5 or above
 * [API credentials](#api-credentials)
@@ -62,6 +64,9 @@ require('vendor/autoload.php');
 
 
 ## Documentation and Examples
+
+Klarna API documentation: https://developers.klarna.com/api/
+
 
 Example files can be found in the [docs/](docs/) directory.  
 Additional documentation can be found at https://developers.klarna.com.
