@@ -64,17 +64,13 @@ class Tokens extends Resource
      * @throws \RuntimeException  If the API replies with an unexpected response
      * @throws \LogicException    When Guzzle cannot populate the response
      *
-     * @return self
+     * @return array created order data
      */
     public function createOrder(array $data)
     {
-        $data = $this->post(self::$path, $data)
+        return $this->post(self::$path, $data)
             ->status('200')
-            ->contentType('application/json');
-
-        $this->exchangeArray($data->getJson());
-        $this->setLocation($data->getLocation());
-
-        return $this;
+            ->contentType('application/json')
+            ->getJson();
     }
 }
