@@ -18,7 +18,9 @@ $connector = Klarna\Rest\Transport\Connector::create(
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
     $captures = $order->fetchCaptures();
-    print_r($captures);
+    foreach ($captures as $capture) {
+        print_r($capture->getArrayCopy());
+    }
 
 } catch (Exception $e) {
     echo $e->getMessage();

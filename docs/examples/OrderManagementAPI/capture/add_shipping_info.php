@@ -16,19 +16,23 @@ $connector = Klarna\Rest\Transport\Connector::create(
     Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL
 );
 
-$order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
+try {
+    $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
 
-$capture = $order->fetchCapture($captureId);
-$capture->addShippingInfo([
-    "shipping_info" => [
-        [
-            "shipping_company" => "DHL",
-            "shipping_method" => "Home",
-            "tracking_uri" => "http://www.dhl.com/content/g0/en/express/tracking.shtml?brand=DHL&AWB=1234567890",
-            "tracking_number" => "1234567890",
-            "return_tracking_number" => "E-55-KL",
-            "return_shipping_company" => "DHL",
-            "return_tracking_uri" => "http://www.dhl.com/content/g0/en/express/tracking.shtml?brand=DHL&AWB=98389222"
+    $capture = $order->fetchCapture($captureId);
+    $capture->addShippingInfo([
+        "shipping_info" => [
+            [
+                "shipping_company" => "DHL",
+                "shipping_method" => "Home",
+                "tracking_uri" => "http://www.dhl.com/content/g0/en/express/tracking.shtml?brand=DHL&AWB=1234567890",
+                "tracking_number" => "1234567890",
+                "return_tracking_number" => "E-55-KL",
+                "return_shipping_company" => "DHL",
+                "return_tracking_uri" => "http://www.dhl.com/content/g0/en/express/tracking.shtml?brand=DHL&AWB=98389222"
+            ]
         ]
-    ]
-]);
+    ]);
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}

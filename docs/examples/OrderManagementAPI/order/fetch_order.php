@@ -15,5 +15,12 @@ $connector = Klarna\Rest\Transport\Connector::create(
     Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL
 );
 
-$order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-$order->fetch();
+try {
+    $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
+    $order->fetch();
+
+    print_r($order->getArrayCopy());
+
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}

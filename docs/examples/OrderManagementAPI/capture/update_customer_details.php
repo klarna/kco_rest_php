@@ -16,12 +16,17 @@ $connector = Klarna\Rest\Transport\Connector::create(
     Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL
 );
 
-$order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
+try {
+    $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
 
-$capture = $order->fetchCapture($captureId);
-$capture->updateCustomerDetails([
-    "billing_address" => [
-        "email" => "user@example.com",
-        "phone" => "57-3895734"
-    ]
-]);
+    $capture = $order->fetchCapture($captureId);
+    $capture->updateCustomerDetails([
+        "billing_address" => [
+            "email" => "user@example.com",
+            "phone" => "57-3895734"
+        ]
+    ]);
+
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}

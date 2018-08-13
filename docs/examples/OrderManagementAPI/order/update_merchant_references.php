@@ -18,8 +18,13 @@ $connector = Klarna\Rest\Transport\Connector::create(
     Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL
 );
 
-$order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-$order->updateMerchantReferences([
-    "merchant_reference1" => "15632423",
-    "merchant_reference2" => "special order"
-]);
+try {
+    $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
+    $order->updateMerchantReferences([
+        "merchant_reference1" => "15632423",
+        "merchant_reference2" => "special order"
+    ]);
+
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
