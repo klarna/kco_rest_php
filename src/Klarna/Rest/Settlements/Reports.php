@@ -57,8 +57,8 @@ class Reports extends Resource
 
     /**
      * Returns payout report with transactions
-     * 
-     * @param string $payment_reference The reference id of the payout.
+     *
+     * @param string $paymentReference The reference id of the payout.
      *
      * @throws ConnectorException        When the API replies with an error response
      * @throws RequestException          When an error is encountered
@@ -69,9 +69,9 @@ class Reports extends Resource
      *
      * @return array Payout report
      */
-    public function getPayoutReport($payment_reference)
+    public function getPayoutReport($paymentReference)
     {
-        return $this->get(self::$path . "/payout-with-transactions?payment_reference={$payment_reference}")
+        return $this->get(self::$path . "/payout-with-transactions?payment_reference={$paymentReference}")
             ->status('200')
             ->contentType('text/csv')
             ->getJson();
@@ -79,7 +79,7 @@ class Reports extends Resource
 
     /**
      * Returns payouts summary report with transactions.
-     * 
+     *
      * @param array $params Additional query params to filter payouts.
      *              https://developers.klarna.com/api/#settlements-api-get-payouts-summary-report-with-transactions
      *

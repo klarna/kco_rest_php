@@ -62,7 +62,7 @@ class Payouts extends Resource
 
     /**
      * Returns a specific payout based on a given payment reference.
-     * 
+     *
      * @param string $paymentReference The reference id of the payout
      *
      * @throws ConnectorException        When the API replies with an error response
@@ -84,7 +84,7 @@ class Payouts extends Resource
 
     /**
      * Returns a collection of payouts.
-     * 
+     *
      * @param array $params Additional query params to filter payouts.
      *              https://developers.klarna.com/api/#settlements-api-get-all-payouts
      *
@@ -107,7 +107,7 @@ class Payouts extends Resource
 
     /**
      * Returns a summary of payouts for each currency code in a date range.
-     * 
+     *
      * @param array $params Additional query params to filter summary data.
      *              https://developers.klarna.com/api/#settlements-api-get-summary-of-payouts
      *

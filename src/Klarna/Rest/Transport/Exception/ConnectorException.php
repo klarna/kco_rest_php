@@ -59,15 +59,15 @@ class ConnectorException extends \RuntimeException
         RequestException $prev
     ) {
         $messages = implode(', ', $data['error_messages']);
-        $service_version = isset($data['service_version']) ? $data['service_version'] : '';
-        $message = "{$data['error_code']}: {$messages} (#{$data['correlation_id']}) ServiceVersion: $service_version";
+        $serviceVersion = isset($data['service_version']) ? $data['service_version'] : '';
+        $message = "{$data['error_code']}: {$messages} (#{$data['correlation_id']}) ServiceVersion: $serviceVersion";
 
         parent::__construct($message, $prev->getCode(), $prev);
 
         $this->errorCode = $data['error_code'];
         $this->messages = $data['error_messages'];
         $this->correlationId = $data['correlation_id'];
-        $this->serviceVersion = $service_version;
+        $this->serviceVersion = $serviceVersion;
     }
 
     /**

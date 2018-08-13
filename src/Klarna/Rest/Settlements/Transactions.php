@@ -57,7 +57,7 @@ class Transactions extends Resource
 
     /**
      * Returns a collection of transactions.
-     * 
+     *
      * @param array $params Additional query params to filter transactions.
      *              https://developers.klarna.com/api/#settlements-api-get-transactions
      *
