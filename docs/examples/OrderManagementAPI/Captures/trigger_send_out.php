@@ -1,13 +1,14 @@
 <?php
 /**
- * Retrieve a order.
+ * Trigger a new send out of customer communication.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
 $orderId = getenv('ORDER_ID') ?: '12345';
+$captureId = getenv('CAPTURE_ID') ?: '34567';
 
 $connector = Klarna\Rest\Transport\Connector::create(
     $merchantId,
@@ -17,9 +18,9 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $order->fetch();
 
-    print_r($order->getArrayCopy());
+    $capture = $order->fetchCapture($captureId);
+    $capture->triggerSendout();
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

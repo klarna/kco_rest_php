@@ -1,16 +1,14 @@
 <?php
 /**
- * Acknowledge an authorized order.
- *
- * Merchants will receive the order confirmation push until the order
- * has been acknowledged.
+ * Retrieve a capture.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
 $orderId = getenv('ORDER_ID') ?: '12345';
+$captureId = getenv('CAPTURE_ID') ?: '34567';
 
 $connector = Klarna\Rest\Transport\Connector::create(
     $merchantId,
@@ -20,7 +18,9 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $order->acknowledge();
+    $capture = $order->fetchCapture($captureId);
+
+    print_r($capture->getArrayCopy());
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

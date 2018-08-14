@@ -1,14 +1,14 @@
 <?php
 /**
- * Retrieve a capture.
+ * Retrieve a refund.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
 $orderId = getenv('ORDER_ID') ?: '12345';
-$captureId = getenv('CAPTURE_ID') ?: '34567';
+$refundId = getenv('REFUND_ID') ?: '34567';
 
 $connector = Klarna\Rest\Transport\Connector::create(
     $merchantId,
@@ -18,7 +18,7 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $capture = $order->fetchCapture($captureId);
+    $capture = $order->fetchRefund($refundId);
 
     print_r($capture->getArrayCopy());
 

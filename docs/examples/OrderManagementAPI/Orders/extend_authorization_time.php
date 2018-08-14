@@ -1,11 +1,9 @@
 <?php
 /**
- * Cancel an authorized order.
- *
- * For a cancellation to be successful, there must be no captures on the order.
+ * Extend the order's authorization by default period according to merchant contract.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -19,7 +17,7 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $order->cancel();
+    $order->extendAuthorizationTime();
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

@@ -1,9 +1,12 @@
 <?php
 /**
- * Extend the order's authorization by default period according to merchant contract.
+ * Acknowledge an authorized order.
+ *
+ * Merchants will receive the order confirmation push until the order
+ * has been acknowledged.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -17,7 +20,7 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $order->extendAuthorizationTime();
+    $order->acknowledge();
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

@@ -1,14 +1,15 @@
 <?php
 /**
- * Update the billing address for a capture. Shipping address can not be updated.
+ * Release the remaining authorization for an order.
+ *
+ * Signal that there is no intention to perform further captures.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
 $orderId = getenv('ORDER_ID') ?: '12345';
-$captureId = getenv('CAPTURE_ID') ?: '34567';
 
 $connector = Klarna\Rest\Transport\Connector::create(
     $merchantId,
@@ -18,14 +19,7 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-
-    $capture = $order->fetchCapture($captureId);
-    $capture->updateCustomerDetails([
-        "billing_address" => [
-            "email" => "user@example.com",
-            "phone" => "57-3895734"
-        ]
-    ]);
+    $order->releaseRemainingAuthorization();
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

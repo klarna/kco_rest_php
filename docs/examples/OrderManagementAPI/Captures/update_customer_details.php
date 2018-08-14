@@ -1,9 +1,9 @@
 <?php
 /**
- * Trigger a new send out of customer communication.
+ * Update the billing address for a capture. Shipping address can not be updated.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -20,7 +20,12 @@ try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
 
     $capture = $order->fetchCapture($captureId);
-    $capture->triggerSendout();
+    $capture->updateCustomerDetails([
+        "billing_address" => [
+            "email" => "user@example.com",
+            "phone" => "57-3895734"
+        ]
+    ]);
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

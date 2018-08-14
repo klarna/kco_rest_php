@@ -1,11 +1,12 @@
 <?php
 /**
- * Update billing and/or shipping address for an order.
+ * Capture the supplied amount.
  *
- * This is subject to customer credit check.
+ * Use this call when fulfillment is completed, e.g. physical goods are
+ * being shipped to the customer.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -19,16 +20,11 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $order->updateCustomerDetails([
-        "billing_address" => [
-            "email" => "user@example.com",
-            "phone" => "57-3895734"
-        ],
-        "shipping_address" => [
-            "email" => "user@example.com",
-            "phone" => "57-3895734"
-        ]
-    ]);
+    $captures = $order->fetchCaptures();
+
+    foreach ($captures as $capture) {
+        print_r($capture->getArrayCopy());
+    }
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

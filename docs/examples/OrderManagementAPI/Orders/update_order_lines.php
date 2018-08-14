@@ -1,11 +1,11 @@
 <?php
 /**
- * Refund an amount of a captured order.
+ * Update the total order amount of an order.
  *
- * The refunded amount will be credited to the customer.
+ * This is subject to a new customer credit check.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -19,20 +19,20 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $order->refund([
-        "refunded_amount" => 3000,
-        "description" => "Refunding half the tomatoes",
+    $order->updateAuthorization([
+        "order_amount" => 6000,
+        "description" => "Removed bad bananas",
         "order_lines" => [
             [
                 "type" => "physical",
                 "reference" => "123050",
                 "name" => "Tomatoes",
-                "quantity" => 5,
+                "quantity" => 10,
                 "quantity_unit" => "kg",
                 "unit_price" => 600,
                 "tax_rate" => 2500,
-                "total_amount" => 3000,
-                "total_tax_amount" => 600
+                "total_amount" => 6000,
+                "total_tax_amount" => 1200
             ]
         ]
     ]);

@@ -1,12 +1,11 @@
 <?php
 /**
- * Update one or both merchant references.
+ * Cancel an authorized order.
  *
- * Only the reference(s) in the body will be updated. To clear a reference,
- * set its value to "" (empty string).
+ * For a cancellation to be successful, there must be no captures on the order.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -20,10 +19,7 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $order->updateMerchantReferences([
-        "merchant_reference1" => "15632423",
-        "merchant_reference2" => "special order"
-    ]);
+    $order->cancel();
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

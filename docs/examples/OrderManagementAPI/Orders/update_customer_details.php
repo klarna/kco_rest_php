@@ -1,11 +1,11 @@
 <?php
 /**
- * Release the remaining authorization for an order.
+ * Update billing and/or shipping address for an order.
  *
- * Signal that there is no intention to perform further captures.
+ * This is subject to customer credit check.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -19,7 +19,16 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $order->releaseRemainingAuthorization();
+    $order->updateCustomerDetails([
+        "billing_address" => [
+            "email" => "user@example.com",
+            "phone" => "57-3895734"
+        ],
+        "shipping_address" => [
+            "email" => "user@example.com",
+            "phone" => "57-3895734"
+        ]
+    ]);
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

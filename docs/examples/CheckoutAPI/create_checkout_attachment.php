@@ -3,7 +3,7 @@
  * Create a checkout order with a extra merchant data attachment.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
 const EMD_FORMAT = 'Y-m-d\TH:m:s\Z';
 

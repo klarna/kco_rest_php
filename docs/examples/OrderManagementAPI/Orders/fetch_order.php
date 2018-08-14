@@ -1,12 +1,9 @@
 <?php
 /**
- * Capture the supplied amount.
- *
- * Use this call when fulfillment is completed, e.g. physical goods are
- * being shipped to the customer.
+ * Retrieve a order.
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -20,11 +17,9 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
-    $captures = $order->fetchCaptures();
+    $order->fetch();
 
-    foreach ($captures as $capture) {
-        print_r($capture->getArrayCopy());
-    }
+    print_r($order->getArrayCopy());
 
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

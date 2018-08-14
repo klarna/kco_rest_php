@@ -98,6 +98,24 @@ class Order extends Resource
 
         $this['captures'] = $captures;
 
+
+        // Convert refunds data to Refund[]
+        $refunds = [];
+        foreach ($this['refunds'] as $refund) {
+            $refundId = $refund[Refund::ID_FIELD];
+
+            $object = new Refund(
+                $this->connector,
+                $this->getLocation(),
+                $refundId
+            );
+            $object->exchangeArray($refund);
+
+            $refunds[] = $object;
+        }
+
+        $this['refunds'] = $refunds;
+
         return $this;
     }
 
@@ -225,14 +243,14 @@ class Order extends Resource
      * @throws \RuntimeException  If the API replies with an unexpected response
      * @throws \LogicException    When Guzzle cannot populate the response
      *
-     * @return self
+     * @return Refund
      */
     public function refund(array $data)
     {
-        $this->post($this->getLocation() . '/refunds', $data)
-            ->status(['201', '204']);
+        $refund = new Refund($this->connector, $this->getLocation());
+        $refund->create($data);
 
-        return $this;
+        return $refund;
     }
 
     /**
@@ -313,6 +331,42 @@ class Order extends Resource
         $this['captures'][] = $capture;
 
         return $capture;
+    }
+
+    /**
+     * Fetches the specified refund.
+     *
+     * @param string $refundId Refund ID
+     *
+     * @see Refund::fetch() For more information on how to fetch a refund
+     *
+     * @throws ConnectorException        When the API replies with an error response
+     * @throws RequestException          When an error is encountered
+     * @throws \RuntimeException         On an unexpected API response
+     * @throws \RuntimeException         If the response content type is not JSON
+     * @throws \InvalidArgumentException If the JSON cannot be parsed
+     * @throws \LogicException           When Guzzle cannot populate the response
+     *
+     * @return Refund
+     */
+    public function fetchRefund($refundId)
+    {
+        if ($this->offsetExists('refunds')) {
+            foreach ($this['refunds'] as $refund) {
+                if ($refund->getId() !== $refundId) {
+                    continue;
+                }
+
+                return $refund;
+            }
+        }
+
+        $refund = new Refund($this->connector, $this->getLocation(), $refundId);
+        $refund->fetch();
+
+        $this['refunds'][] = $refund;
+
+        return $refund;
     }
 
     /**
