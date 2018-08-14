@@ -75,7 +75,10 @@ class Sessions extends Resource
             ->contentType('application/json');
 
         $this->exchangeArray($data->getJson());
-        $this->setLocation($data->getLocation());
+
+        // Payments API does not send Location header after creating a new session.
+        // Use workaround to set new location.
+        $this->setLocation(self::$path . '/' . $this->getId());
 
         return $this;
     }
@@ -97,8 +100,11 @@ class Sessions extends Resource
     public function update(array $data)
     {
         $this->post($this->getLocation(), $data)
-            ->status('204')
-            ->contentType('application/json');
+            ->status('204');
+            // ->contentType('application/json');
+            // TODO: We cannot check the Content-type here because of an inconsistency
+            // between service and documentation. The real Content-Type is
+            // "application/octet-stream but not the "application/json" as in the docs.
 
         return $this;
     }

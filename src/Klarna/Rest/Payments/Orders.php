@@ -79,11 +79,10 @@ class Orders extends Resource
      */
     public function create(array $data)
     {
-        $data = $this->post(self::$path . '/order', $data)
+        return $this->post($this->getLocation() . '/order', $data)
             ->status('200')
-            ->contentType('application/json');
-
-        return $data;
+            ->contentType('application/json')
+            ->getJson();
     }
 
     /**
@@ -101,8 +100,11 @@ class Orders extends Resource
     public function cancelAuthorization()
     {
         $this->delete($this->getLocation())
-            ->status('204')
-            ->contentType('application/json');
+            ->status('204');
+            // ->contentType('application/json');
+            // TODO: We cannot check the Content-type here because of an inconsistency
+            // between service and documentation. The real Content-Type is
+            // "application/octet-stream but not the "application/json" as in the docs.
 
         return $this;
     }
@@ -122,7 +124,7 @@ class Orders extends Resource
      */
     public function generateToken(array $data)
     {
-        $data = $this->post(self::$path . '/customer-token', $data)
+        $data = $this->post($this->getLocation() . '/customer-token', $data)
             ->status('200')
             ->contentType('application/json')
             ->getJson();
