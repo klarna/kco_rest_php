@@ -74,7 +74,7 @@ class Reports extends Resource
         return $this->get(self::$path . "/payout-with-transactions?payment_reference={$paymentReference}")
             ->status('200')
             ->contentType('text/csv')
-            ->getJson();
+            ->getBody();
     }
 
     /**
@@ -97,6 +97,6 @@ class Reports extends Resource
         return $this->get(self::$path . '/payouts-summary-with-transactions?' . http_build_query($params))
             ->status('200')
             ->contentType('text/csv')
-            ->getJson();
+            ->getBody();
     }
 }

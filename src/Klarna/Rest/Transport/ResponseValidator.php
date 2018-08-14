@@ -128,7 +128,7 @@ class ResponseValidator
     }
 
     /**
-     * Get the decoded JSON response.
+     * Gets the decoded JSON response.
      *
      * @throws \RuntimeException         If the response body is not in JSON format
      * @throws \InvalidArgumentException If the JSON cannot be parsed
@@ -138,6 +138,19 @@ class ResponseValidator
     public function getJson()
     {
         return \json_decode($this->response->getBody(), true);
+    }
+
+    /**
+     * Gets response body.
+     *
+     * @throws \RuntimeException         If the response body is not in JSON format
+     * @throws \InvalidArgumentException If the JSON cannot be parsed
+     *
+     * @return StreamInterface the body as a stream
+     */
+    public function getBody()
+    {
+        return $this->response->getBody();
     }
 
     /**
