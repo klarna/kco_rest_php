@@ -60,7 +60,8 @@ class ConnectorException extends \RuntimeException
     ) {
         $messages = implode(', ', $data['error_messages']);
         $serviceVersion = isset($data['service_version']) ? $data['service_version'] : '';
-        $message = "{$data['error_code']}: {$messages} (#{$data['correlation_id']}) ServiceVersion: $serviceVersion";
+        $message = "{$data['error_code']}: {$messages} (#{$data['correlation_id']})";
+        $message .= $serviceVersion ? " ServiceVersion: $serviceVersion" : '';
 
         parent::__construct($message, $prev->getCode(), $prev);
 
