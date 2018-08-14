@@ -250,7 +250,7 @@ JSON;
      */
     public function testRefund()
     {
-        $this->mock->append(new Response(204));
+        $this->mock->append(new Response(201, ['Location' => 'http://example.com']));
 
         $order = new Order($this->connector, '0002');
         $order->refund(['data' => 'sent in']);
@@ -275,7 +275,7 @@ JSON;
      */
     public function testRefund201()
     {
-        $this->mock->append(new Response(201));
+        $this->mock->append(new Response(201, ['Location' => 'http://example.com']));
 
         $order = new Order($this->connector, '0002');
         $order->refund(['data' => 'sent in']);

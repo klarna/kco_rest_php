@@ -100,21 +100,22 @@ class Order extends Resource
 
 
         // Convert refunds data to Refund[]
-        $refunds = [];
-        foreach ($this['refunds'] as $refund) {
-            $refundId = $refund[Refund::ID_FIELD];
+        if (isset($this['refunds'])) {
+            $refunds = [];
+            foreach ($this['refunds'] as $refund) {
+                $refundId = $refund[Refund::ID_FIELD];
 
-            $object = new Refund(
-                $this->connector,
-                $this->getLocation(),
-                $refundId
-            );
-            $object->exchangeArray($refund);
+                $object = new Refund(
+                    $this->connector,
+                    $this->getLocation(),
+                    $refundId
+                );
+                $object->exchangeArray($refund);
 
-            $refunds[] = $object;
+                $refunds[] = $object;
+            }
+            $this['refunds'] = $refunds;
         }
-
-        $this['refunds'] = $refunds;
 
         return $this;
     }
