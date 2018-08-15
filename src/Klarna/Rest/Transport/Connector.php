@@ -180,8 +180,7 @@ class Connector implements ConnectorInterface
         $baseUrl = self::EU_BASE_URL,
         UserAgentInterface $userAgent = null
     ) {
-        $debug = getenv('DEBUG_SDK') || defined('DEBUG_SDK');
-        $client = new Client(['base_uri' => $baseUrl, 'debug' => $debug]);
+        $client = new Client(['base_uri' => $baseUrl]);
 
         return new static($client, $merchantId, $sharedSecret, $userAgent);
     }

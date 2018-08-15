@@ -72,6 +72,48 @@ Example files can be found in the [docs/](docs/) directory.
 Additional documentation can be found at https://developers.klarna.com.
 
 
+## Logging and Debugging
+
+PHP SDK logs information to STDOUT/STDERR. To enable debug mode, set DEBUG_SDK environment variable:
+
+```
+$ DEBUG_SDK=true php <your_program.php>
+```
+
+or
+
+```
+$ export DEBUG_SDK=1
+$ php <your_program.php>
+```
+
+Another way to enable Debugging Mode is `define` the **DEBUG_SDK** inside your script:
+
+```php
+<?php
+// some code here
+define('DEBUG_SDK', true);
+// some code here
+```
+
+The output will look like:
+
+```
+DEBUG MODE: Request
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    URL : GET /customer-token/v1/tokens/TOKEN
+Headers : {"User-Agent":["Library\/Klarna.kco_rest_php_3.1.0 (Guzzle\/6.3.3; curl\/7.54.0) OS\/Darwin_17.5.0 Language\/PHP_5.6.37"],"Authorization":"*SECRET*"}
+   Body :
+
+DEBUG MODE: Response
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Headers : {"Content-Type":["application\/json"],"Date":["Wed, 15 Aug 2018 15:55:53 GMT"],"Klarna-Correlation-Id":["ABC-123"],"Server":["openresty"],"Content-Length":["62"],"Connection":["keep-alive"]}
+   Body : {
+     "status" : "ACTIVE",
+     "payment_method_type" : "INVOICE"
+   }
+```
+
 
 ## Questions and feedback
 If you have any questions concerning this product or the implementation,

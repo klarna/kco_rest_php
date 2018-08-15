@@ -139,9 +139,38 @@ abstract class Resource extends \ArrayObject
      */
     protected function request($method, $url, array $headers = [], $body = '')
     {
-        $request = $this->connector->createRequest($url, $method, $headers, $body);
+        $debug = getenv('DEBUG_SDK') || defined('DEBUG_SDK');
 
-        return new ResponseValidator($this->connector->send($request));
+        $request = $this->connector->createRequest($url, $method, $headers, $body);
+        if ($debug) {
+            $debugHeaders = $request->getHeaders();
+            $debugHeaders['Authorization'] = '*SECRET*';
+            $debugHeaders = json_encode($debugHeaders);
+            echo <<<DEBUG
+DEBUG MODE: Request
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    URL : $method $url
+Headers : $debugHeaders
+   Body : {$request->getBody()}
+\n
+DEBUG;
+        }
+
+        $response = $this->connector->send($request);
+
+        if ($debug) {
+            $debugHeaders = json_encode($response->getHeaders());
+            $body = $response->getBody();
+            echo <<<DEBUG
+DEBUG MODE: Response
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Headers : $debugHeaders
+   Body : $body
+\n
+DEBUG;
+        }
+
+        return new ResponseValidator($response);
     }
 
     /**
