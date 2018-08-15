@@ -68,7 +68,7 @@ class Tokens extends Resource
      */
     public function createOrder(array $data)
     {
-        return $this->post(self::$path, $data)
+        return $this->post($this->getLocation() . '/order', $data)
             ->status('200')
             ->contentType('application/json')
             ->getJson();
