@@ -16,9 +16,9 @@ $connector = Klarna\Rest\Transport\Connector::create(
 );
 
 $data = [
-    "purchase_country" => "gb",
-    "purchase_currency" => "gbp",
-    "locale" => "en-gb",
+    "purchase_country" => "GB",
+    "purchase_currency" => "GBP",
+    "locale" => "en-GB",
     "billing_address" => [
         "given_name" => "John",
         "family_name" => "Doe",
@@ -32,16 +32,9 @@ $data = [
         "phone" => "01895808221",
         "country" => "GB"
     ],
-    "customer" => [
-        "date_of_birth" => "1986-08-08T",
-        "title" => "Mr. Jophn Doe",
-        "gender" => "M",
-        "last_four_ssn" => "1234",
-        "national_identification_number" => "1234123412341234",
-        "type" => "A",
-        "vat_id" => "12345",
-        "organization_registration_id" => "12345",
-        "organization_entity_type" => "LIMITED_COMPANY"
+    "customer" => [ // MUST MATCH line by line to the customer details that was used to get an Authorization Token
+        "date_of_birth" => "1970-01-01",
+        "gender" => "male",
     ],
     "description" => "For testing purposes",
     "intended_use" => "SUBSCRIPTION"
