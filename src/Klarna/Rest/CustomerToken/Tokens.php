@@ -26,6 +26,9 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Tokens resource.
+ *
+ * @example docs/examples/CustomerTokenAPI/Tokens/create_order.php Create a new order using customer token
+ * @example docs/examples/CustomerTokenAPI/Tokens/read_token_details.php Read customer token details
  */
 class Tokens extends Resource
 {

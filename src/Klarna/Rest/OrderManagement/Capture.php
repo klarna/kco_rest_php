@@ -25,13 +25,12 @@ use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
- * Capture resource.
+ * Order Management: Capture resource.
  *
- * @example docs/examples/order/fetch_capture.php
- * @example docs/examples/order/create_capture.php
- * @example docs/examples/capture/append_shipping_info.php
- * @example docs/examples/capture/trigger_send_out.php
- * @example docs/examples/capture/update_customer_details.php
+ * @example docs/examples/OrderManagementAPI/Captures/add_shipping_info.php
+ * @example docs/examples/OrderManagementAPI/Captures/fetch_captures.php
+ * @example docs/examples/OrderManagementAPI/Captures/trigger_send_out.php
+ * @example docs/examples/OrderManagementAPI/Captures/update_customer_details.php
  */
 class Capture extends Resource
 {

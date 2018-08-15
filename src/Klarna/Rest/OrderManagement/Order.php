@@ -25,18 +25,19 @@ use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
- * Order management resource.
+ * Order management: Order resource.
  *
- * @example docs/examples/order/acknowledge_order.php
- * @example docs/examples/order/cancel_order.php
- * @example docs/examples/order/extend_authorization_time.php
- * @example docs/examples/order/fetch_order.php
- * @example docs/examples/order/fetch_capture.php
- * @example docs/examples/order/refund_order.php
- * @example docs/examples/order/release_remaining_authorization.php
- * @example docs/examples/order/update_customer_details.php
- * @example docs/examples/order/update_merchant_references.php
- * @example docs/examples/order/update_order_lines.php
+ * @example docs/examples/OrderManagementAPI/Orders/acknowledge_order.php
+ * @example docs/examples/OrderManagementAPI/Orders/cancel_order.php
+ * @example docs/examples/OrderManagementAPI/Orders/create_capture.php
+ * @example docs/examples/OrderManagementAPI/Orders/extend_authorization_time.php
+ * @example docs/examples/OrderManagementAPI/Orders/fetch_all_captures.php
+ * @example docs/examples/OrderManagementAPI/Orders/fetch_capture.php
+ * @example docs/examples/OrderManagementAPI/Orders/fetch_order.php
+ * @example docs/examples/OrderManagementAPI/Orders/release_remaining_authorization.php
+ * @example docs/examples/OrderManagementAPI/Orders/update_customer_details.php
+ * @example docs/examples/OrderManagementAPI/Orders/update_merchant_references.php
+ * @example docs/examples/OrderManagementAPI/Orders/update_order_lines.php
  */
 class Order extends Resource
 {

@@ -27,6 +27,10 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Payouts resource.
+ *
+ * @example docs/examples/SettlementsAPI/Payouts/get_all_payouts.php Returns a collection of payouts
+ * @example docs/examples/SettlementsAPI/Payouts/get_payout.php Returns a specific payout based on a given payment reference
+ * @example docs/examples/SettlementsAPI/Payouts/get_summary.php Returns a summary of payouts for each currency code in a date range
  */
 class Payouts extends Resource
 {

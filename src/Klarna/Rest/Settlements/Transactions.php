@@ -27,6 +27,8 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Transactions resource.
+ *
+ * @example docs/examples/SettlementsAPI/Transactions/get_transactions.php Returns a collection of transactions
  */
 class Transactions extends Resource
 {

@@ -27,6 +27,9 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Reports resource.
+ *
+ * @example docs/examples/SettlementsAPI/Reports/payout_report.php Get payout report with transactions
+ * @example docs/examples/SettlementsAPI/Reports/summary_report.php Get payouts summary report with transactions
  */
 class Reports extends Resource
 {

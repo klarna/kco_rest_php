@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * File containing the Orders class.
+ * File containing the Sessions class.
  */
 
 namespace Klarna\Rest\Payments;
@@ -26,6 +26,10 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Payments session resource.
+ *
+ * @example docs/examples/PaymentsAPI/Sessions/create_new_credit_session.php
+ * @example docs/examples/PaymentsAPI/Sessions/read_credit_session.php
+ * @example docs/examples/PaymentsAPI/Sessions/update_credit_session.php
  */
 class Sessions extends Resource
 {

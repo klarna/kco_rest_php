@@ -25,7 +25,10 @@ use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
- * Refund resource.
+ * Order Management: Refund resource.
+ *
+ * @example docs/examples/OrderManagementAPI/Refunds/fetch_refund.php Read information on a refund
+ * @example docs/examples/OrderManagementAPI/Refunds/refund_order.php Refund an amount of a captured order
  */
 class Refund extends Resource
 {

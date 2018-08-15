@@ -27,6 +27,10 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Payments order resource.
+ *
+ * @example docs/examples/PaymentsAPI/Orders/cancel_existing_authorization.php Cancel an existing authorization
+ * @example docs/examples/PaymentsAPI/Orders/create_order.php Create a new order
+ * @example docs/examples/PaymentsAPI/Orders/generate_customer_token.php Generate a consumer token
  */
 class Orders extends Resource
 {
