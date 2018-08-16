@@ -160,12 +160,11 @@ DEBUG;
 
         if ($debug) {
             $debugHeaders = json_encode($response->getHeaders());
-            $body = $response->getBody();
             echo <<<DEBUG
 DEBUG MODE: Response
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Headers : $debugHeaders
-   Body : $body
+   Body : {$response->getBody()}
 \n
 DEBUG;
         }
