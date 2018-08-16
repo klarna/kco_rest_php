@@ -17,7 +17,7 @@
  * File containing tests for the Tokens class.
  */
 
-namespace Klarna\Rest\Tests\Component\Checkout;
+namespace Klarna\Rest\Tests\Component\CustomerToken;
 
 use GuzzleHttp\Psr7\Response;
 use Klarna\Rest\CustomerToken\Tokens;
