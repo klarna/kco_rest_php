@@ -17,7 +17,7 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $order = new Klarna\Rest\Payments\Orders($connector, $authorizationToken);
-    $token = $order->cancelAuthorization();
+    $order->cancelAuthorization();
 
     echo 'Authorization has been cancelled';
 
