@@ -189,6 +189,28 @@ DEBUG;
     }
 
     /**
+     * Sends a HTTP DELETE request to the specified url.
+     *
+     * @param string $url  Request destination
+     * @param array  $data Data to be JSON encoded
+     *
+     * @throws ConnectorException When the API replies with an error response
+     * @throws RequestException   When an error is encountered
+     * @throws \LogicException    When Guzzle cannot populate the response
+     *
+     * @return ResponseValidator
+     */
+    protected function delete($url, array $data = null)
+    {
+        return $this->request(
+            'DELETE',
+            $url,
+            ['Content-Type' => 'application/json'],
+            $data !== null ? json_encode($data) : null
+        );
+    }
+
+    /**
      * Sends a HTTP PATCH request to the specified url.
      *
      * @param string $url  Request destination
