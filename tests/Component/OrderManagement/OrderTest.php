@@ -253,7 +253,9 @@ JSON;
         $this->mock->append(new Response(201, ['Location' => 'http://example.com']));
 
         $order = new Order($this->connector, '0002');
-        $order->refund(['data' => 'sent in']);
+        $refund = $order->refund(['data' => 'sent in']);
+
+        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Refund', $refund);
 
         $request = $this->mock->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
@@ -273,24 +275,35 @@ JSON;
      *
      * @return void
      */
-    public function testRefund201()
+    public function testFetchRefund()
     {
-        $this->mock->append(new Response(201, ['Location' => 'http://example.com']));
+        $json = <<<JSON
+{
+    "refund_id": "refund-id-123",
+    "order_id": "order-id-567"
+}
+JSON;
 
-        $order = new Order($this->connector, '0002');
-        $order->refund(['data' => 'sent in']);
-
-        $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals(
-            '/ordermanagement/v1/orders/0002/refunds',
-            $request->getUri()->getPath()
+        $this->mock->append(
+            new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                $json
+            )
         );
 
-        $this->assertEquals(['application/json'], $request->getHeader('Content-Type'));
-        $this->assertEquals('{"data":"sent in"}', strval($request->getBody()));
+        $order = new Order($this->connector, '0002');
 
-        $this->assertAuthorization($request);
+        $refund = $order->fetchRefund('refund-id-123');
+        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Refund', $refund);
+        $this->assertEquals(
+            '/ordermanagement/v1/orders/0002/refunds/refund-id-123',
+            $refund->getLocation()
+        );
+
+        $this->assertEquals('order-id-567', $refund['order_id']);
+        $this->assertEquals('refund-id-123', $refund->getId());
+        $this->assertEquals($refund->getId(), $refund['refund_id']);
     }
 
     /**
