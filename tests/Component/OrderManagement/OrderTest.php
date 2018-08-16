@@ -446,4 +446,49 @@ JSON;
         $this->assertEquals('1003', $capture->getId());
         $this->assertEquals($capture->getId(), $capture['capture_id']);
     }
+
+    /**
+     * Make sure that the request sent and retrieved data is correct when fetching all captures.
+     *
+     * @return void
+     */
+    public function testFetchCaptures()
+    {
+        $json = <<<JSON
+[
+    {
+        "capture_id": "1001",
+        "updated": "from json 1"
+    },
+    {
+        "capture_id": "1002",
+        "updated": "from json 2"
+    }
+]
+JSON;
+
+        $this->mock->append(
+            new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                $json
+            )
+        );
+
+        $order = new Order($this->connector, '0002');
+
+        $captures = $order->fetchCaptures();
+        $this->assertEquals(2, count($captures), 'Mismatched amount of captures');
+
+        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $captures[0]);
+        $this->assertEquals(
+            '/ordermanagement/v1/orders/0002/captures/1001',
+            $captures[0]->getLocation()
+        );
+
+        $this->assertEquals('from json 1', $captures[0]['updated']);
+        $this->assertEquals('1001', $captures[0]->getId());
+        $this->assertEquals('from json 2', $captures[1]['updated']);
+        $this->assertEquals('1002', $captures[1]->getId());
+    }
 }
