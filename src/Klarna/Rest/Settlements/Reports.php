@@ -20,7 +20,7 @@
 namespace Klarna\Rest\Settlements;
 
 use GuzzleHttp\Exception\RequestException;
-use Klarna\Exception\NonApplicableException;
+use Klarna\Exceptions\NotApplicableException;
 use Klarna\Rest\Resource;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
@@ -51,11 +51,11 @@ class Reports extends Resource
     /**
      * Not applicable.
      *
-     * @throws NonApplicableException
+     * @throws NotApplicableException
      */
     public function fetch()
     {
-        throw NonApplicableException('Not applicable');
+        throw new NotApplicableException('Not applicable');
     }
 
     /**

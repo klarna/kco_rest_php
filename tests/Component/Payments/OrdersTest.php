@@ -126,4 +126,18 @@ JSON;
 
         $this->assertAuthorization($request);
     }
+
+    /**
+     * Make sure that the request sent is correct and that the updated data
+     * is accessible.
+     *
+     * @return void
+     */
+    public function testFetch()
+    {
+        $this->setExpectedException('Klarna\Exceptions\NotApplicableException');
+
+        $reports = new Orders($this->connector, 'test');
+        $reports->fetch();
+    }
 }
