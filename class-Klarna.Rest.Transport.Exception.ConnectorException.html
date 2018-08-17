@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Klarna\Rest\Transport\Exception\ConnectorException</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?08b23951ef4599ca9cbf1f902d0e8290c9653ddd">
+	<link rel="stylesheet" href="resources/style.css?062e9e59e0b8c44fbaaded5b7ffc21f907b78669">
+	<link rel="stylesheet" href="resources/klarna.css?dec3b68768fbf7f93db60302607d658f13b60d6d">
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">Overview</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-Klarna.Rest.Transport.Exception.html" title="Summary of Klarna\Rest\Transport\Exception"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+
+
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="">
+			<input type="hidden" name="ie" value="UTF-8">
+			<input type="text" name="q" class="search-query" placeholder="Search">
+		</form>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-Klarna.html">
+							Klarna<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Exceptions.html">
+							Exceptions						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.html">
+							Rest<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Checkout.html">
+							Checkout						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.CustomerToken.html">
+							CustomerToken						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.OrderManagement.html">
+							OrderManagement						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Payments.html">
+							Payments						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Settlements.html">
+							Settlements						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.Transport.html">
+							Transport<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.Transport.Exception.html">
+							Exception						</a>
+							</li>
+								</ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li class="active"><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">ConnectorException</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class ConnectorException</h1>
+
+
+	<div class="description">
+	<p>ConnectorException is used to represent a API error response.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+Exception
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+RuntimeException
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Klarna\Rest\Transport\Exception\ConnectorException</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Klarna.html">Klarna</a>\<a href="namespace-Klarna.Rest.html">Rest</a>\<a href="namespace-Klarna.Rest.Transport.html">Transport</a>\<a href="namespace-Klarna.Rest.Transport.Exception.html">Exception</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#25-123" title="Go to source code">Klarna/Rest/Transport/Exception/ConnectorException.php</a>
+		<br>
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped methods" id="methods">
+		
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#51-72" title="Go to source code">__construct</a>( <span>array <var>$data</var></span>, <span>GuzzleHttp\Exception\RequestException <var>$prev</var></span> )</code>
+
+			<div class="description short">
+				<p>Constructs a connector exception instance.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Constructs a connector exception instance.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Error data</dd>
+						<dt><var>$prev</var></dt>
+						<dd>Previous exception</dd>
+					</dl></div>
+
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code>Exception::__construct</code></div>
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="getErrorCode" id="_getErrorCode">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getErrorCode">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#74-82" title="Go to source code">getErrorCode</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the API error code for this exception.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the API error code for this exception.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="getMessages" id="_getMessages">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getMessages">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#84-92" title="Go to source code">getMessages</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the API error messages for this exception.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the API error messages for this exception.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="getCorrelationId" id="_getCorrelationId">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getCorrelationId">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#94-102" title="Go to source code">getCorrelationId</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the API correlation ID for this exception.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the API correlation ID for this exception.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="getServiceVersion" id="_getServiceVersion">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getServiceVersion">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#104-112" title="Go to source code">getServiceVersion</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the API Service version for this exception.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the API Service version for this exception.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="getResponse" id="_getResponse">
+
+			<td class="attributes"><code>
+				 public 
+				GuzzleHttp\Message\ResponseInterface
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getResponse">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#114-122" title="Go to source code">getResponse</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the HTTP response for this API error.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the HTTP response for this API error.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						GuzzleHttp\Message\ResponseInterface
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+		<h3>Methods inherited from Exception</h3>
+		<p class="elementList">
+			<code>__toString()</code>, 
+			<code>__wakeup()</code>, 
+			<code>getCode()</code>, 
+			<code>getFile()</code>, 
+			<code>getLine()</code>, 
+			<code>getMessage()</code>, 
+			<code>getPrevious()</code>, 
+			<code>getTrace()</code>, 
+			<code>getTraceAsString()</code>
+		</p>
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+
+
+
+		<h2>Properties summary</h2>
+		<table class="summary table table-bordered table-striped properties" id="properties">
+		
+		<tr data-order="errorCode" id="$errorCode">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#30-35" title="Go to source code"><var>$errorCode</var></a>
+
+				<div class="description short">
+					<p>API response error code.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>API response error code.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$errorCode" class="anchor">#</a>
+					<code></code>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-order="messages" id="$messages">
+			<td class="attributes"><code>
+				protected  
+				string[]
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#37-42" title="Go to source code"><var>$messages</var></a>
+
+				<div class="description short">
+					<p>API response error messages.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>API response error messages.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$messages" class="anchor">#</a>
+					<code></code>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-order="correlationId" id="$correlationId">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.Transport.Exception.ConnectorException.html#44-49" title="Go to source code"><var>$correlationId</var></a>
+
+				<div class="description short">
+					<p>API response error correlation ID.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>API response error correlation ID.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$correlationId" class="anchor">#</a>
+					<code></code>
+				</div>
+			</td>
+		</tr>
+		</table>
+
+		<h3>Properties inherited from Exception</h3>
+		<p class="elementList">
+			<code><var>$code</var></code>, 
+			<code><var>$file</var></code>, 
+			<code><var>$line</var></code>, 
+			<code><var>$message</var></code>
+		</p>
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
