@@ -65,7 +65,8 @@ require('vendor/autoload.php');
 
 ## Documentation and Examples
 
-Klarna API documentation: https://developers.klarna.com/api/
+Klarna API documentation: https://developers.klarna.com/api/  
+SDK References: https://klarna.github.io/kco_rest_php/
 
 
 Example files can be found in the [docs/](docs/) directory.  
