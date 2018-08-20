@@ -147,27 +147,27 @@ abstract class Resource extends \ArrayObject
             $baseUri = isset($clientConfig['base_uri']) ? $clientConfig['base_uri'] : '';
             $debugHeaders = $request->getHeaders();
             $debugHeaders = json_encode($debugHeaders);
-            echo <<<DEBUG
+            echo <<<DEBUG_BODY
 DEBUG MODE: Request
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     {$method} : {$baseUri}{$url}
 Headers : $debugHeaders
    Body : {$request->getBody()}
 \n
-DEBUG;
+DEBUG_BODY;
         }
 
         $response = $this->connector->send($request);
 
         if ($debug) {
             $debugHeaders = json_encode($response->getHeaders());
-            echo <<<DEBUG
+            echo <<<DEBUG_BODY
 DEBUG MODE: Response
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Headers : $debugHeaders
    Body : {$response->getBody()}
 \n
-DEBUG;
+DEBUG_BODY;
         }
 
         return new ResponseValidator($response);
