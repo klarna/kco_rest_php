@@ -34,7 +34,7 @@ class ReportsTest extends ResourceTestCase
      *
      * @return void
      */
-    public function testGetPayoutReport()
+    public function testGetCSVPayoutReport()
     {
         $this->mock->append(
             new Response(
@@ -45,7 +45,7 @@ class ReportsTest extends ResourceTestCase
         );
 
         $reports = new Reports($this->connector);
-        $data = $reports->getPayoutReport('reference-123');
+        $data = $reports->getCSVPayoutReport('reference-123');
 
         $this->assertEquals("A;B;C\n1;2;3", $data);
 
@@ -62,7 +62,35 @@ class ReportsTest extends ResourceTestCase
      *
      * @return void
      */
-    public function testGetPayoutsSummaryReport()
+    public function testGetPDFPayoutReport()
+    {
+        $this->mock->append(
+            new Response(
+                200,
+                ['Content-Type' => 'application/pdf'],
+                "123412341234"
+            )
+        );
+
+        $reports = new Reports($this->connector);
+        $data = $reports->getPDFPayoutReport('reference-123');
+
+        $this->assertEquals("123412341234", $data);
+
+        $request = $this->mock->getLastRequest();
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals('/settlements/v1/reports/payout', $request->getUri()->getPath());
+        $this->assertEquals('payment_reference=reference-123', $request->getUri()->getQuery());
+        $this->assertAuthorization($request);
+    }
+
+    /**
+     * Make sure that the request sent is correct and that the updated data
+     * is accessible.
+     *
+     * @return void
+     */
+    public function testGetCSVPayoutsSummaryReport()
     {
         $this->mock->append(
             new Response(
@@ -77,13 +105,48 @@ class ReportsTest extends ResourceTestCase
             'end_date' => '2018-09-17T11:08:18Z'
         ];
         $reports = new Reports($this->connector);
-        $data = $reports->getPayoutsSummaryReport($params);
+        $data = $reports->getCSVPayoutsSummaryReport($params);
 
         $this->assertEquals("A;B;C\n1;2;3", $data);
 
         $request = $this->mock->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals('/settlements/v1/reports/payouts-summary-with-transactions', $request->getUri()->getPath());
+        $this->assertEquals(
+            'start_date=2017-08-17T11%3A08%3A18Z&end_date=2018-09-17T11%3A08%3A18Z',
+            $request->getUri()->getQuery()
+        );
+        $this->assertAuthorization($request);
+    }
+
+    /**
+     * Make sure that the request sent is correct and that the updated data
+     * is accessible.
+     *
+     * @return void
+     */
+    public function testGetPDFPayoutsSummaryReport()
+    {
+        $this->mock->append(
+            new Response(
+                200,
+                ['Content-Type' => 'application/pdf'],
+                "123124312341234"
+            )
+        );
+
+        $params = [
+            'start_date' => '2017-08-17T11:08:18Z',
+            'end_date' => '2018-09-17T11:08:18Z'
+        ];
+        $reports = new Reports($this->connector);
+        $data = $reports->getPDFPayoutsSummaryReport($params);
+
+        $this->assertEquals("123124312341234", $data);
+
+        $request = $this->mock->getLastRequest();
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals('/settlements/v1/reports/payouts-summary', $request->getUri()->getPath());
         $this->assertEquals(
             'start_date=2017-08-17T11%3A08%3A18Z&end_date=2018-09-17T11%3A08%3A18Z',
             $request->getUri()->getQuery()

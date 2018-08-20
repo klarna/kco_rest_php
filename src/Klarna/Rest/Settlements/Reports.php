@@ -59,7 +59,7 @@ class Reports extends Resource
     }
 
     /**
-     * Returns payout report with transactions
+     * Returns CSV payout report
      *
      * @param string $paymentReference The reference id of the payout.
      *
@@ -70,9 +70,9 @@ class Reports extends Resource
      * @throws \InvalidArgumentException If the JSON cannot be parsed
      * @throws \LogicException           When Guzzle cannot populate the response
      *
-     * @return array Payout report
+     * @return string CSV Payout report
      */
-    public function getPayoutReport($paymentReference)
+    public function getCSVPayoutReport($paymentReference)
     {
         return $this->get(self::$path . "/payout-with-transactions?payment_reference={$paymentReference}")
             ->status('200')
@@ -81,7 +81,29 @@ class Reports extends Resource
     }
 
     /**
-     * Returns payouts summary report with transactions.
+     * Returns a single settlement summed up in pdf format.
+     *
+     * @param string $paymentReference The reference id of the payout.
+     *
+     * @throws ConnectorException        When the API replies with an error response
+     * @throws RequestException          When an error is encountered
+     * @throws \RuntimeException         On an unexpected API response
+     * @throws \RuntimeException         If the response content type is not JSON
+     * @throws \InvalidArgumentException If the JSON cannot be parsed
+     * @throws \LogicException           When Guzzle cannot populate the response
+     *
+     * @return string Binary PDF representation of Payout report
+     */
+    public function getPDFPayoutReport($paymentReference)
+    {
+        return $this->get(self::$path . "/payout?payment_reference={$paymentReference}")
+            ->status('200')
+            ->contentType('application/pdf')
+            ->getBody();
+    }
+
+    /**
+     * Returns CSV summary.
      *
      * @param array $params Additional query params to filter payouts.
      *              https://developers.klarna.com/api/#settlements-api-get-payouts-summary-report-with-transactions
@@ -93,13 +115,36 @@ class Reports extends Resource
      * @throws \InvalidArgumentException If the JSON cannot be parsed
      * @throws \LogicException           When Guzzle cannot populate the response
      *
-     * @return array Summary report
+     * @return string CSV Summary report
      */
-    public function getPayoutsSummaryReport(array $params = [])
+    public function getCSVPayoutsSummaryReport(array $params = [])
     {
         return $this->get(self::$path . '/payouts-summary-with-transactions?' . http_build_query($params))
             ->status('200')
             ->contentType('text/csv')
+            ->getBody();
+    }
+
+    /**
+     * Returns PDF summary.
+     *
+     * @param array $params Additional query params to filter payouts.
+     *              https://developers.klarna.com/api/#settlements-api-get-payouts-summary-report-with-transactions
+     *
+     * @throws ConnectorException        When the API replies with an error response
+     * @throws RequestException          When an error is encountered
+     * @throws \RuntimeException         On an unexpected API response
+     * @throws \RuntimeException         If the response content type is not JSON
+     * @throws \InvalidArgumentException If the JSON cannot be parsed
+     * @throws \LogicException           When Guzzle cannot populate the response
+     *
+     * @return string PDF Summary report
+     */
+    public function getPDFPayoutsSummaryReport(array $params = [])
+    {
+        return $this->get(self::$path . '/payouts-summary?' . http_build_query($params))
+            ->status('200')
+            ->contentType('application/pdf')
             ->getBody();
     }
 }
