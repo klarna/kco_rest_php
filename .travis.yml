@@ -13,6 +13,8 @@ php:
 matrix:
   allow_failures:
     - php: nightly
+    - php: hhvm
+    - php: hhvm-nightly
 
 cache:
   directories:
