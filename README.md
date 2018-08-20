@@ -1,15 +1,19 @@
-# Klarna Checkout REST PHP SDK
+# Klarna REST PHP SDK
 [![Packagist Version][packagist-image]](https://packagist.org/packages/klarna/kco_rest)
 [![Build Status][travis-image]](https://travis-ci.org/klarna/kco_rest_php)
 [![Coverage Status][coveralls-image]](https://coveralls.io/r/klarna/kco_rest_php?branch=v2.2)
 
-Klarna Checkout is a revolutionary new payment solution that is changing the way
-people shop online. First, consumers verify their purchase with a minimal
-amount of information through intelligent identification, securing your order
-immediately, and then complete their payment afterwards – separating buying
-from paying and dramatically increasing conversion. Klarna Checkout also allows
-merchants to offer all payment methods through one supplier, minimizing
-administration, costs and integration time.
+## Welcome to Klarna. Smoooth payments.
+
+### Klarna Checkout
+A full checkout experience embedded on your site. It lets your customers check out on your
+site with only their email and ZIP, and pay with the major payment methods including the specific
+Klarna payment methods. All available in one integration.
+
+### Klarna Payments
+Klarna offers three payment methods. Pay now, Pay later and Slice it. It offers your consumers
+to try before they buy, finance purchases on your store, or make use of other payment
+options made available by Klarna.
 
 
 ## Getting started
@@ -102,8 +106,8 @@ The output will look like:
 ```
 DEBUG MODE: Request
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    URL : GET /customer-token/v1/tokens/TOKEN
-Headers : {"User-Agent":["Library\/Klarna.kco_rest_php_3.1.0 (Guzzle\/6.3.3; curl\/7.54.0) OS\/Darwin_17.5.0 Language\/PHP_5.6.37"],"Authorization":"*SECRET*"}
+    GET : https://api.playground.klarna.com/customer-token/v1/tokens/TOKEN
+Headers : {"User-Agent":["Library\/Klarna.kco_rest_php_3.1.0 (Guzzle\/6.3.3; curl\/7.54.0) OS\/Darwin_17.5.0 Language\/PHP_5.6.37"]}
    Body :
 
 DEBUG MODE: Response
