@@ -8,7 +8,7 @@
 - Add 'Debug Mode' to be able to debug requests and responses;
 - Put SDK References documentation to a GH Pages:
     https://klarna.github.io/kco_rest_php/
-- Fix: Settlements API Unexpected Header #15;
+- Fix: Settlements API [Unexpected Header #15](https://github.com/klarna/kco_rest_php/issues/15);
 - More Examples for all Klarna Services.
 
 **BACWARD COMPATIBILITY NOTES**
