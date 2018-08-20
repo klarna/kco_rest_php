@@ -143,13 +143,14 @@ abstract class Resource extends \ArrayObject
 
         $request = $this->connector->createRequest($url, $method, $headers, $body);
         if ($debug) {
+            $clientConfig = $this->connector->getClient()->getConfig();
+            $baseUri = isset($clientConfig['base_uri']) ? $clientConfig['base_uri'] : '';
             $debugHeaders = $request->getHeaders();
-            $debugHeaders['Authorization'] = '*SECRET*';
             $debugHeaders = json_encode($debugHeaders);
             echo <<<DEBUG
 DEBUG MODE: Request
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    URL : $method $url
+    {$method} : {$baseUri}{$url}
 Headers : $debugHeaders
    Body : {$request->getBody()}
 \n
