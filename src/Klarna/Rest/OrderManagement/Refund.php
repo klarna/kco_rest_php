@@ -47,7 +47,7 @@ class Refund extends Resource
      *
      * @param Connector $connector HTTP transport connector
      * @param string    $orderUrl  Parent order resource url
-     * @param string    $refundId Refund ID
+     * @param string    $refundId  Refund ID
      */
     public function __construct(Connector $connector, $orderUrl, $refundId = null)
     {

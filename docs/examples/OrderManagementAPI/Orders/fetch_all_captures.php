@@ -1,6 +1,6 @@
 <?php
 /**
- * Retrieve a capture.
+ * Retrieve all captures.
  */
 
 require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
@@ -23,5 +23,5 @@ try {
     }
 
 } catch (Exception $e) {
-    echo $e->getMessage();
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

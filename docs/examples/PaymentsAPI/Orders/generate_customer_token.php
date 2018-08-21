@@ -47,5 +47,5 @@ try {
     print_r($token);
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

@@ -22,11 +22,11 @@ try {
         'wrong order data'
     ]);
 } catch (ConnectorException $e) {
-    echo 'Message: ',  $e->getMessage(), "\n";
-    echo 'Code: ',  $e->getCode(), "\n";
-    echo 'CorrelationID: ',  $e->getCorrelationId(), "\n";
-    echo 'ServiceVersion: ',  $e->getServiceVersion(), "\n";
+    echo 'Message: ' . $e->getMessage() . "\n";
+    echo 'Code: ' . $e->getCode() . "\n";
+    echo 'CorrelationID: ' . $e->getCorrelationId() . "\n";
+    echo 'ServiceVersion: ' . $e->getServiceVersion() . "\n";
 
 } catch (Exception $e) {
-    echo 'Unhandled exception: ',  $e->getMessage(), "\n";
+    echo 'Unhandled exception: ' . $e->getMessage() . "\n";
 }

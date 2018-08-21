@@ -20,7 +20,9 @@ $connector = Klarna\Rest\Transport\Connector::create(
 try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
     $order->releaseRemainingAuthorization();
+    
+    echo 'Remaining authorised amount has been released';
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

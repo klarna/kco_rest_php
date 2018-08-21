@@ -90,7 +90,8 @@ class Payouts extends Resource
      * Returns a collection of payouts.
      *
      * @param array $params Additional query params to filter payouts.
-     *              https://developers.klarna.com/api/#settlements-api-get-all-payouts
+     *
+     * @see https://developers.klarna.com/api/#settlements-api-get-all-payouts
      *
      * @throws ConnectorException        When the API replies with an error response
      * @throws RequestException          When an error is encountered
@@ -113,7 +114,8 @@ class Payouts extends Resource
      * Returns a summary of payouts for each currency code in a date range.
      *
      * @param array $params Additional query params to filter summary data.
-     *              https://developers.klarna.com/api/#settlements-api-get-summary-of-payouts
+     *
+     * @see https://developers.klarna.com/api/#settlements-api-get-summary-of-payouts
      *
      * @throws ConnectorException        When the API replies with an error response
      * @throws RequestException          When an error is encountered

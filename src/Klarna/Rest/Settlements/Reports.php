@@ -106,7 +106,8 @@ class Reports extends Resource
      * Returns CSV summary.
      *
      * @param array $params Additional query params to filter payouts.
-     *              https://developers.klarna.com/api/#settlements-api-get-payouts-summary-report-with-transactions
+     *
+     * @see https://developers.klarna.com/api/#settlements-api-get-payouts-summary-report-with-transactions
      *
      * @throws ConnectorException        When the API replies with an error response
      * @throws RequestException          When an error is encountered
@@ -129,7 +130,8 @@ class Reports extends Resource
      * Returns PDF summary.
      *
      * @param array $params Additional query params to filter payouts.
-     *              https://developers.klarna.com/api/#settlements-api-get-payouts-summary-report-with-transactions
+     *
+     * @see https://developers.klarna.com/api/#settlements-api-get-payouts-summary-report-with-transactions
      *
      * @throws ConnectorException        When the API replies with an error response
      * @throws RequestException          When an error is encountered

@@ -22,6 +22,8 @@ try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
     $order->acknowledge();
 
+    echo 'Order has been acknowledged';
+
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

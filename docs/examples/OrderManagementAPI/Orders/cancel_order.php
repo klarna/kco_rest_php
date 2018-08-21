@@ -21,6 +21,8 @@ try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
     $order->cancel();
 
+    echo 'Order has been cancelled';
+
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

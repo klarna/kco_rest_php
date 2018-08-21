@@ -3,8 +3,6 @@
  * Update a checkout order.
  */
 
-use Klarna\Rest\Transport\Exception\ConnectorException;
-
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
@@ -61,5 +59,5 @@ try {
     $checkout->update($updatedOrder);
 
 } catch (Exception $e) {
-    echo 'Unhandled exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

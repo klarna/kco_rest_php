@@ -1,6 +1,6 @@
 <?php
 /**
- * Gets payout report with all transactions.
+ * Gets PDF payout summary report
  */
 
 require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
@@ -23,5 +23,5 @@ try {
     echo 'Saved to report.pdf';
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

@@ -23,5 +23,5 @@ try {
     print_r($capture->getArrayCopy());
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

@@ -32,9 +32,9 @@ $address = [
 $data = [
     "billing_address" => $address,
     "shipping_address" => $address,
-    "purchase_country" => "gb",
-    "purchase_currency" => "gbp",
-    "locale" => "en-gb",
+    "purchase_country" => "GB",
+    "purchase_currency" => "GBP",
+    "locale" => "en-GB",
     "order_amount" => 10000,
     "order_tax_amount" => 2000,
     "order_lines" => [
@@ -71,5 +71,5 @@ try {
     print_r($data);
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

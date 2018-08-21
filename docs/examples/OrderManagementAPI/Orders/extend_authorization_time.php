@@ -19,6 +19,8 @@ try {
     $order = new Klarna\Rest\OrderManagement\Order($connector, $orderId);
     $order->extendAuthorizationTime();
 
+    echo 'The expiry time of an order has been extend';
+
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

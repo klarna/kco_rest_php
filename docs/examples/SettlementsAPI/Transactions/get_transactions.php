@@ -16,10 +16,15 @@ $connector = Klarna\Rest\Transport\Connector::create(
 
 try {
     $transactions = new Klarna\Rest\Settlements\Transactions($connector);
-    $data = $transactions->getTransactions();
+    // You can use pagination if needed
+    $params = [
+        'size' => 10,  // How many elements to include in the result
+        'offset' => 0, // The current offset. Describes "where" in a collection the current starts
+    ];
+    $data = $transactions->getTransactions($params);
 
     print_r($data);
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

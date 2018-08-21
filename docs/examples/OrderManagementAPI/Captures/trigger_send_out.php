@@ -22,6 +22,8 @@ try {
     $capture = $order->fetchCapture($captureId);
     $capture->triggerSendout();
 
+    echo 'Triggered a new send out of customer payment communication';
+
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

@@ -41,5 +41,5 @@ try {
     print_r($refund->getArrayCopy());
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

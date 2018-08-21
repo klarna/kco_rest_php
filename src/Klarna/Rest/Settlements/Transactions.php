@@ -61,7 +61,8 @@ class Transactions extends Resource
      * Returns a collection of transactions.
      *
      * @param array $params Additional query params to filter transactions.
-     *              https://developers.klarna.com/api/#settlements-api-get-transactions
+     *
+     * @see https://developers.klarna.com/api/#settlements-api-get-transactions
      *
      * @throws ConnectorException        When the API replies with an error response
      * @throws RequestException          When an error is encountered

@@ -25,6 +25,8 @@ try {
         "merchant_reference2" => "special order"
     ]);
 
+    echo 'Merchant references have been updated';
+
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

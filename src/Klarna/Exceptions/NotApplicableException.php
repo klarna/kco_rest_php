@@ -20,7 +20,7 @@
 namespace Klarna\Exceptions;
 
 /**
- * NotApplicableException is used to inform about using non apoplicable methods.
+ * NotApplicableException is used to inform about using non applicable methods.
  */
 class NotApplicableException extends \RuntimeException
 {

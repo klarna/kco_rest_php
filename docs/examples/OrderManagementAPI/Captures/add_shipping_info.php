@@ -33,6 +33,9 @@ try {
             ]
         ]
     ]);
+
+    echo 'Shipping info has been appended';
+
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Gets payout report with all transactions.
+ * Gets a CSV payout report with all transactions.
  */
 
 require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
@@ -19,8 +19,9 @@ try {
     $reports = new Klarna\Rest\Settlements\Reports($connector);
     $report = $reports->getCSVPayoutReport($paymentReference);
 
-    echo $report;
+    file_put_contents('report.csv', $report);
+    echo 'Saved to report.csv';
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

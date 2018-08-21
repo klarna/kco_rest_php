@@ -18,7 +18,7 @@ options made available by Klarna.
 
 ## Getting started
 
-SDK covers Klarna API: https://developers.klarna.com/api/
+SDK covers all of Klarna API: https://developers.klarna.com/api/
 
 ### Prerequisites
 * PHP 5.5 or above

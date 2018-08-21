@@ -5,7 +5,7 @@
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
-const EMD_FORMAT = 'Y-m-d\TH:m:s\Z';
+const DATE_FORMAT = 'Y-m-d\TH:m:s\Z';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
@@ -23,8 +23,8 @@ $emd = [
             "payment_option" => "card",
             "number_paid_purchases" => 1,
             "total_amount_paid_purchases" => 10000,
-            "date_of_last_paid_purchase" => (new DateTime())->format(EMD_FORMAT),
-            "date_of_first_paid_purchase" => (new DateTime())->format(EMD_FORMAT)
+            "date_of_last_paid_purchase" => (new DateTime())->format(DATE_FORMAT),
+            "date_of_first_paid_purchase" => (new DateTime())->format(DATE_FORMAT)
         ]
     ]
 ];
@@ -83,5 +83,5 @@ try {
     print_r($checkout['attachment']);
 
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
