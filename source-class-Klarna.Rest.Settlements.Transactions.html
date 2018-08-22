@@ -175,26 +175,27 @@
 </span></span><span id="61" class="l"><a href="#61">61 </a><span class="php-comment">     * Returns a collection of transactions.
 </span></span><span id="62" class="l"><a href="#62">62 </a><span class="php-comment">     *
 </span></span><span id="63" class="l"><a href="#63">63 </a><span class="php-comment">     * @param array $params Additional query params to filter transactions.
-</span></span><span id="64" class="l"><a href="#64">64 </a><span class="php-comment">     *              https://developers.klarna.com/api/#settlements-api-get-transactions
-</span></span><span id="65" class="l"><a href="#65">65 </a><span class="php-comment">     *
-</span></span><span id="66" class="l"><a href="#66">66 </a><span class="php-comment">     * @throws ConnectorException        When the API replies with an error response
-</span></span><span id="67" class="l"><a href="#67">67 </a><span class="php-comment">     * @throws RequestException          When an error is encountered
-</span></span><span id="68" class="l"><a href="#68">68 </a><span class="php-comment">     * @throws \RuntimeException         On an unexpected API response
-</span></span><span id="69" class="l"><a href="#69">69 </a><span class="php-comment">     * @throws \RuntimeException         If the response content type is not JSON
-</span></span><span id="70" class="l"><a href="#70">70 </a><span class="php-comment">     * @throws \InvalidArgumentException If the JSON cannot be parsed
-</span></span><span id="71" class="l"><a href="#71">71 </a><span class="php-comment">     * @throws \LogicException           When Guzzle cannot populate the response
-</span></span><span id="72" class="l"><a href="#72">72 </a><span class="php-comment">     *
-</span></span><span id="73" class="l"><a href="#73">73 </a><span class="php-comment">     * @return array Transactions data
-</span></span><span id="74" class="l"><a href="#74">74 </a><span class="php-comment">     */</span>
-</span><span id="75" class="l"><a href="#75">75 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getTransactions(<span class="php-keyword1">array</span> <span class="php-var">$params</span> = [])
-</span><span id="76" class="l"><a href="#76">76 </a>    {
-</span><span id="77" class="l"><a href="#77">77 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;get(self::<span class="php-var">$path</span> . <span class="php-quote">'?'</span> . <span class="php-keyword2">http_build_query</span>(<span class="php-var">$params</span>))
-</span><span id="78" class="l"><a href="#78">78 </a>            -&gt;status(<span class="php-quote">'200'</span>)
-</span><span id="79" class="l"><a href="#79">79 </a>            -&gt;contentType(<span class="php-quote">'application/json'</span>)
-</span><span id="80" class="l"><a href="#80">80 </a>            -&gt;getJson();
-</span><span id="81" class="l"><a href="#81">81 </a>    }
-</span><span id="82" class="l"><a href="#82">82 </a>}
-</span><span id="83" class="l"><a href="#83">83 </a></span></code></pre>
+</span></span><span id="64" class="l"><a href="#64">64 </a><span class="php-comment">     *
+</span></span><span id="65" class="l"><a href="#65">65 </a><span class="php-comment">     * @see https://developers.klarna.com/api/#settlements-api-get-transactions
+</span></span><span id="66" class="l"><a href="#66">66 </a><span class="php-comment">     *
+</span></span><span id="67" class="l"><a href="#67">67 </a><span class="php-comment">     * @throws ConnectorException        When the API replies with an error response
+</span></span><span id="68" class="l"><a href="#68">68 </a><span class="php-comment">     * @throws RequestException          When an error is encountered
+</span></span><span id="69" class="l"><a href="#69">69 </a><span class="php-comment">     * @throws \RuntimeException         On an unexpected API response
+</span></span><span id="70" class="l"><a href="#70">70 </a><span class="php-comment">     * @throws \RuntimeException         If the response content type is not JSON
+</span></span><span id="71" class="l"><a href="#71">71 </a><span class="php-comment">     * @throws \InvalidArgumentException If the JSON cannot be parsed
+</span></span><span id="72" class="l"><a href="#72">72 </a><span class="php-comment">     * @throws \LogicException           When Guzzle cannot populate the response
+</span></span><span id="73" class="l"><a href="#73">73 </a><span class="php-comment">     *
+</span></span><span id="74" class="l"><a href="#74">74 </a><span class="php-comment">     * @return array Transactions data
+</span></span><span id="75" class="l"><a href="#75">75 </a><span class="php-comment">     */</span>
+</span><span id="76" class="l"><a href="#76">76 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getTransactions(<span class="php-keyword1">array</span> <span class="php-var">$params</span> = [])
+</span><span id="77" class="l"><a href="#77">77 </a>    {
+</span><span id="78" class="l"><a href="#78">78 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;get(self::<span class="php-var">$path</span> . <span class="php-quote">'?'</span> . <span class="php-keyword2">http_build_query</span>(<span class="php-var">$params</span>))
+</span><span id="79" class="l"><a href="#79">79 </a>            -&gt;status(<span class="php-quote">'200'</span>)
+</span><span id="80" class="l"><a href="#80">80 </a>            -&gt;contentType(<span class="php-quote">'application/json'</span>)
+</span><span id="81" class="l"><a href="#81">81 </a>            -&gt;getJson();
+</span><span id="82" class="l"><a href="#82">82 </a>    }
+</span><span id="83" class="l"><a href="#83">83 </a>}
+</span><span id="84" class="l"><a href="#84">84 </a></span></code></pre>
 	</div>
 
 	<div id="footer">
