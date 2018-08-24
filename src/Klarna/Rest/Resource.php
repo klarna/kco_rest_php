@@ -139,9 +139,38 @@ abstract class Resource extends \ArrayObject
      */
     protected function request($method, $url, array $headers = [], $body = '')
     {
-        $request = $this->connector->createRequest($url, $method, $headers, $body);
+        $debug = getenv('DEBUG_SDK') || defined('DEBUG_SDK');
 
-        return new ResponseValidator($this->connector->send($request));
+        $request = $this->connector->createRequest($url, $method, $headers, $body);
+        if ($debug) {
+            $clientConfig = $this->connector->getClient()->getConfig();
+            $baseUri = isset($clientConfig['base_uri']) ? $clientConfig['base_uri'] : '';
+            $debugHeaders = $request->getHeaders();
+            $debugHeaders = json_encode($debugHeaders);
+            echo <<<DEBUG_BODY
+DEBUG MODE: Request
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    {$method} : {$baseUri}{$url}
+Headers : $debugHeaders
+   Body : {$request->getBody()}
+\n
+DEBUG_BODY;
+        }
+
+        $response = $this->connector->send($request);
+
+        if ($debug) {
+            $debugHeaders = json_encode($response->getHeaders());
+            echo <<<DEBUG_BODY
+DEBUG MODE: Response
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Headers : $debugHeaders
+   Body : {$response->getBody()}
+\n
+DEBUG_BODY;
+        }
+
+        return new ResponseValidator($response);
     }
 
     /**
@@ -158,6 +187,28 @@ abstract class Resource extends \ArrayObject
     protected function get($url)
     {
         return $this->request('GET', $url);
+    }
+
+    /**
+     * Sends a HTTP DELETE request to the specified url.
+     *
+     * @param string $url  Request destination
+     * @param array  $data Data to be JSON encoded
+     *
+     * @throws ConnectorException When the API replies with an error response
+     * @throws RequestException   When an error is encountered
+     * @throws \LogicException    When Guzzle cannot populate the response
+     *
+     * @return ResponseValidator
+     */
+    protected function delete($url, array $data = null)
+    {
+        return $this->request(
+            'DELETE',
+            $url,
+            ['Content-Type' => 'application/json'],
+            $data !== null ? json_encode($data) : null
+        );
     }
 
     /**

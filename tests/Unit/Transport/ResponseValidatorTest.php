@@ -134,6 +134,28 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Make sure that the content type is asserted properly.
+     *
+     * @return void
+     */
+    public function testCharsetContentType()
+    {
+        $this->response->expects($this->once())
+            ->method('hasHeader')
+            ->will($this->returnValue(true));
+
+        $this->response->expects($this->once())
+            ->method('getHeader')
+            ->with('Content-Type')
+            ->will($this->returnValue(['application/json; charset=utf-8']));
+
+        $this->assertSame(
+            $this->validator,
+            $this->validator->contentType('application/json')
+        );
+    }
+
+    /**
      * Make sure that a missing Content-Type header throws an exception.
      *
      * @return void

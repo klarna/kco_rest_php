@@ -27,10 +27,11 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 /**
  * Checkout order resource.
  *
- * @example docs/examples/checkout/create_checkout.php Create the checkout order
- * @example docs/examples/checkout/create_checkout_attachment.php EMD attachment
- * @example docs/examples/checkout/fetch_checkout.php  Retrieve a checkout order
- * @example docs/examples/checkout/update_checkout.php Update a checkout order
+ * @example docs/examples/CheckoutAPI/create_checkout.php Create the checkout order
+ * @example docs/examples/CheckoutAPI/create_checkout_attachment.php EMD attachment
+ * @example docs/examples/CheckoutAPI/fetch_checkout.php  Retrieve a checkout order
+ * @example docs/examples/CheckoutAPI/update_checkout.php Update a checkout order
+ * @example docs/examples/CheckoutAPI/handling_exceptions.php Handling possible exceptions
  */
 class Order extends Resource
 {
@@ -75,11 +76,12 @@ class Order extends Resource
      */
     public function create(array $data)
     {
-        $url = $this->post(self::$path, $data)
+        $data = $this->post(self::$path, $data)
             ->status('201')
-            ->getLocation();
+            ->contentType('application/json');
 
-        $this->setLocation($url);
+        $this->exchangeArray($data->getJson());
+        $this->setLocation($data->getLocation());
 
         return $this;
     }

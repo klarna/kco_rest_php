@@ -21,7 +21,6 @@ namespace Klarna\Rest\Tests\Component;
 
 use Psr\Http\Message\RequestInterface;
 
-
 /**
  * Resource base test case class.
  */

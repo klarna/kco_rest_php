@@ -627,7 +627,17 @@ class OrderTest extends TestCase
 
         $this->response->expects($this->once())
             ->method('getStatusCode')
-            ->will($this->returnValue('204'));
+            ->will($this->returnValue('201'));
+
+        $this->response->expects($this->once())
+            ->method('hasHeader')
+            ->with('Location')
+            ->will($this->returnValue(true));
+
+        $this->response->expects($this->once())
+            ->method('getHeader')
+            ->with('Location')
+            ->will($this->returnValue(['http://somewhere/a-path']));
 
         $order = new Order($this->connector, '12345');
         $order->refund($data);

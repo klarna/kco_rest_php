@@ -250,10 +250,12 @@ JSON;
      */
     public function testRefund()
     {
-        $this->mock->append(new Response(204));
+        $this->mock->append(new Response(201, ['Location' => 'http://example.com']));
 
         $order = new Order($this->connector, '0002');
-        $order->refund(['data' => 'sent in']);
+        $refund = $order->refund(['data' => 'sent in']);
+
+        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Refund', $refund);
 
         $request = $this->mock->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
@@ -273,24 +275,35 @@ JSON;
      *
      * @return void
      */
-    public function testRefund201()
+    public function testFetchRefund()
     {
-        $this->mock->append(new Response(201));
+        $json = <<<JSON
+{
+    "refund_id": "refund-id-123",
+    "order_id": "order-id-567"
+}
+JSON;
 
-        $order = new Order($this->connector, '0002');
-        $order->refund(['data' => 'sent in']);
-
-        $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals(
-            '/ordermanagement/v1/orders/0002/refunds',
-            $request->getUri()->getPath()
+        $this->mock->append(
+            new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                $json
+            )
         );
 
-        $this->assertEquals(['application/json'], $request->getHeader('Content-Type'));
-        $this->assertEquals('{"data":"sent in"}', strval($request->getBody()));
+        $order = new Order($this->connector, '0002');
 
-        $this->assertAuthorization($request);
+        $refund = $order->fetchRefund('refund-id-123');
+        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Refund', $refund);
+        $this->assertEquals(
+            '/ordermanagement/v1/orders/0002/refunds/refund-id-123',
+            $refund->getLocation()
+        );
+
+        $this->assertEquals('order-id-567', $refund['order_id']);
+        $this->assertEquals('refund-id-123', $refund->getId());
+        $this->assertEquals($refund->getId(), $refund['refund_id']);
     }
 
     /**
@@ -445,5 +458,50 @@ JSON;
         $this->assertEquals('from json', $capture['updated']);
         $this->assertEquals('1003', $capture->getId());
         $this->assertEquals($capture->getId(), $capture['capture_id']);
+    }
+
+    /**
+     * Make sure that the request sent and retrieved data is correct when fetching all captures.
+     *
+     * @return void
+     */
+    public function testFetchCaptures()
+    {
+        $json = <<<JSON
+[
+    {
+        "capture_id": "1001",
+        "updated": "from json 1"
+    },
+    {
+        "capture_id": "1002",
+        "updated": "from json 2"
+    }
+]
+JSON;
+
+        $this->mock->append(
+            new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                $json
+            )
+        );
+
+        $order = new Order($this->connector, '0002');
+
+        $captures = $order->fetchCaptures();
+        $this->assertEquals(2, count($captures), 'Mismatched amount of captures');
+
+        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $captures[0]);
+        $this->assertEquals(
+            '/ordermanagement/v1/orders/0002/captures/1001',
+            $captures[0]->getLocation()
+        );
+
+        $this->assertEquals('from json 1', $captures[0]['updated']);
+        $this->assertEquals('1001', $captures[0]->getId());
+        $this->assertEquals('from json 2', $captures[1]['updated']);
+        $this->assertEquals('1002', $captures[1]->getId());
     }
 }

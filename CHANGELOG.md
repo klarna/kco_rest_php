@@ -1,3 +1,23 @@
+## v4.0.0 - 2018-08-27 (Major release)
+- OrderManagement:
+    * Add ability to fetch Captures;
+    * Add support of Refunds **[partial-backward-compatibility]**;
+- Add full support of Customer Token API;
+- Add full support of Settlements API;
+- Add full support of Payments API;
+- Add full support of Hosted Payment Page API;
+- Add 'Debug Mode' to be able to debug requests and responses;
+- Put SDK References documentation to a GH Pages:
+    https://klarna.github.io/kco_rest_php/
+- Fix: Settlements API [Unexpected Header #15](https://github.com/klarna/kco_rest_php/issues/15);
+- More Examples for all Klarna Services.
+
+**BACKWARD COMPATIBILITY NOTES**
+- OrderManagementAPI: Changed `refund` function. Before returned `$this`, now returns - `Refund` object;
+- OrderManagementAPI: Order object now has an `array` of `Refund` objects instead of just array of data.
+    **[backward-compatible]**
+
+
 ## v3.0.1 - 2017-01-16
 - smaller fixes
 
@@ -21,4 +41,3 @@
 
 ## v1.0.0 - 2014-10-16
 - **NEW MINT-1804** Support checkout v3 and ordermanagement v1 APIs - *Joakim.L*
-

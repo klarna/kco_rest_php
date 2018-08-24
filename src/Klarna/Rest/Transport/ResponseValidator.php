@@ -81,9 +81,22 @@ class ResponseValidator
     }
 
     /**
-     * Asserts the Content-Type header.
+     * Asserts the Content-Type header. Checks partial matching.
+     * Validation PASSES in the following cases:
+     *      Content-Type: application/json
+     *      $mediaType = 'application/json'
      *
-     * @param string $mediaType Expected media type
+     *      Content-Type: application/json; charset=utf-8
+     *      $mediaType = 'application/json'
+     *
+     * Validation FAILS in the following cases:
+     *      Content-Type: plain/text
+     *      $mediaType = 'application/json'
+     *
+     *      Content-Type: application/json; charset=utf-8
+     *      $mediaType = 'application/json; charset=cp-1251'
+     *
+     * @param string $mediaType Expected media type. RegExp rules can be used.
      *
      * @throws \RuntimeException If Content-Type header is missing
      * @throws \RuntimeException If Content-Type header does not match
@@ -97,10 +110,17 @@ class ResponseValidator
         }
 
         $contentType = $this->response->getHeader('Content-Type');
+        $mediaFound = false;
+        foreach ($contentType as $type) {
+            if (preg_match('#' . $mediaType . '#', $type)) {
+                $mediaFound = true;
+                break;
+            }
+        }
 
-        if (!in_array($mediaType, $contentType)) {
+        if (!$mediaFound) {
             throw new \RuntimeException(
-                'Unexpected Content-Type header received: ' . implode(',', $contentType)
+                'Unexpected Content-Type header received: ' . implode(',', $contentType) . '. Expected: ' . $mediaType
             );
         }
 
@@ -108,7 +128,7 @@ class ResponseValidator
     }
 
     /**
-     * Get the decoded JSON response.
+     * Gets the decoded JSON response.
      *
      * @throws \RuntimeException         If the response body is not in JSON format
      * @throws \InvalidArgumentException If the JSON cannot be parsed
@@ -118,6 +138,19 @@ class ResponseValidator
     public function getJson()
     {
         return \json_decode($this->response->getBody(), true);
+    }
+
+    /**
+     * Gets response body.
+     *
+     * @throws \RuntimeException         If the response body is not in JSON format
+     * @throws \InvalidArgumentException If the JSON cannot be parsed
+     *
+     * @return StreamInterface the body as a stream
+     */
+    public function getBody()
+    {
+        return $this->response->getBody();
     }
 
     /**

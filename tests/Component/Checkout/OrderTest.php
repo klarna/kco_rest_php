@@ -36,7 +36,10 @@ class OrderTest extends ResourceTestCase
     public function testCreate()
     {
         $this->mock->append(
-            new Response(201, ['Location' => 'http://somewhere/a-path'])
+            new Response(201, [
+                'Location' => 'http://somewhere/a-path',
+                'Content-Type' => 'application/json'
+            ], '{}')
         );
 
         $order = new Order($this->connector);
