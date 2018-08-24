@@ -1,10 +1,11 @@
-## v4.0.0 - 2018-08-22 (Major release)
+## v4.0.0 - 2018-08-27 (Major release)
 - OrderManagement:
     * Add ability to fetch Captures;
     * Add support of Refunds **[partial-backward-compatibility]**;
 - Add full support of Customer Token API;
 - Add full support of Settlements API;
 - Add full support of Payments API;
+- Add full support of Hosted Payment Page API;
 - Add 'Debug Mode' to be able to debug requests and responses;
 - Put SDK References documentation to a GH Pages:
     https://klarna.github.io/kco_rest_php/
