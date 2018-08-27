@@ -3,3 +3,4 @@
 /docs/reference
 /.idea
 /composer.lock
+.php_cs.cache

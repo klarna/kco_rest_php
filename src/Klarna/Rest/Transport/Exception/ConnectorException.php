@@ -59,13 +59,16 @@ class ConnectorException extends \RuntimeException
         RequestException $prev
     ) {
         $messages = implode(', ', $data['error_messages']);
+        $serviceVersion = isset($data['service_version']) ? $data['service_version'] : '';
         $message = "{$data['error_code']}: {$messages} (#{$data['correlation_id']})";
+        $message .= $serviceVersion ? " ServiceVersion: $serviceVersion" : '';
 
         parent::__construct($message, $prev->getCode(), $prev);
 
         $this->errorCode = $data['error_code'];
         $this->messages = $data['error_messages'];
         $this->correlationId = $data['correlation_id'];
+        $this->serviceVersion = $serviceVersion;
     }
 
     /**
@@ -96,6 +99,16 @@ class ConnectorException extends \RuntimeException
     public function getCorrelationId()
     {
         return $this->correlationId;
+    }
+
+    /**
+     * Gets the API Service version for this exception.
+     *
+     * @return string
+     */
+    public function getServiceVersion()
+    {
+        return $this->serviceVersion;
     }
 
     /**
