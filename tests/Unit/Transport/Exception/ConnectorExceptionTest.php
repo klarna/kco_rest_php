@@ -72,6 +72,7 @@ class ConnectorExceptionTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals($data['error_code'], $exception->getErrorCode());
+        $this->assertEquals($data['service_version'], $exception->getServiceVersion());
         $this->assertEquals($data['correlation_id'], $exception->getCorrelationId());
 
         $this->assertSame($previous, $exception->getPrevious());

@@ -46,6 +46,12 @@ class OrderTest extends ResourceTestCase
             "capture_id": "1002",
             "test": "data"
         }
+    ],
+    "refunds": [
+        {
+            "refund_id": "ref-1",
+            "data": 123
+        }
     ]
 }
 JSON;
@@ -271,7 +277,7 @@ JSON;
     }
 
     /**
-     * Make sure that the request sent is correct when performing a refund.
+     * Make sure that the request sent is correct when fetching a refund.
      *
      * @return void
      */
@@ -304,6 +310,54 @@ JSON;
         $this->assertEquals('order-id-567', $refund['order_id']);
         $this->assertEquals('refund-id-123', $refund->getId());
         $this->assertEquals($refund->getId(), $refund['refund_id']);
+    }
+
+    /**
+     * Make sure that the request sent is correct when fetching an existing refund.
+     *
+     * @return void
+     */
+    public function testFetchExistingRefund()
+    {
+        $json = <<<JSON
+{
+    "refund_id": "refund-id-123",
+    "order_id": "order-id-567"
+}
+JSON;
+        $json2 = <<<JSON
+{
+    "refund_id": "refund-id-XXX",
+    "order_id": "order-id-XXX"
+}
+JSON;
+
+        $this->mock->append(
+            new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                $json
+            )
+        );
+
+        $order = new Order($this->connector, '0002');
+
+        $order->fetchRefund('refund-id-123');
+        $order['refunds'][0]['test_data'] = 'abc';
+
+        $this->mock->append(
+            new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                $json2
+            )
+        );
+
+        $order->fetchRefund('refund-id-XXX');
+
+        $refund = $order->fetchRefund('refund-id-123');
+        
+        $this->assertEquals('abc', $refund['test_data']);
     }
 
     /**

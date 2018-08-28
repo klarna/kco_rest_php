@@ -23,6 +23,8 @@ use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
+use Klarna\Exceptions\NotApplicableException;
+
 
 /**
  * HPP session resource.

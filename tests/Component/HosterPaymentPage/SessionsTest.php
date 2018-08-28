@@ -121,4 +121,17 @@ JSON;
 
         $this->assertAuthorization($request);
     }
+
+    /**
+     * Make sure that customer cannot fetch the data.
+     *
+     * @return void
+     */
+    public function testFetch()
+    {
+        $this->setExpectedException('Klarna\Exceptions\NotApplicableException');
+
+        $session = new Sessions($this->connector, 'test');
+        $session->fetch();
+    }
 }
