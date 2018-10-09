@@ -7,6 +7,7 @@ require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
 $merchantId = getenv('MERCHANT_ID') ?: '0';
 $sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
+$sessionId = getenv('SESSION_ID') ?: 'sessionId';
 
 $connector = Klarna\Rest\Transport\Connector::create(
     $merchantId,
