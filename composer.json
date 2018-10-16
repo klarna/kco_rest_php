@@ -34,7 +34,7 @@
         "php-coveralls/php-coveralls": "^2.1",
         "phpunit/phpcov": "^2.0",
         "apigen/apigen": "4.0.*",
-        "klarna/apigen-theme": "~1.0"
+        "klarna/apigen-theme": "~2.0"
     },
     "scripts": {
         "test": "vendor/bin/phpunit --colors",
