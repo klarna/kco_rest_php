@@ -1,27 +1,74 @@
+@import url('https://x.klarnacdn.net/ui/fonts/v1.1/fonts.css');
+
+body {
+	font-family: Klarna Sans, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	margin: 0;
+	background-color: #fff;
+	color: #212529;
+	text-align: left;
+	line-height: 25px;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+}
+
 .navbar-inner {
+	font-family: "Klarna Headline", Helvetica, Arial, sans-serif;
 	padding-left:20px;
 	padding-right:20px;
-	background-color:#0074c8;
-	background-image:-moz-linear-gradient(top,#0074c8,#0074c8);
-	background-image:-ms-linear-gradient(top,#0074c8,#0074c8);
-	background-image:-webkit-gradient(linear,0 0,0 100%,from(#0074c8),to(#0074c8));
-	background-image:-webkit-linear-gradient(top,#0074c8,#0074c8);
-	background-image:-o-linear-gradient(top,#0074c8,#0074c8);
-	background-image:linear-gradient(top,#0074c8,#0074c8);
-	background-repeat:repeat-x;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0074c8',endColorstr='#0074c8',GradientType=0);
+	background-color: #fff;
+	background-image: unset;
+	box-shadow: unset;
+	border-bottom: 1px solid #D1D1D0;
 }
+
+.navbar .brand {
+	color: black;
+	height: 70px;
+	padding: 0 20px 0 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80px;
+}
+
+.navbar .nav,
+.navbar .nav li
+{
+	height: 70px;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+}
+
+.navbar .nav li span,
+.navbar .nav li a {
+	transform: translateY(3px);
+	transition: .3s all ease;
+	color: black;
+	text-shadow: unset;
+}
+
+.navbar .nav > li.active > span {
+	background-color: #ffffff;
+	color: #EB6F93;
+}
+
+.navbar .nav li {
+	padding-right: 15px;
+}
+
+.navbar .nav li a:hover span {
+	color: #EB6F93 !important;
+}
+
+
 .btn-navbar {
 	background-color:#0074c8;
-	background-image:-moz-linear-gradient(top,#0074c8,#0074c8);
-	background-image:-ms-linear-gradient(top,#0074c8,#0074c8);
-	background-image:-webkit-gradient(linear,0 0,0 100%,from(#0074c8),to(#0074c8));
-	background-image:-webkit-linear-gradient(top,#0074c8,#0074c8);
-	background-image:-o-linear-gradient(top,#0074c8,#0074c8);
-	background-image:linear-gradient(top,#0074c8,#0074c8);
-	background-repeat:repeat-x;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0074c8',endColorstr='#0074c8',GradientType=0);
-	border-color:#0074c8 #0074c8 #0074c8;
+	background-image: none;
 }
 
 .btn-navbar:hover,.btn-navbar:active,.btn-navbar.active,.btn-navbar.disabled,.btn-navbar[disabled] {
@@ -29,48 +76,4 @@
 	color: #1a8cdc;
 }
 
-.navbar .nav>li>a {
-	float:none;
-	padding:10px 10px 11px;
-	line-height:19px;
-	color: white;
-	text-decoration:none;
-	text-shadow:0 -1px 0 rgba(0,0,0,0.25)
-}
 
-.navbar .nav > li > span {
-	display: block;
-	color: white;
-	line-height: 19px;
-	padding: 10px 10px 11px;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-.navbar .nav > li.active > span {
-	background-color: #054269;
-	color: #ffffff;
-}
-
-
-.navbar .nav>li>a:hover {
-	background-color:#1a8cdc;
-	color: white;
-	text-decoration:none
-}
-
-.navbar .nav .active>a,.navbar .nav .active>a:hover {
-	color:#fff;
-	text-decoration:none;
-	background-color:#0074c8;
-	color:white;
-}
-
-.navbar-inner::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: url(https://cdn.klarna.com/1.0/shared/image/generic/logo/global/tagline/horizontal-white.png?width=200) no-repeat;
-  width: 200px;
-  height: 100%;
-}
