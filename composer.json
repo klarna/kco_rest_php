@@ -7,7 +7,7 @@
     "authors": [
         {
             "name": "Klarna AB",
-            "email": "integration@klarna.com"
+            "email": "developers@klarna.com"
         }
     ],
     "autoload": {

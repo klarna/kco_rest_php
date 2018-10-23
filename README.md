@@ -122,7 +122,7 @@ Headers : {"Content-Type":["application\/json"],"Date":["Wed, 15 Aug 2018 15:55:
 
 ## Questions and feedback
 If you have any questions concerning this product or the implementation,
-please contact [integration@klarna.com](mailto:integration@klarna.com).
+please contact [developers@klarna.com](mailto:developers@klarna.com).
 
 
 ## How to contribute
