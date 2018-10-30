@@ -17,7 +17,7 @@
  * File containing the Virtual Credit Card Settlements class.
  */
 
-namespace Klarna\Rest\HostedPaymentPage;
+namespace Klarna\Rest\MerchantCardService;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
@@ -50,6 +50,16 @@ class VCCSettlements extends Resource
     public function __construct(Connector $connector)
     {
         parent::__construct($connector);
+    }
+
+    /**
+     * Not applicable.
+     *
+     * @throws NotApplicableException
+     */
+    public function fetch()
+    {
+        throw new NotApplicableException('Not applicable');
     }
 
     /**
@@ -97,8 +107,8 @@ class VCCSettlements extends Resource
     {
         $data = $this->request(
             'GET',
-            $this->getLocation() . "/$settlementId",
-            ['KeyId', $keyId]
+            self::$path . "/$settlementId",
+            ['KeyId' => $keyId]
         )->status('200')
         ->contentType('application/json')
         ->getJson();
@@ -126,8 +136,8 @@ class VCCSettlements extends Resource
     {
         $data = $this->request(
             'GET',
-            $this->getLocation() . "/order/$orderId",
-            ['KeyId', $keyId]
+            self::$path . "/order/$orderId",
+            ['KeyId' => $keyId]
         )->status('200')
         ->contentType('application/json')
         ->getJson();
