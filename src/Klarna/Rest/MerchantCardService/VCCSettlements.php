@@ -25,7 +25,6 @@ use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Exceptions\NotApplicableException;
 
-
 /**
  * Virtual Credit Card Settlements resource.
  */
@@ -66,7 +65,7 @@ class VCCSettlements extends Resource
      * Creates a new settlement.
      *
      * @param array $data Creation data
-     * 
+     *
      * @see https://developers.klarna.com/api/#merchant-card-service-api-create-a-new-settlement
      *
      * @throws ConnectorException When the API replies with an error response
@@ -89,7 +88,7 @@ class VCCSettlements extends Resource
 
     /**
      * Retrieve an existing settlement.
-     * 
+     *
      * @see https://developers.klarna.com/api/#hosted-payment-page-api-distribute-link-to-the-hpp-session
      *
      * @param array $data Distribute data
@@ -118,7 +117,7 @@ class VCCSettlements extends Resource
 
     /**
      * Retrieves a settled order's settlement.
-     * 
+     *
      * @see https://developers.klarna.com/api/#hosted-payment-page-api-distribute-link-to-the-hpp-session
      *
      * @param array $data Distribute data

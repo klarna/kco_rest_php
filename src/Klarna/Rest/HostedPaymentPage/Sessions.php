@@ -25,7 +25,6 @@ use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Exceptions\NotApplicableException;
 
-
 /**
  * HPP session resource.
  */
@@ -61,7 +60,7 @@ class Sessions extends Resource
      * Creates the resource.
      *
      * @param array $data Creation data
-     * 
+     *
      * @see https://developers.klarna.com/api/#hosted-payment-page-api-create-a-new-hpp-session
      *
      * @throws ConnectorException When the API replies with an error response
@@ -84,7 +83,7 @@ class Sessions extends Resource
 
     /**
      * Distributes link to the HPP session.
-     * 
+     *
      * @see https://developers.klarna.com/api/#hosted-payment-page-api-distribute-link-to-the-hpp-session
      *
      * @param array $data Distribute data
@@ -110,7 +109,8 @@ class Sessions extends Resource
      * @deprecated HPP API no longer suppors getting the status. Use fetch (getSession) to fetch data;
      * @deprecated This method will be removed in the future versions of SDK.
      */
-    public function getSessionStatus() {
+    public function getSessionStatus()
+    {
         return $this->fetch();
     }
 }

@@ -105,10 +105,10 @@ class Orders extends Resource
     {
         $this->delete($this->getLocation())
             ->status('204');
-            // ->contentType('application/json');
-            // TODO: We cannot check the Content-type here because of an inconsistency
-            // between service and documentation. The real Content-Type is
-            // "application/octet-stream but not the "application/json" as in the docs.
+        // ->contentType('application/json');
+        // TODO: We cannot check the Content-type here because of an inconsistency
+        // between service and documentation. The real Content-Type is
+        // "application/octet-stream but not the "application/json" as in the docs.
 
         return $this;
     }
