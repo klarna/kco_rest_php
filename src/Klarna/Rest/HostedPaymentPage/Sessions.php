@@ -83,16 +83,6 @@ class Sessions extends Resource
     }
 
     /**
-     * Not applicable.
-     *
-     * @throws NotApplicableException
-     */
-    public function fetch()
-    {
-        throw new NotApplicableException('Not applicable');
-    }
-
-    /**
      * Distributes link to the HPP session.
      * 
      * @see https://developers.klarna.com/api/#hosted-payment-page-api-distribute-link-to-the-hpp-session
@@ -112,33 +102,15 @@ class Sessions extends Resource
     {
         $this->post($this->getLocation() . '/distribution', $data)
             ->status('200');
-            // ->contentType('application/json');
-            // TODO: We cannot check the Content-type here because of an inconsistency
-            // between service and documentation. The real Content-Type is
-            // "application/octet-stream but not the "application/json" as in the docs.
 
         return $this;
     }
 
     /**
-     * Gets HPP session status.
-     *
-     * @param array $params Additional query params to filter transactions.
-     *
-     * @throws ConnectorException        When the API replies with an error response
-     * @throws RequestException          When an error is encountered
-     * @throws \RuntimeException         On an unexpected API response
-     * @throws \RuntimeException         If the response content type is not JSON
-     * @throws \InvalidArgumentException If the JSON cannot be parsed
-     * @throws \LogicException           When Guzzle cannot populate the response
-     *
-     * @return array Session status
+     * @deprecated HPP API no longer suppors getting the status. Use fetch (getSession) to fetch data;
+     * @deprecated This method will be removed in the future versions of SDK.
      */
-    public function getSessionStatus()
-    {
-        return $this->get($this->getLocation() . '/status')
-            ->status('200')
-            ->contentType('application/json')
-            ->getJson();
+    public function getSessionStatus() {
+        return $this->fetch();
     }
 }
