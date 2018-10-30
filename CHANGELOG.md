@@ -1,3 +1,10 @@
+## v4.1.0 - 2018-10-31
+- HPP: HPP service changed API completely without backward compatibility. Adopt SDK to the new changes.
+    Mark getSessionStatus as @deprecated. Replaced by fetch function.
+    Return data was changed by HPP API service.
+    **[partial-backward-compatibility]**
+- Add support of Merchant Card Service API
+
 ## v4.0.0 - 2018-08-27 (Major release)
 - OrderManagement:
     * Add ability to fetch Captures;
