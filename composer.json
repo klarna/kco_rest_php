@@ -39,6 +39,11 @@
     "scripts": {
         "test": "vendor/bin/phpunit --colors",
         "reference": "vendor/bin/apigen generate -s src -d docs/reference --template-config='vendor/klarna/apigen-theme/src/config.neon'",
+        "checkstyle": "vendor/bin/phpcs --standard=PSR2 --report=checkstyle --extensions=php src/ tests/",
+        "check": [
+            "@test",
+            "@checkstyle"
+        ],
         "analyze": [
             "mkdir -p build/logs",
             "vendor/bin/phploc --log-csv build/logs/phploc.csv src/ tests/",

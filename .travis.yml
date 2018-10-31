@@ -21,10 +21,10 @@ cache:
     - $HOME/.composer/cache/files
 
 before_script:
-  - composer install --no-interaction
+  - travis_wait 20 composer install --no-interaction
 
 script:
-  - composer run test
+  - composer run check
 
 after_script:
   - php vendor/bin/php-coveralls -v
