@@ -1,7 +1,7 @@
 # Klarna REST PHP SDK
 [![Packagist Version][packagist-image]](https://packagist.org/packages/klarna/kco_rest)
 [![Build Status][travis-image]](https://travis-ci.org/klarna/kco_rest_php)
-[![Coverage Status][coveralls-image]](https://coveralls.io/r/klarna/kco_rest_php?branch=v4.0)
+[![Coverage Status][coveralls-image]](https://coveralls.io/r/klarna/kco_rest_php?branch=v4.1)
 
 ## Welcome to Klarna. Smoooth payments.
 
@@ -157,5 +157,5 @@ Klarna Checkout REST PHP SDK is licensed under
 [Apache License, Version 2.0](http://www.apache.org/LICENSE-2.0)
 
 [packagist-image]: https://img.shields.io/packagist/v/klarna/kco_rest.svg?style=flat
-[travis-image]: https://img.shields.io/travis/klarna/kco_rest_php/v4.0.svg?style=flat
-[coveralls-image]: https://img.shields.io/coveralls/klarna/kco_rest_php/v4.0.svg?style=flat
+[travis-image]: https://img.shields.io/travis/klarna/kco_rest_php/v4.1.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/klarna/kco_rest_php/v4.1.svg?style=flat

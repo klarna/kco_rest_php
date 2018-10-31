@@ -92,11 +92,11 @@ JSON;
      *
      * @return void
      */
-    public function testGetSessionStatus()
+    public function testFetch()
     {
         $json =<<<JSON
 {
-    "auth_token": "b4bd3423-24e3",
+    "authorization_token": "b4bd3423-24e3",
     "status": "COMPLETED",
     "updated_at": "2038-01-19T03:14:07.000Z"
 }
@@ -108,30 +108,16 @@ JSON;
         );
 
         $session = new Sessions($this->connector, 'session-id-123');
-        $data = $session->getSessionStatus();
+        $data = $session->fetch();
 
-        $this->assertEquals('b4bd3423-24e3', $data['auth_token']);
+        $this->assertEquals('b4bd3423-24e3', $data['authorization_token']);
         $this->assertEquals('COMPLETED', $data['status']);
-        $this->assertEquals('session-id-123', $session->getId());
 
         $request = $this->mock->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/hpp/v1/sessions/session-id-123/status', $request->getUri()->getPath());
+        $this->assertEquals('/hpp/v1/sessions/session-id-123', $request->getUri()->getPath());
         $this->assertEquals('', strval($request->getBody()));
 
         $this->assertAuthorization($request);
-    }
-
-    /**
-     * Make sure that customer cannot fetch the data.
-     *
-     * @return void
-     */
-    public function testFetch()
-    {
-        $this->setExpectedException('Klarna\Exceptions\NotApplicableException');
-
-        $session = new Sessions($this->connector, 'test');
-        $session->fetch();
     }
 }

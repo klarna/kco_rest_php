@@ -14,48 +14,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * File containing the Orders class.
+ * File containing the Virtual Credit Card Settlements class.
  */
 
-namespace Klarna\Rest\Payments;
+namespace Klarna\Rest\MerchantCardService;
 
 use GuzzleHttp\Exception\RequestException;
-use Klarna\Exceptions\NotApplicableException;
 use Klarna\Rest\Resource;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
+use Klarna\Exceptions\NotApplicableException;
 
 /**
- * Payments order resource.
- *
- * @example docs/examples/PaymentsAPI/Orders/cancel_existing_authorization.php Cancel an existing authorization
- * @example docs/examples/PaymentsAPI/Orders/create_order.php Create a new order
- * @example docs/examples/PaymentsAPI/Orders/generate_customer_token.php Generate a consumer token
+ * Virtual Credit Card Settlements resource.
  */
-class Orders extends Resource
+class VCCSettlements extends Resource
 {
     /**
      * {@inheritDoc}
      */
-    const ID_FIELD = 'authorization_token';
+    const ID_FIELD = 'settlement_id';
 
     /**
      * {@inheritDoc}
      */
-    public static $path = '/payments/v1/authorizations';
+    public static $path = '/merchantcard/v3/settlements';
 
     /**
-     * Constructs an order instance.
+     * Constructs a session instance.
      *
      * @param Connector $connector HTTP transport connector
-     * @param string    $authorizationToken   Authorization Token
+     * @param string    $sessionId   Session ID
      */
-    public function __construct(Connector $connector, $authorizationToken)
+    public function __construct(Connector $connector)
     {
         parent::__construct($connector);
-
-        $this->setLocation(self::$path . "/{$authorizationToken}");
-        $this[static::ID_FIELD] = $authorizationToken;
     }
 
     /**
@@ -69,9 +62,11 @@ class Orders extends Resource
     }
 
     /**
-     * Creates the resource.
+     * Creates a new settlement.
      *
      * @param array $data Creation data
+     *
+     * @see https://developers.klarna.com/api/#merchant-card-service-api-create-a-new-settlement
      *
      * @throws ConnectorException When the API replies with an error response
      * @throws RequestException   When an error is encountered
@@ -79,18 +74,24 @@ class Orders extends Resource
      * @throws \RuntimeException  If the API replies with an unexpected response
      * @throws \LogicException    When Guzzle cannot populate the response
      *
-     * @return array Order data
+     * @return array Settlement data
      */
     public function create(array $data)
     {
-        return $this->post($this->getLocation() . '/order', $data)
-            ->status('200')
+        $data = $this->post(self::$path, $data)
+            ->status('201')
             ->contentType('application/json')
             ->getJson();
+
+        return $data;
     }
 
     /**
-     * Cancels the authorization.
+     * Retrieve an existing settlement.
+     *
+     * @see https://developers.klarna.com/api/#hosted-payment-page-api-distribute-link-to-the-hpp-session
+     *
+     * @param array $data Distribute data
      *
      * @throws ConnectorException        When the API replies with an error response
      * @throws RequestException          When an error is encountered
@@ -99,39 +100,46 @@ class Orders extends Resource
      * @throws \InvalidArgumentException If the JSON cannot be parsed
      * @throws \LogicException           When Guzzle cannot populate the response
      *
-     * @return self
+     * @return array Settlement data
      */
-    public function cancelAuthorization()
+    public function retrieveSettlement($settlementId, $keyId)
     {
-        $this->delete($this->getLocation())
-            ->status('204');
-        // ->contentType('application/json');
-        // TODO: We cannot check the Content-type here because of an inconsistency
-        // between service and documentation. The real Content-Type is
-        // "application/octet-stream but not the "application/json" as in the docs.
+        $data = $this->request(
+            'GET',
+            self::$path . "/$settlementId",
+            ['KeyId' => $keyId]
+        )->status('200')
+        ->contentType('application/json')
+        ->getJson();
 
-        return $this;
+        return $data;
     }
 
     /**
-     * Generates consumer token.
+     * Retrieves a settled order's settlement.
      *
-     * @param array $data Token data
+     * @see https://developers.klarna.com/api/#hosted-payment-page-api-distribute-link-to-the-hpp-session
      *
-     * @throws ConnectorException When the API replies with an error response
-     * @throws RequestException   When an error is encountered
-     * @throws \RuntimeException  If the location header is missing
-     * @throws \RuntimeException  If the API replies with an unexpected response
-     * @throws \LogicException    When Guzzle cannot populate the response
+     * @param array $data Distribute data
      *
-     * @return array Token data
+     * @throws ConnectorException        When the API replies with an error response
+     * @throws RequestException          When an error is encountered
+     * @throws \RuntimeException         On an unexpected API response
+     * @throws \RuntimeException         If the response content type is not JSON
+     * @throws \InvalidArgumentException If the JSON cannot be parsed
+     * @throws \LogicException           When Guzzle cannot populate the response
+     *
+     * @return array Order's settlement data
      */
-    public function generateToken(array $data)
+    public function retrieveOrderSettlement($orderId, $keyId)
     {
-        $data = $this->post($this->getLocation() . '/customer-token', $data)
-            ->status('200')
-            ->contentType('application/json')
-            ->getJson();
+        $data = $this->request(
+            'GET',
+            self::$path . "/order/$orderId",
+            ['KeyId' => $keyId]
+        )->status('200')
+        ->contentType('application/json')
+        ->getJson();
 
         return $data;
     }
