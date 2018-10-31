@@ -72,6 +72,10 @@
 							HostedPaymentPage						</a>
 							</li>
 					<li>
+						<a href="namespace-Klarna.Rest.MerchantCardService.html">
+							MerchantCardService						</a>
+							</li>
+					<li>
 						<a href="namespace-Klarna.Rest.OrderManagement.html">
 							OrderManagement						</a>
 							</li>
@@ -167,7 +171,7 @@ ArrayObject
 		<b>Namespace:</b> <a href="namespace-Klarna.html">Klarna</a>\<a href="namespace-Klarna.Rest.html">Rest</a>\<a href="namespace-Klarna.Rest.HostedPaymentPage.html">HostedPaymentPage</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#29-144" title="Go to source code">Klarna/Rest/HostedPaymentPage/Sessions.php</a>
+			<b>Located at</b> <a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#28-116" title="Go to source code">Klarna/Rest/HostedPaymentPage/Sessions.php</a>
 		<br>
 	</div>
 
@@ -187,7 +191,7 @@ ArrayObject
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#44-58" title="Go to source code">__construct</a>( <span><code><a href="class-Klarna.Rest.Transport.Connector.html">Klarna\Rest\Transport\Connector</a></code> <var>$connector</var></span>, <span>string <var>$sessionId</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#43-57" title="Go to source code">__construct</a>( <span><code><a href="class-Klarna.Rest.Transport.Connector.html">Klarna\Rest\Transport\Connector</a></code> <var>$connector</var></span>, <span>string <var>$sessionId</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Constructs a session instance.</p>
@@ -226,7 +230,7 @@ ArrayObject
 
 			<td class="name"><div>
 			<a class="anchor" href="#_create">#</a>
-			<code><a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#60-83" title="Go to source code">create</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#59-82" title="Go to source code">create</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Creates the resource.</p>
@@ -266,46 +270,6 @@ ArrayObject
 			</div></td>
 		</tr>
 
-		<tr data-order="fetch" id="_fetch">
-
-			<td class="attributes"><code>
-				 public 
-				<code><a href="class-Klarna.Rest.HostedPaymentPage.Sessions.html">Klarna\Rest\HostedPaymentPage\Sessions</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_fetch">#</a>
-			<code><a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#85-93" title="Go to source code">fetch</a>( )</code>
-
-			<div class="description short">
-				<p>Not applicable.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Not applicable.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						<code><a href="class-Klarna.Rest.HostedPaymentPage.Sessions.html">Klarna\Rest\HostedPaymentPage\Sessions</a></code>
-					</div>
-
-					<h4>Throws</h4>
-					<div class="list">
-						<code><a href="class-Klarna.Exceptions.NotApplicableException.html">Klarna\Exceptions\NotApplicableException</a></code>
-					</div>
-
-
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-Klarna.Rest.Resource.html#_fetch">Klarna\Rest\Resource::fetch</a></code></div>
-
-			</div>
-			</div></td>
-		</tr>
-
 		<tr data-order="distributeLink" id="_distributeLink">
 
 			<td class="attributes"><code>
@@ -317,7 +281,7 @@ ArrayObject
 
 			<td class="name"><div>
 			<a class="anchor" href="#_distributeLink">#</a>
-			<code><a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#95-121" title="Go to source code">distributeLink</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#84-106" title="Go to source code">distributeLink</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Distributes link to the HPP session.</p>
@@ -357,59 +321,12 @@ ArrayObject
 			</div>
 			</div></td>
 		</tr>
-
-		<tr data-order="getSessionStatus" id="_getSessionStatus">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getSessionStatus">#</a>
-			<code><a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#123-143" title="Go to source code">getSessionStatus</a>( <span>array <var>$params</var>,…</span> )</code>
-
-			<div class="description short">
-				<p>Gets HPP session status.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Gets HPP session status.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$params</var>,…</dt>
-						<dd>Additional query params to filter transactions.</dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>Session status
-					</div>
-
-					<h4>Throws</h4>
-					<div class="list">
-						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
-						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
-						RuntimeException<br>On an unexpected API response<br>
-						RuntimeException<br>If the response content type is not JSON<br>
-						InvalidArgumentException<br>If the JSON cannot be parsed<br>
-						LogicException<br>When Guzzle cannot populate the response
-					</div>
-
-
-
-			</div>
-			</div></td>
-		</tr>
 		</table>
 
 		<h3>Methods inherited from <a href="class-Klarna.Rest.Resource.html#methods">Klarna\Rest\Resource</a></h3>
 		<p class="elementList">
 			<code><a href="class-Klarna.Rest.Resource.html#_delete">delete()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_fetch">fetch()</a></code>, 
 			<code><a href="class-Klarna.Rest.Resource.html#_get">get()</a></code>, 
 			<code><a href="class-Klarna.Rest.Resource.html#_getId">getId()</a></code>, 
 			<code><a href="class-Klarna.Rest.Resource.html#_getLocation">getLocation()</a></code>, 
@@ -474,7 +391,7 @@ ArrayObject
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#39-42" title="Go to source code"><var>$path</var></a>
+					<a href="source-class-Klarna.Rest.HostedPaymentPage.Sessions.html#38-41" title="Go to source code"><var>$path</var></a>
 
 				<div class="description short">
 					<p>Path to the resource endpoint.</p>
