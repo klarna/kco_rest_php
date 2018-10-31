@@ -34,7 +34,7 @@ class UserAgent implements UserAgentInterface
     /**
      * Version of the SDK.
      */
-    const VERSION = '4.0.0';
+    const VERSION = '4.1.1';
 
     /**
      * Components of the user agent.
