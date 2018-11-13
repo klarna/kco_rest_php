@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Klarna\Rest\OrderManagement\Capture</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?08b23951ef4599ca9cbf1f902d0e8290c9653ddd">
+	<link rel="stylesheet" href="resources/style.css?062e9e59e0b8c44fbaaded5b7ffc21f907b78669">
+	<link rel="stylesheet" href="resources/klarna.css?dec3b68768fbf7f93db60302607d658f13b60d6d">
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">Overview</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-Klarna.Rest.OrderManagement.html" title="Summary of Klarna\Rest\OrderManagement"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+
+
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="">
+			<input type="hidden" name="ie" value="UTF-8">
+			<input type="text" name="q" class="search-query" placeholder="Search">
+		</form>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-Klarna.html">
+							Klarna<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.html">
+							Rest<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Checkout.html">
+							Checkout						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.OrderManagement.html">
+							OrderManagement						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Transport.html">
+							Transport<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Transport.Exception.html">
+							Exception						</a>
+							</li>
+								</ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Klarna.Rest.OrderManagement.Capture.html">Capture</a></li>
+				<li><a href="class-Klarna.Rest.OrderManagement.Order.html">Order</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class Capture</h1>
+
+
+	<div class="description">
+	<p>Capture resource.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+ArrayObject
+			 implements 
+<span>IteratorAggregate</span>, 
+			
+<span>Traversable</span>, 
+			
+<span>ArrayAccess</span>, 
+			
+<span>Serializable</span>, 
+			
+<span>Countable</span>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Klarna.Rest.Resource.html"><span>Klarna\Rest\Resource</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Klarna\Rest\OrderManagement\Capture</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Klarna.html">Klarna</a>\<a href="namespace-Klarna.Rest.html">Rest</a>\<a href="namespace-Klarna.Rest.OrderManagement.html">OrderManagement</a><br>
+		
+
+				<b>Example:</b>
+				docs/examples/order/fetch_capture.php<br>
+				<b>Example:</b>
+				docs/examples/order/create_capture.php<br>
+				<b>Example:</b>
+				docs/examples/capture/append_shipping_info.php<br>
+				<b>Example:</b>
+				docs/examples/capture/trigger_send_out.php<br>
+				<b>Example:</b>
+				docs/examples/capture/update_customer_details.php<br>
+			<b>Located at</b> <a href="source-class-Klarna.Rest.OrderManagement.Capture.html#27-149" title="Go to source code">Klarna/Rest/OrderManagement/Capture.php</a>
+		<br>
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped methods" id="methods">
+		
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Capture.html#48-66" title="Go to source code">__construct</a>( <span><code><a href="class-Klarna.Rest.Transport.Connector.html">Klarna\Rest\Transport\Connector</a></code> <var>$connector</var></span>, <span>string <var>$orderUrl</var></span>, <span>string <var>$captureId</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Constructs an order instance.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Constructs an order instance.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$connector</var></dt>
+						<dd>HTTP transport connector</dd>
+						<dt><var>$orderUrl</var></dt>
+						<dd>Parent order resource url</dd>
+						<dt><var>$captureId</var></dt>
+						<dd>Capture ID</dd>
+					</dl></div>
+
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-Klarna.Rest.Resource.html#___construct">Klarna\Rest\Resource::__construct</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="create" id="_create">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_create">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Capture.html#68-90" title="Go to source code">create</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Creates the resource.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Creates the resource.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Creation data</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the location header is missing<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="addShippingInfo" id="_addShippingInfo">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addShippingInfo">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Capture.html#92-110" title="Go to source code">addShippingInfo</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Appends shipping information to the capture.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Appends shipping information to the capture.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Shipping info data</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="updateCustomerDetails" id="_updateCustomerDetails">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_updateCustomerDetails">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Capture.html#112-130" title="Go to source code">updateCustomerDetails</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Updates the customers details.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Updates the customers details.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Customer details data</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="triggerSendout" id="_triggerSendout">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_triggerSendout">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Capture.html#132-148" title="Go to source code">triggerSendout</a>( )</code>
+
+			<div class="description short">
+				<p>Trigger send outs for this capture.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Trigger send outs for this capture.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+		<h3>Methods inherited from <a href="class-Klarna.Rest.Resource.html#methods">Klarna\Rest\Resource</a></h3>
+		<p class="elementList">
+			<code><a href="class-Klarna.Rest.Resource.html#_fetch">fetch()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_get">get()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_getId">getId()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_getLocation">getLocation()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_patch">patch()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_post">post()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_request">request()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_setLocation">setLocation()</a></code>
+		</p>
+		<h3>Methods inherited from ArrayObject</h3>
+		<p class="elementList">
+			<code>append()</code>, 
+			<code>asort()</code>, 
+			<code>count()</code>, 
+			<code>exchangeArray()</code>, 
+			<code>getArrayCopy()</code>, 
+			<code>getFlags()</code>, 
+			<code>getIterator()</code>, 
+			<code>getIteratorClass()</code>, 
+			<code>ksort()</code>, 
+			<code>natcasesort()</code>, 
+			<code>natsort()</code>, 
+			<code>offsetExists()</code>, 
+			<code>offsetGet()</code>, 
+			<code>offsetSet()</code>, 
+			<code>offsetUnset()</code>, 
+			<code>serialize()</code>, 
+			<code>setFlags()</code>, 
+			<code>setIteratorClass()</code>, 
+			<code>uasort()</code>, 
+			<code>uksort()</code>, 
+			<code>unserialize()</code>
+		</p>
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+		<h2>Constants summary</h2>
+
+		<h3>Constants inherited from <a href="class-Klarna.Rest.Resource.html#constants">Klarna\Rest\Resource</a></h3>
+		<p class="elementList">
+			<code><a href="class-Klarna.Rest.Resource.html#ID_FIELD"><b>ID_FIELD</b></a></code>
+		</p>
+		<h3>Constants inherited from ArrayObject</h3>
+		<p class="elementList">
+			<code><b>ARRAY_AS_PROPS</b></code>, 
+			<code><b>STD_PROP_LIST</b></code>
+		</p>
+
+
+
+		<h2>Properties summary</h2>
+		<table class="summary table table-bordered table-striped properties" id="properties">
+		
+		<tr data-order="path" id="$path">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.OrderManagement.Capture.html#43-46" title="Go to source code"><var>$path</var></a>
+
+				<div class="description short">
+					<p>Path to the resource endpoint.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Path to the resource endpoint.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$path" class="anchor">#</a>
+					<code><span class="php-quote">'/captures'</span></code>
+				</div>
+			</td>
+		</tr>
+		</table>
+
+		<h3>Properties inherited from <a href="class-Klarna.Rest.Resource.html#properties">Klarna\Rest\Resource</a></h3>
+		<p class="elementList">
+			<code><a href="class-Klarna.Rest.Resource.html#$connector"><var>$connector</var></a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#$url"><var>$url</var></a></code>
+		</p>
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
