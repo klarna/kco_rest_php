@@ -1,19 +1,140 @@
+<!DOCTYPE html>
 <html>
-     <head>
-         <title>Klarna PHP SDK</title>
-     </head>
-     <body>
-         <h1>Select PHP SDK version</h1>
-         <ul>
-             <li><a href="https://klarna.github.io/kco_rest_php/v2.0.0">v2.0.0</a></li>
-             <li><a href="https://klarna.github.io/kco_rest_php/v2.1.0">v2.1.0</a></li>
-             <li><a href="https://klarna.github.io/kco_rest_php/v2.2.0">v2.2.0</a></li>
-             <li><a href="https://klarna.github.io/kco_rest_php/v3.0.0">v3.0.0</a></li>
-             <li><a href="https://klarna.github.io/kco_rest_php/v3.0.1">v3.0.1</a></li>
-             <li><a href="https://klarna.github.io/kco_rest_php/v4.0.0">v4.0.0</a></li>
-             <li><a href="https://klarna.github.io/kco_rest_php/v4.1.0">v4.1.0</a></li>
-             <li><a href="https://klarna.github.io/kco_rest_php/v4.1.1">v4.1.1</a></li>
-         </ul>
-     </body>
- </html>
-
+    <head>
+        <meta charset="utf-8">
+        <title>Klarna PHP SDK</title>
+        <meta name="author" content="">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://x.klarnacdn.net/ui/fonts/v1.1/fonts.css"/>
+        <style>
+            body, html {
+                margin: 0;
+                font-family: Klarna Sans, Helvetica, Arial, sans-serif;
+                height: 100vh;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+            .hero {
+                font-family: "Klarna Headline", Helvetica, Arial, sans-serif;
+                background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg viewBox='0 0 192 108' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3Cpolygon id='path-1' points='0 108 192 108 192 0 0 0'%3E%3C/polygon%3E%3C/defs%3E%3Cg id='Symbols' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Pattern-/-Multi-/-G-/-16:9'%3E%3Cg id='16:9'%3E%3Cmask id='mask-2' fill='white'%3E%3Cuse xlink:href='%23path-1'%3E%3C/use%3E%3C/mask%3E%3Cuse id='Fill-1' fill='%23564646' xlink:href='%23path-1'%3E%3C/use%3E%3Cpath d='M11.3008,14.4411 C7.616,14.2216 3.8086,13.8936 0,13.4952 L0,30.6226 C14.3552,29.9008 25.9281,25.369 35.4854,19.0212 C27.8277,16.5322 19.5777,14.9335 11.3008,14.4411' id='Fill-3' fill='%2356574F' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M50.0755,73.1939 C51.8881,68.0591 55.4006,63.4725 60.7591,60.159 C64.9429,57.5711 70.9019,55.8767 77.8219,56.3498 C73.6117,47.8852 69.5225,40.4518 62.2664,33.8053 C55.4527,27.5642 46.0318,22.4476 35.4854,19.0212 C25.9281,25.369 14.3552,29.9008 0,30.6226 L0,38.0638 C3.5441,39.0364 7.1414,40.2413 10.7611,41.7194 C23.0128,46.723 37.992,56.0068 50.0755,73.1939' id='Fill-4' fill='%23564646' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M94.7725,22.6315 C98.3941,28.6479 101.491,36.6663 104.03,44.8007 C103.874,28.9167 109.753,17.5698 117.464,10.9792 C113.389,7.5312 109.517,3.8694 105.854,0 L74.3589,0 C83.8693,7.4206 90.0637,14.8089 94.7725,22.6315' id='Fill-5' fill='%23564646' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M0,90.6463 L0,108 L14.5276,108 C10.8177,100.501 6.003,94.7497 0,90.6463' id='Fill-7' fill='%237C72A2' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M192,87.1717 L192,45.9381 C184.511,44.3538 177.298,42.4122 170.377,40.1131 C174.08,56.457 176.017,74.8099 192,87.1717' id='Fill-8' fill='%23737467' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M50.0755,73.1939 C37.992,56.0068 23.0128,46.723 10.7611,41.7194 C7.1414,40.2413 3.5441,39.0364 0,38.0638 L0,90.6463 C6.003,94.7497 10.8177,100.501 14.5276,108 L62.4064,108 C60.8669,106.981 59.4579,105.826 58.1911,104.529 C49.5675,95.6975 46.4824,83.37 50.0755,73.1939' id='Fill-9' fill='%23181E35' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M117.464,10.9792 C121.931,7.1614 127.013,4.9391 131.891,4.3564 C148.451,2.3781 159.411,9.9847 166.346,26.6482 C168.091,30.8401 169.307,35.3933 170.377,40.1131 C177.298,42.4122 184.511,44.3538 192,45.9381 L192,0 L105.854,0 C109.517,3.8694 113.389,7.5312 117.464,10.9792' id='Fill-11' fill='%2395B8C5' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M96.2089,51.2085 C100.251,59.4268 104.173,67.4011 110.763,75.0119 C109.697,72.8348 135.023,57.4901 134.3,55.2022 C131.553,46.5055 104.099,51.7686 104.03,44.8007 C101.491,36.6663 98.3941,28.6479 94.7725,22.6315 C90.0637,14.8089 83.8693,7.4206 74.3589,0 L37.2603,0 C51.9693,4.2229 65.373,11.2057 74.9401,19.9694 C85.6849,29.8112 91.0348,40.6894 96.2089,51.2085' id='Fill-12' fill='%23181E35' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M11.3008,14.4411 C19.5777,14.9335 27.8277,16.5322 35.4854,19.0212 C46.0318,22.4476 55.4527,27.5642 62.2664,33.8053 C69.5225,40.4518 73.6117,47.8852 77.8219,56.3498 C87.668,57.0239 99.4606,62.0856 110.858,75.2044 C110.826,75.1399 110.794,75.0764 110.763,75.0119 C104.173,67.4011 100.251,59.4268 96.2089,51.2085 C91.0348,40.6894 85.6849,29.8112 74.9401,19.9694 C65.373,11.2057 51.9693,4.2229 37.2603,0 L0,0 L0,13.4952 C3.8086,13.8936 7.616,14.2216 11.3008,14.4411' id='Fill-13' fill='%23B36B65' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M170.377,40.1131 C169.307,35.3933 168.091,30.8401 166.346,26.6482 C159.411,9.9847 148.451,2.3781 131.891,4.3564 C127.013,4.9391 121.931,7.1614 117.464,10.9792 C109.753,17.5698 103.874,28.9167 104.03,44.8007 C104.099,51.7686 105.329,59.6106 108.076,68.3074 C108.798,70.5953 109.697,72.8348 110.763,75.0119 C110.794,75.0764 110.826,75.1399 110.858,75.2044 C111.885,76.387 112.91,77.6363 113.93,78.9534 C131.282,101.363 156.468,106.77 189.278,106.331 C190.204,106.318 191.111,106.32 192,106.336 L192,87.1717 C176.017,74.8099 174.08,56.457 170.377,40.1131' id='Fill-14' fill='%23333A35' mask='url(%23mask-2)'%3E%3C/path%3E%3Cpath d='M189.278,106.331 C156.468,106.77 131.282,101.363 113.93,78.9534 C112.91,77.6363 111.885,76.387 110.858,75.2044 C99.4606,62.0856 87.668,57.0239 77.8219,56.3498 C70.9019,55.8767 64.9429,57.5711 60.7591,60.159 C55.4006,63.4725 51.8881,68.0591 50.0755,73.1939 C46.4824,83.37 49.5675,95.6975 58.1911,104.529 C59.4579,105.826 60.8669,106.981 62.4064,108 L192,108 L192,106.336 C191.111,106.32 190.204,106.318 189.278,106.331' id='Fill-16' fill='%23C9A29F' mask='url(%23mask-2)'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                background-size: cover;
+                height: 400px;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                color: #ffffff;
+                flex: 0 0 auto;
+                padding: 15px;
+            }
+            .title {
+                font-size: 55px;
+                line-height: 65px;
+                text-align: center;
+            }
+            .subtitle {
+                font-size: 40px;
+                line-height: 50px;
+                text-align: center;
+            }
+            .content {
+                max-width: 1060px;
+                margin: 0 auto;
+                text-align: center;
+                box-sizing: border-box;
+                flex: 1 0 auto;
+            }
+            h1 {
+                font-family: "Klarna Headline", Helvetica, Arial, sans-serif;
+                font-size: 40px;
+                line-height: 50px;
+                margin: 50px 0;
+            }
+            .content-title {
+                font-family: "Klarna Headline", Helvetica, Arial, sans-serif;
+                font-size: 20px;
+                line-height: 30px;
+            }
+            .card-container {
+                padding: 50px 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .card {
+                width: 250px;
+                height: 250px;
+                flex: 0 0 auto;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.15), 0 6px 6px rgba(0,0,0,0.18);
+                transition: box-shadow .3s ease; 
+                font-family: "Klarna Headline", Helvetica, Arial, sans-serif;
+                font-size: 40px;
+                line-height: 50px;
+                font-weight: 600;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                color: #000;
+                text-decoration: none;
+                margin: 15px 15px;
+            }            
+            .card:hover {
+                box-shadow: 0 9px 38px rgba(0,0,0,0.30), 0 12px 12px rgba(0,0,0,0.22);
+            }
+            .footer {
+                text-align: center;
+                margin-top: 70px;
+                flex: 0 0 auto;
+            }
+            .copyright {
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="hero">
+            <span class="title">Welcome to Klarna.</span>
+            <span class="subtitle">Smoooth payments</span>
+        </div>
+        <div class="content">
+            <h1>Klarna REST PHP SDK</h1>
+            <div class="content-title">
+                Select a version to continue
+            </div>
+            <div class="card-container">
+                    <a class="card" href="https://klarna.github.io/kco_rest_php/v2.0.0">
+                        v2.0.0
+                    </a>
+                    <a class="card" href="https://klarna.github.io/kco_rest_php/v2.1.0">
+                        v2.1.0
+                    </a>
+                    <a class="card" href="https://klarna.github.io/kco_rest_php/v2.2.0">
+                        v2.2.0
+                    </a>
+                    <a class="card" href="https://klarna.github.io/kco_rest_php/v3.0.0">
+                        v3.0.0
+                    </a>
+                    <a class="card" href="https://klarna.github.io/kco_rest_php/v3.0.1">
+                        v3.0.1
+                    </a>
+                    <a class="card" href="https://klarna.github.io/kco_rest_php/v4.0.0">
+                        v4.0.0
+                    </a>
+                    <a class="card" href="https://klarna.github.io/kco_rest_php/v4.1.0">
+                        v4.1.0
+                    </a>
+                    <a class="card" href="https://klarna.github.io/kco_rest_php/v4.1.1">
+                        v4.1.1
+                    </a>
+            </div>
+        </div>
+        <footer class="footer">
+            <svg width="81" height="20"><g transform="translate(0, 0) scale(1)"><path d="M78.3352549,14.3292706 C77.0678017,14.3292706 76.0403439,15.3567284 76.0403439,16.6243597 C76.0403439,17.8916348 77.0678017,18.9192707 78.3352549,18.9192707 C79.6027081,18.9192707 80.630344,17.8916348 80.630344,16.6243597 C80.630344,15.3567284 79.6027081,14.3292706 78.3352549,14.3292706" fill="rgba(52, 52, 52, 1)"></path><path d="M70.7958568,7.22817345 L70.7958568,6.4467803 L74.4529833,6.4467803 L74.4529833,18.6618356 L70.7958568,18.6618356 L70.7958568,17.8811547 C69.7626656,18.5857975 68.5156063,19 67.1704277,19 C63.6107082,19 60.7250027,16.1142945 60.7250027,12.554575 C60.7250027,8.99485561 63.6107082,6.10915009 67.1704277,6.10915009 C68.5156063,6.10915009 69.7626656,6.52335256 70.7958568,7.22817345 Z M67.4697718,15.6974209 C69.3000267,15.6974209 70.7835696,14.2902722 70.7835696,12.554575 C70.7835696,10.8188779 69.3000267,9.41208536 67.4697718,9.41208536 C65.6395168,9.41208536 64.1559739,10.8188779 64.1559739,12.554575 C64.1559739,14.2902722 65.6395168,15.6974209 67.4697718,15.6974209 Z" fill="rgba(52, 52, 52, 1)"></path><path d="M54.2263333,6.11823191 C52.765406,6.11823191 51.3828316,6.57178896 50.4584442,7.82312205 L50.4584442,6.4474926 L46.8169884,6.4474926 L46.8169884,18.6618356 L50.503141,18.6618356 L50.503141,12.2427657 C50.503141,10.3852653 51.7487757,9.47565814 53.2485235,9.47565814 C54.8558285,9.47565814 55.7798597,10.4358386 55.7798597,12.2174791 L55.7798597,18.6618356 L59.4327124,18.6618356 L59.4327124,10.8940256 C59.4327124,8.05141421 57.1725844,6.11823191 54.2263333,6.11823191" fill="rgba(52, 52, 52, 1)"></path><path d="M41.5278044,8.03788051 L41.5278044,6.44695838 L37.7834212,6.44695838 L37.7834212,18.6618356 L41.536174,18.6618356 L41.536174,12.9588053 C41.536174,11.0347048 43.6216104,10.0004452 45.0686479,10.0004452 C45.0834281,10.0004452 45.097318,10.0018698 45.1120982,10.0020479 L45.1120982,6.44767068 C43.6269526,6.44767068 42.2609392,7.08357654 41.5278044,8.03788051" fill="rgba(52, 52, 52, 1)"></path><path d="M32.2128788,7.22817345 L32.2128788,6.4467803 L35.8701833,6.4467803 L35.8701833,18.6618356 L32.2128788,18.6618356 L32.2128788,17.8811547 C31.1796876,18.5857975 29.9326283,19 28.5876277,19 C25.0279083,19 22.1422028,16.1142945 22.1422028,12.554575 C22.1422028,8.99485561 25.0279083,6.10915009 28.5876277,6.10915009 C29.9326283,6.10915009 31.1796876,6.52335256 32.2128788,7.22817345 Z M28.8867938,15.6974209 C30.7170487,15.6974209 32.2007697,14.2902722 32.2007697,12.554575 C32.2007697,10.8188779 30.7170487,9.41208536 28.8867938,9.41208536 C27.0567169,9.41208536 25.5729959,10.8188779 25.5729959,12.554575 C25.5729959,14.2902722 27.0567169,15.6974209 28.8867938,15.6974209 Z" fill="rgba(52, 52, 52, 1)"></path><path d="M16.8150889 18.6618356 20.6429893 18.6618356 20.6429893 1.00338343 16.8150889 1.00338343z" fill="rgba(52, 52, 52, 1)"></path><path d="M14.1770857,1 L10.2104649,1 C10.2104649,4.25111544 8.71570325,7.23511837 6.10957549,9.1873547 L4.53806353,10.3642524 L10.6271604,18.6673559 L15.6335612,18.6673559 L10.0307872,11.0272257 C12.6865979,8.38263373 14.1770857,4.82469505 14.1770857,1" fill="rgba(52, 52, 52, 1)"></path><path d="M0 18.6666436 4.05334336 18.6666436 4.05334336 1 0 1z" fill="rgba(52, 52, 52, 1)"></path></g></svg>
+            <div class="copyright">Copyright © 2005 - 2018 Klarna Bank AB (publ). All rights reserved.</div>
+        </footer>
+    </body>
+</html>
