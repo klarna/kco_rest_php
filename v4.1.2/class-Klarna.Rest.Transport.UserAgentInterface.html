@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Interface Klarna\Rest\Transport\UserAgentInterface</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?08b23951ef4599ca9cbf1f902d0e8290c9653ddd">
+	<link rel="stylesheet" href="resources/style.css?062e9e59e0b8c44fbaaded5b7ffc21f907b78669">
+	<link rel="stylesheet" href="resources/klarna.css?dec3b68768fbf7f93db60302607d658f13b60d6d">
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">Overview</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-Klarna.Rest.Transport.html" title="Summary of Klarna\Rest\Transport"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+
+
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="">
+			<input type="hidden" name="ie" value="UTF-8">
+			<input type="text" name="q" class="search-query" placeholder="Search">
+		</form>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-Klarna.html">
+							Klarna<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Exceptions.html">
+							Exceptions						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.html">
+							Rest<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Checkout.html">
+							Checkout						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.CustomerToken.html">
+							CustomerToken						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.HostedPaymentPage.html">
+							HostedPaymentPage						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.MerchantCardService.html">
+							MerchantCardService						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.OrderManagement.html">
+							OrderManagement						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Payments.html">
+							Payments						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Settlements.html">
+							Settlements						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.Transport.html">
+							Transport<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Transport.Exception.html">
+							Exception						</a>
+							</li>
+								</ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Klarna.Rest.Transport.Connector.html">Connector</a></li>
+				<li><a href="class-Klarna.Rest.Transport.ResponseValidator.html">ResponseValidator</a></li>
+				<li><a href="class-Klarna.Rest.Transport.UserAgent.html">UserAgent</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Klarna.Rest.Transport.ConnectorInterface.html">ConnectorInterface</a></li>
+				<li class="active"><a href="class-Klarna.Rest.Transport.UserAgentInterface.html">UserAgentInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Interface UserAgentInterface</h1>
+
+
+	<div class="description">
+	<p>The user agent is used to help identify the client and provide additional
+information when assistance is needed with troubleshooting.</p>
+
+<p>In addition to following the User Agent as specified by RFC 2616, section 14.43,
+there are a number of predefined fields which should be used when applicable:</p>
+
+<p>Library:
+Information about the SDK and version being used.</p>
+
+<p>Library/[Library name]_[version]</p>
+
+<p>Examples:
+Library/Klarna.SDK_1.0.0</p>
+
+<p>Language:
+This is used to indicate which programming language and version is being used.</p>
+
+<p>Language/[Language]_[version]</p>
+
+<p>Example:
+Language/PHP_5.5.9-1ubuntu4.4</p>
+
+<p>OS:
+Information on what operating system the merchant is using for their web server.</p>
+
+<p>OS/[Operating system]_[version and architecture]</p>
+
+<p>Examples:
+OS/Linux_3.13.5-101.fc19.x86_64</p>
+
+<p>Partner:
+This is used to indicate if the integration is done using a partner.</p>
+
+<p>Partner/[Partner name]</p>
+
+<p>Examples:
+Partner/ShopPartnerName</p>
+
+<p>Platform:
+Information about which e-commerce platform is used to integrate.</p>
+
+<p>Platform/[Platform name]_[version]</p>
+
+<p>Examples:
+Platform/Magento_1.2.3
+Platform/Opencart_1.5.6.4</p>
+
+<p>Module:
+Used in conjunction with platform to provide information about the platform
+plugin.</p>
+
+<p>Module/[Module name]_[version]</p>
+
+<p>Examples:
+Module/Klarna.Module_1.0.0</p>
+
+<p>Webserver:
+Information about the web server being used.</p>
+
+<p>Webserver/[Webserver name]_[version]</p>
+
+<p>Examples:
+Webserver/Apache_2.4.1
+Webserver/Nginx_1.7.6
+Webserver/IIS_7.5</p>
+
+<p>Each component is written as key and name separated by slash, optionally followed
+by an underscore and the version. After which, separated by space, additional
+information can be added using parenthesis where individual elements inside are
+separated by semi-colon.</p>
+
+<p>All of the component strings are then combined using space as the delimiter.</p>
+
+<p>Specifying SDK dependencies for the Library field could be achieved as follows:
+Library/Klarna.SDK_1.0.0 (Guzzle/4.2.2 ; curl/7.35.0)</p>
+
+<p>Full user agent example:
+Library/Klarna.SDK_1.0.0 Language/PHP_5.5.9 OS/Linux_3.13.5-101.fc19.x86_64</p>
+	</div>
+
+
+
+
+
+	<div>
+		<h3>Direct known implementers</h3>
+		<p class="elementList">
+			<code><a href="class-Klarna.Rest.Transport.UserAgent.html">Klarna\Rest\Transport\UserAgent</a></code>
+		</p>
+	</div>
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Klarna.html">Klarna</a>\<a href="namespace-Klarna.Rest.html">Rest</a>\<a href="namespace-Klarna.Rest.Transport.html">Transport</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Klarna.Rest.Transport.UserAgentInterface.html#22-117" title="Go to source code">Klarna/Rest/Transport/UserAgentInterface.php</a>
+		<br>
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped methods" id="methods">
+		
+		<tr data-order="__toString" id="___toString">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___toString">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.UserAgentInterface.html#111-116" title="Go to source code">__toString</a>( )</code>
+
+			<div class="description short">
+				<p>Serialises the user agent.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Serialises the user agent.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

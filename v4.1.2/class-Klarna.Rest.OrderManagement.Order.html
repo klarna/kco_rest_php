@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Klarna\Rest\OrderManagement\Order</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?08b23951ef4599ca9cbf1f902d0e8290c9653ddd">
+	<link rel="stylesheet" href="resources/style.css?062e9e59e0b8c44fbaaded5b7ffc21f907b78669">
+	<link rel="stylesheet" href="resources/klarna.css?dec3b68768fbf7f93db60302607d658f13b60d6d">
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">Overview</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-Klarna.Rest.OrderManagement.html" title="Summary of Klarna\Rest\OrderManagement"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+
+
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="">
+			<input type="hidden" name="ie" value="UTF-8">
+			<input type="text" name="q" class="search-query" placeholder="Search">
+		</form>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-Klarna.html">
+							Klarna<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Exceptions.html">
+							Exceptions						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.html">
+							Rest<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Checkout.html">
+							Checkout						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.CustomerToken.html">
+							CustomerToken						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.HostedPaymentPage.html">
+							HostedPaymentPage						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.MerchantCardService.html">
+							MerchantCardService						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.OrderManagement.html">
+							OrderManagement						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Payments.html">
+							Payments						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Settlements.html">
+							Settlements						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Transport.html">
+							Transport<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Transport.Exception.html">
+							Exception						</a>
+							</li>
+								</ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Klarna.Rest.OrderManagement.Capture.html">Capture</a></li>
+				<li class="active"><a href="class-Klarna.Rest.OrderManagement.Order.html">Order</a></li>
+				<li><a href="class-Klarna.Rest.OrderManagement.Refund.html">Refund</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class Order</h1>
+
+
+	<div class="description">
+	<p>Order management: Order resource.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+ArrayObject
+			 implements 
+<span>IteratorAggregate</span>, 
+			
+<span>Traversable</span>, 
+			
+<span>ArrayAccess</span>, 
+			
+<span>Serializable</span>, 
+			
+<span>Countable</span>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Klarna.Rest.Resource.html"><span>Klarna\Rest\Resource</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Klarna\Rest\OrderManagement\Order</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Klarna.html">Klarna</a>\<a href="namespace-Klarna.Rest.html">Rest</a>\<a href="namespace-Klarna.Rest.OrderManagement.html">OrderManagement</a><br>
+		
+
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/acknowledge_order.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/cancel_order.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/create_capture.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/extend_authorization_time.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/fetch_all_captures.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/fetch_capture.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/fetch_order.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/release_remaining_authorization.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/update_customer_details.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/update_merchant_references.php<br>
+				<b>Example:</b>
+				docs/examples/OrderManagementAPI/Orders/update_order_lines.php<br>
+			<b>Located at</b> <a href="source-class-Klarna.Rest.OrderManagement.Order.html#27-400" title="Go to source code">Klarna/Rest/OrderManagement/Order.php</a>
+		<br>
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped methods" id="methods">
+		
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#54-66" title="Go to source code">__construct</a>( <span><code><a href="class-Klarna.Rest.Transport.Connector.html">Klarna\Rest\Transport\Connector</a></code> <var>$connector</var></span>, <span>string <var>$orderId</var></span> )</code>
+
+			<div class="description short">
+				<p>Constructs an order instance.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Constructs an order instance.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$connector</var></dt>
+						<dd>HTTP transport connector</dd>
+						<dt><var>$orderId</var></dt>
+						<dd>Order ID</dd>
+					</dl></div>
+
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-Klarna.Rest.Resource.html#___construct">Klarna\Rest\Resource::__construct</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="fetch" id="_fetch">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_fetch">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#68-125" title="Go to source code">fetch</a>( )</code>
+
+			<div class="description short">
+				<p>Fetches the order.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Fetches the order.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>On an unexpected API response<br>
+						RuntimeException<br>If the response content type is not JSON<br>
+						InvalidArgumentException<br>If the JSON cannot be parsed<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-Klarna.Rest.Resource.html#_fetch">Klarna\Rest\Resource::fetch</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="acknowledge" id="_acknowledge">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_acknowledge">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#127-143" title="Go to source code">acknowledge</a>( )</code>
+
+			<div class="description short">
+				<p>Acknowledges the order.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Acknowledges the order.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="cancel" id="_cancel">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_cancel">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#145-161" title="Go to source code">cancel</a>( )</code>
+
+			<div class="description short">
+				<p>Cancels this order.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Cancels this order.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="updateAuthorization" id="_updateAuthorization">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_updateAuthorization">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#163-181" title="Go to source code">updateAuthorization</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Updates the authorization data. Sets new order amount and order lines</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Updates the authorization data. Sets new order amount and order lines</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Authorization data</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="extendAuthorizationTime" id="_extendAuthorizationTime">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_extendAuthorizationTime">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#183-199" title="Go to source code">extendAuthorizationTime</a>( )</code>
+
+			<div class="description short">
+				<p>Extends the authorization time.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Extends the authorization time.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="updateMerchantReferences" id="_updateMerchantReferences">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_updateMerchantReferences">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#201-219" title="Go to source code">updateMerchantReferences</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Update the merchant references.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Update the merchant references.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Merchant references</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="updateCustomerDetails" id="_updateCustomerDetails">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_updateCustomerDetails">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#221-239" title="Go to source code">updateCustomerDetails</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Updates the customer details.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Updates the customer details.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Customer data</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="refund" id="_refund">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Refund.html">Klarna\Rest\OrderManagement\Refund</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_refund">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#241-259" title="Go to source code">refund</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Refunds an amount of a captured order.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Refunds an amount of a captured order.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Refund data</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Refund.html">Klarna\Rest\OrderManagement\Refund</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="releaseRemainingAuthorization" id="_releaseRemainingAuthorization">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_releaseRemainingAuthorization">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#261-277" title="Go to source code">releaseRemainingAuthorization</a>( )</code>
+
+			<div class="description short">
+				<p>Release the remaining authorization for an order.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Release the remaining authorization for an order.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Order.html">Klarna\Rest\OrderManagement\Order</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="createCapture" id="_createCapture">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createCapture">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#279-303" title="Go to source code">createCapture</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Capture all or part of an order.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Capture all or part of an order.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Capture data</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>If the location header is missing<br>
+						RuntimeException<br>If the API replies with an unexpected response<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+					<h4>See</h4>
+					<div class="list">
+							Capture::create() For more information on how to create a capture<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="fetchCapture" id="_fetchCapture">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_fetchCapture">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#305-339" title="Go to source code">fetchCapture</a>( <span>string <var>$captureId</var></span> )</code>
+
+			<div class="description short">
+				<p>Fetches the specified capture.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Fetches the specified capture.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$captureId</var></dt>
+						<dd>Capture ID</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>On an unexpected API response<br>
+						RuntimeException<br>If the response content type is not JSON<br>
+						InvalidArgumentException<br>If the JSON cannot be parsed<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+					<h4>See</h4>
+					<div class="list">
+							Capture::fetch() For more information on how to fetch a capture<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="fetchRefund" id="_fetchRefund">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Refund.html">Klarna\Rest\OrderManagement\Refund</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_fetchRefund">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#341-375" title="Go to source code">fetchRefund</a>( <span>string <var>$refundId</var></span> )</code>
+
+			<div class="description short">
+				<p>Fetches the specified refund.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Fetches the specified refund.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$refundId</var></dt>
+						<dd>Refund ID</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Refund.html">Klarna\Rest\OrderManagement\Refund</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>On an unexpected API response<br>
+						RuntimeException<br>If the response content type is not JSON<br>
+						InvalidArgumentException<br>If the JSON cannot be parsed<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+					<h4>See</h4>
+					<div class="list">
+							Refund::fetch() For more information on how to fetch a refund<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="fetchCaptures" id="_fetchCaptures">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a>[]</code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_fetchCaptures">#</a>
+			<code><a href="source-class-Klarna.Rest.OrderManagement.Order.html#377-399" title="Go to source code">fetchCaptures</a>( )</code>
+
+			<div class="description short">
+				<p>Fetches all captures.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Fetches all captures.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.OrderManagement.Capture.html">Klarna\Rest\OrderManagement\Capture</a>[]</code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.Exception.ConnectorException.html">Klarna\Rest\Transport\Exception\ConnectorException</a></code><br>When the API replies with an error response<br>
+						GuzzleHttp\Exception\RequestException<br>When an error is encountered<br>
+						RuntimeException<br>On an unexpected API response<br>
+						RuntimeException<br>If the response content type is not JSON<br>
+						InvalidArgumentException<br>If the JSON cannot be parsed<br>
+						LogicException<br>When Guzzle cannot populate the response
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+		<h3>Methods inherited from <a href="class-Klarna.Rest.Resource.html#methods">Klarna\Rest\Resource</a></h3>
+		<p class="elementList">
+			<code><a href="class-Klarna.Rest.Resource.html#_delete">delete()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_get">get()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_getId">getId()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_getLocation">getLocation()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_patch">patch()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_post">post()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_request">request()</a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#_setLocation">setLocation()</a></code>
+		</p>
+		<h3>Methods inherited from ArrayObject</h3>
+		<p class="elementList">
+			<code>append()</code>, 
+			<code>asort()</code>, 
+			<code>count()</code>, 
+			<code>exchangeArray()</code>, 
+			<code>getArrayCopy()</code>, 
+			<code>getFlags()</code>, 
+			<code>getIterator()</code>, 
+			<code>getIteratorClass()</code>, 
+			<code>ksort()</code>, 
+			<code>natcasesort()</code>, 
+			<code>natsort()</code>, 
+			<code>offsetExists()</code>, 
+			<code>offsetGet()</code>, 
+			<code>offsetSet()</code>, 
+			<code>offsetUnset()</code>, 
+			<code>serialize()</code>, 
+			<code>setFlags()</code>, 
+			<code>setIteratorClass()</code>, 
+			<code>uasort()</code>, 
+			<code>uksort()</code>, 
+			<code>unserialize()</code>
+		</p>
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+		<h2>Constants summary</h2>
+
+		<h3>Constants inherited from <a href="class-Klarna.Rest.Resource.html#constants">Klarna\Rest\Resource</a></h3>
+		<p class="elementList">
+			<code><a href="class-Klarna.Rest.Resource.html#ID_FIELD"><b>ID_FIELD</b></a></code>
+		</p>
+		<h3>Constants inherited from ArrayObject</h3>
+		<p class="elementList">
+			<code><b>ARRAY_AS_PROPS</b></code>, 
+			<code><b>STD_PROP_LIST</b></code>
+		</p>
+
+
+
+		<h2>Properties summary</h2>
+		<table class="summary table table-bordered table-striped properties" id="properties">
+		
+		<tr data-order="path" id="$path">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.OrderManagement.Order.html#49-52" title="Go to source code"><var>$path</var></a>
+
+				<div class="description short">
+					<p>Path to the resource endpoint.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Path to the resource endpoint.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$path" class="anchor">#</a>
+					<code><span class="php-quote">'/ordermanagement/v1/orders'</span></code>
+				</div>
+			</td>
+		</tr>
+		</table>
+
+		<h3>Properties inherited from <a href="class-Klarna.Rest.Resource.html#properties">Klarna\Rest\Resource</a></h3>
+		<p class="elementList">
+			<code><a href="class-Klarna.Rest.Resource.html#$connector"><var>$connector</var></a></code>, 
+			<code><a href="class-Klarna.Rest.Resource.html#$url"><var>$url</var></a></code>
+		</p>
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
