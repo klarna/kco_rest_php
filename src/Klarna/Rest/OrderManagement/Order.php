@@ -104,7 +104,10 @@ class Order extends Resource
         if (isset($this['refunds'])) {
             $refunds = [];
             foreach ($this['refunds'] as $refund) {
-                $refundId = $refund[Refund::ID_FIELD];
+                $refundId = null;
+                if (isset($refund[Refund::ID_FIELD])) {
+                    $refundId = $refund[Refund::ID_FIELD];
+                }
 
                 $object = new Refund(
                     $this->connector,
