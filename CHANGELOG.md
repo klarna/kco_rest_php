@@ -1,3 +1,6 @@
+## v4.1.2 - 2018-11-22
+- Fix: Order management API threw Error Notice when fetching an order with refunds.
+
 ## v4.1.1 - 2018-10-31
 - HPP: HPP service changed API completely without backward compatibility. Adopt SDK to the new changes.
     Mark getSessionStatus as @deprecated. Replaced by fetch function.
