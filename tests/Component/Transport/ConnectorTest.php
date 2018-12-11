@@ -130,8 +130,8 @@ JSON;
             ->getMock();
 
         $connector = Connector::create(
-            self::MERCHANT_ID,
-            self::SHARED_SECRET,
+            self::USERNAME,
+            self::PASSWORD,
             self::BASE_URL,
             $userAgent
         );

@@ -24,8 +24,8 @@ require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 /**
  * Follow the link to get your credentials: https://github.com/klarna/kco_rest_php/#api-credentials
  */
-$merchantId = getenv('MERCHANT_ID') ?: '0';
-$sharedSecret = getenv('SHARED_SECRET') ?: 'sharedSecret';
+$merchantId = getenv('USERNAME') ?: 'K123456_abcd12345';
+$sharedSecret = getenv('PASSWORD') ?: 'sharedSecret';
 $paymentReference = getenv('PAYMENT_REFERENCE') ?: '12345';
 
 $connector = Klarna\Rest\Transport\Connector::create(

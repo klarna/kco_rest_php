@@ -31,9 +31,9 @@ use Klarna\Rest\Transport\UserAgent;
  */
 class ConnectorTest extends TestCase
 {
-    const MERCHANT_ID = '1234';
+    const USERNAME = '1234';
 
-    const SHARED_SECRET = 'MySecret';
+    const PASSWORD = 'MySecret';
 
     const BASE_URL = 'http://base-url.internal.machines';
 
@@ -73,8 +73,8 @@ class ConnectorTest extends TestCase
 
         $this->object = new Connector(
             $this->client,
-            self::MERCHANT_ID,
-            self::SHARED_SECRET,
+            self::USERNAME,
+            self::PASSWORD,
             $this->userAgent
         );
     }
@@ -275,8 +275,8 @@ class ConnectorTest extends TestCase
     public function testCreate()
     {
         $connector = Connector::create(
-            self::MERCHANT_ID,
-            self::SHARED_SECRET,
+            self::USERNAME,
+            self::PASSWORD,
             self::BASE_URL,
             $this->userAgent
         );
@@ -300,8 +300,8 @@ class ConnectorTest extends TestCase
     public function testCreateDefaultUserAgent()
     {
         $connector = Connector::create(
-            self::MERCHANT_ID,
-            self::SHARED_SECRET,
+            self::USERNAME,
+            self::PASSWORD,
             self::BASE_URL
         );
 

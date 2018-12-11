@@ -31,9 +31,9 @@ use SebastianBergmann\PHPLOC\Log\CSV\History;
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
-    const MERCHANT_ID = '1234';
+    const USERNAME = '1234';
 
-    const SHARED_SECRET = 'MySecret';
+    const PASSWORD = 'MySecret';
 
     const BASE_URL = 'http://base-url.internal.machines';
 
@@ -74,8 +74,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         $this->connector = new Connector(
             $this->client,
-            self::MERCHANT_ID,
-            self::SHARED_SECRET
+            self::USERNAME,
+            self::PASSWORD
         );
     }
 }

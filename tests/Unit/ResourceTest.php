@@ -33,9 +33,9 @@ use GuzzleHttp\Psr7\Response;
  */
 class ResourceTest extends TestCase
 {
-    const MERCHANT_ID = '1234';
+    const USERNAME = '1234';
 
-    const SHARED_SECRET = 'MySecret';
+    const PASSWORD = 'MySecret';
 
     const BASE_URL = 'http://base-url.internal.machines';
 
@@ -75,8 +75,8 @@ class ResourceTest extends TestCase
 
         $this->connector = new Connector(
             $this->client,
-            self::MERCHANT_ID,
-            self::SHARED_SECRET,
+            self::USERNAME,
+            self::PASSWORD,
             $this->userAgent
         );
     }

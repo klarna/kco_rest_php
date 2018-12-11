@@ -40,7 +40,7 @@ abstract class ResourceTestCase extends TestCase
 
         $this->assertEquals('Basic', $alg);
 
-        $expected = self::MERCHANT_ID . ':' . self::SHARED_SECRET;
+        $expected = self::USERNAME . ':' . self::PASSWORD;
         $this->assertEquals($expected, base64_decode($digest));
     }
 }
