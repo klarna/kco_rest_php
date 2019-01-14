@@ -27,6 +27,10 @@ use Klarna\Rest\Transport\Exception\ConnectorException;
 /**
  * Tokens resource.
  *
+ * The Customer Token API is used to charge customers with a tokenized Klarna payment method
+ * and can be used for recurring purchases, subscriptions and for storing a customer's payment method. Tokens are
+ * created using the generate a customer token call in the payments API.
+ *
  * @example docs/examples/CustomerTokenAPI/Tokens/create_order.php Create a new order using customer token
  * @example docs/examples/CustomerTokenAPI/Tokens/read_token_details.php Read customer token details
  */
@@ -57,9 +61,10 @@ class Tokens extends Resource
     }
 
     /**
-     * Creates order using Customer Token
+     * Creates order using Customer Token.
      *
-     * @param array $data Order data
+     * @param array  $data sOrder data
+     * @param string $klarnaIdempotencyKey Idempotency Key
      *
      * @throws ConnectorException When the API replies with an error response
      * @throws RequestException   When an error is encountered
@@ -69,11 +74,41 @@ class Tokens extends Resource
      *
      * @return array created order data
      */
-    public function createOrder(array $data)
+    public function createOrder(array $data, $klarnaIdempotencyKey = null)
     {
-        return $this->post($this->getLocation() . '/order', $data)
-            ->status('200')
-            ->contentType('application/json')
-            ->getJson();
+        $headers = ['Content-Type' => 'application/json'];
+        if (!is_null($klarnaIdempotencyKey)) {
+            $headers['Klarna-Idempotency-Key'] = $klarnaIdempotencyKey;
+        }
+
+        return $this->request(
+            'POST',
+            $this->getLocation() . '/order',
+            $headers,
+            $data !== null ? \json_encode($data) : null
+        )
+        ->status('200')
+        ->contentType('application/json')
+        ->getJson();
+    }
+
+    /**
+     * Update the status of a customer token.
+     *
+     * @param array $data Customer token data
+     *
+     * @throws ConnectorException When the API replies with an error response
+     * @throws RequestException   When an error is encountered
+     * @throws \RuntimeException  If the API replies with an unexpected response
+     * @throws \LogicException    When Guzzle cannot populate the response
+     *
+     * @return self
+     */
+    public function updateTokenStatus(array $data)
+    {
+        $this->patch($this->getLocation() . '/status', $data)
+            ->status('202');
+
+        return $this;
     }
 }

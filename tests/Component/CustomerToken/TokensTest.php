@@ -103,4 +103,70 @@ JSON;
 
         $this->assertAuthorization($request);
     }
+
+    /**
+     * Make sure that the request contains Klarna-Idempotency-Key.
+     *
+     * @return void
+     */
+    public function testTokenCreateOrderWithKey()
+    {
+        $json =<<<JSON
+{
+    "fraud_status": "ACCEPTED",
+    "order_id": "order-id-123",
+    "redirect_url": "https://example.com/orders"
+}
+JSON;
+        $this->mock->append(
+            new Response(200, [
+                'Content-Type' => 'application/json'
+            ], $json)
+        );
+
+        $token = new Tokens($this->connector, 'my-token-id');
+        $order = $token->createOrder([
+            'amount' => '123',
+            'purchase_currency' => 'eur'
+        ], 'my-idempotency-key');
+
+        $this->assertEquals('ACCEPTED', $order['fraud_status']);
+
+        $request = $this->mock->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals('/customer-token/v1/tokens/my-token-id/order', $request->getUri()->getPath());
+        $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
+        $this->assertEquals('my-idempotency-key', $request->getHeader('Klarna-Idempotency-Key')[0]);
+        $this->assertEquals('{"amount":"123","purchase_currency":"eur"}', strval($request->getBody()));
+
+        $this->assertAuthorization($request);
+    }
+
+    /**
+     * Make sure that the request sent is correct and that the updated data
+     * is accessible.
+     *
+     * @return void
+     */
+    public function testUpdateStatus()
+    {
+        $this->mock->append(
+            new Response(
+                202,
+                ['Content-Type' => 'application/json']
+            )
+        );
+
+        $token = new Tokens($this->connector, 'my-token-id');
+        $token->updateTokenStatus([
+            'status' => 'CANCELLED'
+        ]);
+
+        $request = $this->mock->getLastRequest();
+        $this->assertEquals('PATCH', $request->getMethod());
+        $this->assertEquals('/customer-token/v1/tokens/my-token-id/status', $request->getUri()->getPath());
+        $this->assertEquals('{"status":"CANCELLED"}', strval($request->getBody()));
+
+        $this->assertAuthorization($request);
+    }
 }
