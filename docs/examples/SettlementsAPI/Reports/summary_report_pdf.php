@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Klarna AB
+ * Copyright 2019 Klarna AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,14 +25,25 @@ const DATE_FORMAT = 'Y-m-d\TH:m:s\Z';
 
 /**
  * Follow the link to get your credentials: https://github.com/klarna/kco_rest_php/#api-credentials
+ *
+ * Make sure that your credentials belong to the right endpoint. If you have credentials for the US Playground,
+ * such credentials will not work for the EU Playground and you will get 401 Unauthorized exception.
  */
 $merchantId = getenv('USERNAME') ?: 'K123456_abcd12345';
 $sharedSecret = getenv('PASSWORD') ?: 'sharedSecret';
 
+/*
+EU_BASE_URL = 'https://api.klarna.com'
+EU_TEST_BASE_URL = 'https://api.playground.klarna.com'
+NA_BASE_URL = 'https://api-na.klarna.com'
+NA_TEST_BASE_URL = 'https://api-na.playground.klarna.com'
+*/
+$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
+
 $connector = Klarna\Rest\Transport\Connector::create(
     $merchantId,
     $sharedSecret,
-    Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL
+    $apiEndpoint
 );
 
 try {
@@ -44,7 +55,6 @@ try {
 
     file_put_contents('summary_report.pdf', $report);
     echo 'Saved to summary_report.pdf';
-
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

@@ -23,7 +23,7 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
 /**
  * Follow the link to get your credentials: https://github.com/klarna/kco_rest_php/#api-credentials
- * 
+ *
  * Make sure that your credentials belong to the right endpoint. If you have credentials for the US Playground,
  * such credentials will not work for the EU Playground and you will get 401 Unauthorized exception.
  */
@@ -106,7 +106,6 @@ try {
     Order status: $checkout[status]
     HTML snippet: $checkout[html_snippet]
 ORDER;
-
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
