@@ -1,3 +1,11 @@
+## v4.1.3 - 2019-01-23
+- HPP API: Add support for disabling an HPP session;
+- Customer Token API: Add ability to use Klarna-Idempotency-Key when creating order;
+- Customer Token API: Add new feature: Update token status;
+- Examples: Update all example files. Add more information about getting credentials;
+- Examples: Add example of changing the User-Agent.
+
+
 ## v4.1.2 - 2018-11-22
 - Fix: Order management API threw Error Notice when fetching an order with refunds.
 
