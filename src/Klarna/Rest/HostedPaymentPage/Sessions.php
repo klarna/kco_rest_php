@@ -82,6 +82,32 @@ class Sessions extends Resource
     }
 
     /**
+     * Disables HPP session.
+     *
+     * @see https://developers.klarna.com/api/#hosted-payment-page-api-disable-hpp-session
+     *
+     * @throws ConnectorException When the API replies with an error response
+     * @throws RequestException   When an error is encountered
+     * @throws \RuntimeException  If sessionId was not specified when creating a resource
+     * @throws \RuntimeException  If the location header is missing
+     * @throws \RuntimeException  If the API replies with an unexpected response
+     * @throws \LogicException    When Guzzle cannot populate the response
+     *
+     * @return self
+     */
+    public function disable()
+    {
+        if (empty($this[static::ID_FIELD])) {
+            throw new \RuntimeException('HPP Session ID is not defined');
+        }
+
+        $this->delete($this->getLocation())
+            ->status('204');
+
+        return $this;
+    }
+
+    /**
      * Distributes link to the HPP session.
      *
      * @see https://developers.klarna.com/api/#hosted-payment-page-api-distribute-link-to-the-hpp-session
@@ -100,7 +126,7 @@ class Sessions extends Resource
     public function distributeLink(array $data)
     {
         $this->post($this->getLocation() . '/distribution', $data)
-            ->status('200');
+            ->status(['200', '201']);
 
         return $this;
     }

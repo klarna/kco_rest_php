@@ -120,4 +120,43 @@ JSON;
 
         $this->assertAuthorization($request);
     }
+
+    /**
+     * Make sure that the request sent is correct
+     *
+     * @return void
+     */
+    public function testDisableSession()
+    {
+        $this->mock->append(
+            new Response(
+                204
+            )
+        );
+
+        $session = new Sessions($this->connector, 'session-id-123');
+        $session->disable();
+
+        $request = $this->mock->getLastRequest();
+        $this->assertEquals('DELETE', $request->getMethod());
+        $this->assertEquals('/hpp/v1/sessions/session-id-123', $request->getUri()->getPath());
+
+        $this->assertAuthorization($request);
+    }
+
+    /**
+     * Make sure that the request sent is correct
+     *
+     * @return void
+     */
+    public function testDisableUndefinedSession()
+    {
+        $this->setExpectedException(
+            'RuntimeException',
+            'HPP Session ID is not defined'
+        );
+
+        $session = new Sessions($this->connector);
+        $session->disable();
+    }
 }
