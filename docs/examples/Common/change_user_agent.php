@@ -25,7 +25,7 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
  * Follow the link to get your credentials: https://github.com/klarna/kco_rest_php/#api-credentials
  * 
  * Make sure that your credentials belong to the right endpoint. If you have credentials for the US Playground,
- * such credentials will not work for the EU Playground and you will get 403 Unauthorized exception.
+ * such credentials will not work for the EU Playground and you will get 401 Unauthorized exception.
  */
 $merchantId = getenv('USERNAME') ?: 'K123456_abcd12345';
 $sharedSecret = getenv('PASSWORD') ?: 'sharedSecret';
