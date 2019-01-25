@@ -63,7 +63,7 @@ class Tokens extends Resource
     /**
      * Creates order using Customer Token.
      *
-     * @param array  $data sOrder data
+     * @param array  $data Order data
      * @param string $klarnaIdempotencyKey Idempotency Key
      *
      * @throws ConnectorException When the API replies with an error response
