@@ -6,8 +6,7 @@
     "type": "library",
     "authors": [
         {
-            "name": "Klarna AB",
-            "email": "developers@klarna.com"
+            "name": "Klarna AB"
         }
     ],
     "autoload": {
