@@ -229,6 +229,23 @@ DEBUG_BODY;
     }
 
     /**
+     * Sends a HTTP PUT request to the specified url.
+     *
+     * @param string $url  Request destination
+     * @param array  $data Data to be JSON encoded
+     *
+     * @throws ConnectorException When the API replies with an error response
+     * @throws RequestException   When an error is encountered
+     * @throws \LogicException    When Guzzle cannot populate the response
+     *
+     * @return ResponseValidator
+     */
+    protected function put($url, array $data)
+    {
+        return $this->request('PUT', $url, ['Content-Type' => 'application/json'], json_encode($data));
+    }
+
+    /**
      * Sends a HTTP POST request to the specified url.
      *
      * @param string $url  Request destination
