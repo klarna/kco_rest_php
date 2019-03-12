@@ -32,7 +32,7 @@ class ButtonKeys extends Resource
     /**
      * {@inheritDoc}
      */
-    const ID_FIELD = 'key';
+    const ID_FIELD = 'button_key';
 
     /**
      * {@inheritDoc}
@@ -43,15 +43,16 @@ class ButtonKeys extends Resource
      * Constructs a ButtonKey instance.
      *
      * @param Connector $connector HTTP transport connector
+     * @param string    $buttonKey Button identifier
      * @param string    $key Button key based on setup options
      */
-    public function __construct(Connector $connector, $key = null)
+    public function __construct(Connector $connector, $buttonKey = null)
     {
         parent::__construct($connector);
 
-        if ($sessionId !== null) {
-            $this->setLocation(self::$path . "/{$key}");
-            $this[static::ID_FIELD] = $key;
+        if ($buttonKey !== null) {
+            $this->setLocation(self::$path . "/{$buttonKey}");
+            $this[static::ID_FIELD] = $buttonKey;
         }
     }
 
@@ -73,10 +74,12 @@ class ButtonKeys extends Resource
     {
         $data = $this->post(self::$path, $data)
             ->status('201')
-            ->contentType('application/json')
-            ->getJson();
+            ->contentType('application/json');
 
-        return $data;
+        $url = $data->getLocation();
+        $this->setLocation($url);
+
+        return $data->getJson();
     }
 
     /**
@@ -95,12 +98,10 @@ class ButtonKeys extends Resource
      */
     public function update(array $data)
     {
-        $data = $this->put($this->getLocation(), $data)
+        return $this->put($this->getLocation(), $data)
             ->status('200')
             ->contentType('application/json')
             ->getJson();
-
-        return $data;
     }
 
     /**

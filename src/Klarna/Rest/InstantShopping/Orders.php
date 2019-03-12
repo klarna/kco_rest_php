@@ -109,13 +109,12 @@ class Orders extends Resource
      * @throws \InvalidArgumentException If the JSON cannot be parsed
      * @throws \LogicException           When Guzzle cannot populate the response
      *
-     * @return self
+     * @return array approving status
      */
     public function approve(array $data)
     {
-        $this->post($this->getLocation() . '/orders', $data)
-            ->status('200');
-
-        return $this;
+        return $this->post($this->getLocation() . '/orders', $data)
+            ->status('200')
+            ->getJson();
     }
 }
