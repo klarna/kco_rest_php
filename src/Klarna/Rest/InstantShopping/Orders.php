@@ -55,8 +55,6 @@ class Orders extends Resource
 
     /**
      * Retrieves an authorized order based on the authorization token.
-     * 
-     * @see https://developers.klarna.com/api/#instant-shopping-api-retrieves-an-authorized-order-based-on-the-authorization-token
      *
      * @throws ConnectorException        When the API replies with an error response
      * @throws RequestException          When an error is encountered
@@ -77,8 +75,6 @@ class Orders extends Resource
      *
      * @param array $data Decline data
      * 
-     * @see https://developers.klarna.com/api/#instant-shopping-api-declines-an-authorized-order-identified-by-the-authorization-token
-     * 
      * @throws ConnectorException When the API replies with an error response
      * @throws RequestException   When an error is encountered
      * @throws \RuntimeException  If the location header is missing
@@ -97,8 +93,6 @@ class Orders extends Resource
 
     /**
      * Approves the authorized order and places an order identified by the authorization token.
-     *
-     * @see https://developers.klarna.com/api/#instant-shopping-api-approve-the-authorized-order-and-place-an-order-identified-by-the-authorization-token
      *
      * @param array $data Order data
      *

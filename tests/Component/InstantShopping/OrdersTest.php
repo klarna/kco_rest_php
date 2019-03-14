@@ -61,7 +61,10 @@ JSON;
 
         $request = $this->mock->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/instantshopping/v1/authorizations/auth-token-123456', $request->getUri()->getPath());
+        $this->assertEquals(
+            '/instantshopping/v1/authorizations/auth-token-123456',
+            $request->getUri()->getPath()
+        );
 
         $this->assertAuthorization($request);
     }
@@ -122,7 +125,10 @@ JSON;
 
         $request = $this->mock->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals('/instantshopping/v1/authorizations/auth-token-123456/orders', $request->getUri()->getPath());
+        $this->assertEquals(
+            '/instantshopping/v1/authorizations/auth-token-123456/orders',
+            $request->getUri()->getPath()
+        );
         $this->assertEquals('{"data":"sent in"}', strval($request->getBody()));
 
         $this->assertAuthorization($request);
