@@ -125,15 +125,15 @@ class ConnectorException extends \RuntimeException
 
     private static function setDefaultData($data)
     {
-        $default = [
+        $defaults = [
             'error_code' => 'UNDEFINED',
             'error_messages' => [],
             'correlation_id' => 'UNDEFINED',
         ];
 
-        foreach ($default as $k => $v) {
-            if (!isset($data[$k])) {
-                $data[$k] = $v;
+        foreach ($defaults as $field => $default) {
+            if (!isset($data[$field])) {
+                $data[$field] = $default;
             }
         }
         return $data;
