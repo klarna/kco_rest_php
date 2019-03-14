@@ -92,12 +92,17 @@ class ButtonKeys extends Resource
      * @throws ConnectorException When the API replies with an error response
      * @throws RequestException   When an error is encountered
      * @throws \RuntimeException  If the API replies with an unexpected response
+     * @throws \RuntimeException         If key was not specified when creating a resource
      * @throws \LogicException    When Guzzle cannot populate the response
      *
      * @return array Button properties
      */
     public function update(array $data)
     {
+        if (empty($this[static::ID_FIELD])) {
+            throw new \RuntimeException(static::ID_FIELD . ' property is not defined');
+        }
+
         return $this->put($this->getLocation(), $data)
             ->status('200')
             ->contentType('application/json')
