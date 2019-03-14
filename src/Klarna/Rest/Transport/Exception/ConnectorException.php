@@ -125,7 +125,6 @@ class ConnectorException extends \RuntimeException
 
     private static function setDefaultData($data)
     {
-        print_r($data);
         $default = [
             'error_code' => 'UNDEFINED',
             'error_messages' => [],
