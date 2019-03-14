@@ -58,6 +58,8 @@ class ConnectorException extends \RuntimeException
         array $data,
         RequestException $prev
     ) {
+        $data = self::setDefaultData($data);
+
         $messages = implode(', ', $data['error_messages']);
         $serviceVersion = isset($data['service_version']) ? $data['service_version'] : '';
         $message = "{$data['error_code']}: {$messages} (#{$data['correlation_id']})";
@@ -119,5 +121,22 @@ class ConnectorException extends \RuntimeException
     public function getResponse()
     {
         return $this->getPrevious()->getResponse();
+    }
+
+    private static function setDefaultData($data)
+    {
+        print_r($data);
+        $default = [
+            'error_code' => 'UNDEFINED',
+            'error_messages' => [],
+            'correlation_id' => 'UNDEFINED',
+        ];
+
+        foreach ($default as $k => $v) {
+            if (!isset($data[$k])) {
+                $data[$k] = $v;
+            }
+        }
+        return $data;
     }
 }
