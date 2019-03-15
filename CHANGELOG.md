@@ -1,3 +1,11 @@
+## v4.1.4 - 2019-03-15
+- Add full support of Instant Shopping API;
+- Repo now has an Apache 2.0 LICENSE file on its root;
+- HTTP Transport: Add support of PUT method;
+- HTTP Transport: Stop throwing an exception when an API service return a bad structured Error;
+- Examples: Add Instant Shopping examples.
+
+
 ## v4.1.3 - 2019-01-23
 - HPP API: Add support for disabling an HPP session;
 - Customer Token API: Add ability to use Klarna-Idempotency-Key when creating order;
