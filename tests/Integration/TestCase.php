@@ -38,7 +38,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         $this->rootPath = dirname(dirname(__DIR__));
-        $path = getenv('CREDENTIALS', true) ?: getenv('CREDENTIALS');
+        $path = getenv('CREDENTIALS');
         if ($path === false) {
             $path = $this->rootPath . '/credentials.json';
         }
