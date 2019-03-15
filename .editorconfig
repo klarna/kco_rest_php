@@ -1,0 +1,15 @@
+
+
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# PSR-1 / PSR-2 Coding Style, https://www.php-fig.org/psr/psr-2/
+[*.php]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+
