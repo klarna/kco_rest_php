@@ -47,7 +47,7 @@ class OrderTest extends TestCase
         putenv('ORDER_ID=12345');
         $output = $this->execFile($this->rootPath . '/docs/examples/CheckoutAPI/fetch_checkout.php');
         $this->assertTrue($this->hasException($output));
-        $this->assertTrue($this->isTextPresents('404 Not Found', $output));    
+        $this->assertTrue($this->isTextPresents('404 Not Found', $output));
     }
 
     public function testCreateAndFetch()
