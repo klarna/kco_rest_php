@@ -21,6 +21,10 @@
         <testsuite name="Component Tests">
             <directory>tests/Component</directory>
         </testsuite>
+
+        <testsuite name="Integration Tests">
+            <directory>tests/Integration</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
