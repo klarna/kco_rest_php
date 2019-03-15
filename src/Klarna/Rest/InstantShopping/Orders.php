@@ -74,7 +74,7 @@ class Orders extends Resource
      * Declines an authorized order identified by the authorization token.
      *
      * @param array $data Decline data
-     * 
+     *
      * @throws ConnectorException When the API replies with an error response
      * @throws RequestException   When an error is encountered
      * @throws \RuntimeException  If the location header is missing

@@ -92,7 +92,7 @@ class ButtonKeys extends Resource
      * @throws ConnectorException When the API replies with an error response
      * @throws RequestException   When an error is encountered
      * @throws \RuntimeException  If the API replies with an unexpected response
-     * @throws \RuntimeException         If key was not specified when creating a resource
+     * @throws \RuntimeException  If key was not specified when creating a resource
      * @throws \LogicException    When Guzzle cannot populate the response
      *
      * @return array Button properties
@@ -111,7 +111,7 @@ class ButtonKeys extends Resource
 
     /**
      * See the setup options for a specific button key.
-     * 
+     *
      * @see https://developers.klarna.com/api/#instant-shopping-api-see-the-setup-options-for-a-specific-button-key
      *
      * @throws ConnectorException        When the API replies with an error response
