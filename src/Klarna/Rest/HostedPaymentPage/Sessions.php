@@ -73,12 +73,12 @@ class Sessions extends Resource
      */
     public function create(array $data)
     {
-        $data = $this->post(self::$path, $data)
+        $response = $this->post(self::$path, $data)
             ->status('201')
             ->contentType('application/json')
             ->getJson();
 
-        return $data;
+        return $response;
     }
 
     /**

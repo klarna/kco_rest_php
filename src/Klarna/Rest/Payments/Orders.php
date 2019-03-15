@@ -128,11 +128,11 @@ class Orders extends Resource
      */
     public function generateToken(array $data)
     {
-        $data = $this->post($this->getLocation() . '/customer-token', $data)
+        $response = $this->post($this->getLocation() . '/customer-token', $data)
             ->status('200')
             ->contentType('application/json')
             ->getJson();
 
-        return $data;
+        return $response;
     }
 }

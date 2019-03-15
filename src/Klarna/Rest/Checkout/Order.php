@@ -76,12 +76,12 @@ class Order extends Resource
      */
     public function create(array $data)
     {
-        $data = $this->post(self::$path, $data)
+        $response = $this->post(self::$path, $data)
             ->status('201')
             ->contentType('application/json');
 
-        $this->exchangeArray($data->getJson());
-        $this->setLocation($data->getLocation());
+        $this->exchangeArray($response->getJson());
+        $this->setLocation($response->getLocation());
 
         return $this;
     }
@@ -102,12 +102,12 @@ class Order extends Resource
      */
     public function update(array $data)
     {
-        $data = $this->post($this->getLocation(), $data)
+        $response = $this->post($this->getLocation(), $data)
             ->status('200')
             ->contentType('application/json')
             ->getJson();
 
-        $this->exchangeArray($data);
+        $this->exchangeArray($response);
 
         return $this;
     }

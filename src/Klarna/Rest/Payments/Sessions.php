@@ -74,11 +74,11 @@ class Sessions extends Resource
      */
     public function create(array $data)
     {
-        $data = $this->post(self::$path, $data)
+        $response = $this->post(self::$path, $data)
             ->status('200')
             ->contentType('application/json');
 
-        $this->exchangeArray($data->getJson());
+        $this->exchangeArray($response->getJson());
 
         // Payments API does not send Location header after creating a new session.
         // Use workaround to set new location.

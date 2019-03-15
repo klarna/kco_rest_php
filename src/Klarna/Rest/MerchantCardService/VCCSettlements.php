@@ -78,12 +78,12 @@ class VCCSettlements extends Resource
      */
     public function create(array $data)
     {
-        $data = $this->post(self::$path, $data)
+        $response = $this->post(self::$path, $data)
             ->status('201')
             ->contentType('application/json')
             ->getJson();
 
-        return $data;
+        return $response;
     }
 
     /**
@@ -104,7 +104,7 @@ class VCCSettlements extends Resource
      */
     public function retrieveSettlement($settlementId, $keyId)
     {
-        $data = $this->request(
+        $response = $this->request(
             'GET',
             self::$path . "/$settlementId",
             ['KeyId' => $keyId]
@@ -112,7 +112,7 @@ class VCCSettlements extends Resource
         ->contentType('application/json')
         ->getJson();
 
-        return $data;
+        return $response;
     }
 
     /**
@@ -133,7 +133,7 @@ class VCCSettlements extends Resource
      */
     public function retrieveOrderSettlement($orderId, $keyId)
     {
-        $data = $this->request(
+        $response = $this->request(
             'GET',
             self::$path . "/order/$orderId",
             ['KeyId' => $keyId]
@@ -141,6 +141,6 @@ class VCCSettlements extends Resource
         ->contentType('application/json')
         ->getJson();
 
-        return $data;
+        return $response;
     }
 }

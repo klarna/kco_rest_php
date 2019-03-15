@@ -72,14 +72,14 @@ class ButtonKeys extends Resource
      */
     public function create(array $data)
     {
-        $data = $this->post(self::$path, $data)
+        $response = $this->post(self::$path, $data)
             ->status('201')
             ->contentType('application/json');
 
-        $url = $data->getLocation();
+        $url = $response->getLocation();
         $this->setLocation($url);
 
-        return $data->getJson();
+        return $response->getJson();
     }
 
     /**
