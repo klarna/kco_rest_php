@@ -87,6 +87,16 @@ $updatedOrder = [
 try {
     $checkout = new Klarna\Rest\Checkout\Order($connector, $orderId);
     $checkout->update($updatedOrder);
+
+    // Get some data if needed
+    echo <<<ORDER
+    Order has been successfully updated
+
+             OrderID: $checkout[order_id]
+    New Order Amount: $checkout[order_amount]
+       New Order Tax: $checkout[order_tax_amount]
+ORDER;
+
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
