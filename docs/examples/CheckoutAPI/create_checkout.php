@@ -76,10 +76,18 @@ $order = [
         ]
     ],
     "merchant_urls" => [
-        "terms" => "https://example.com/toc",
-        "checkout" => "https://example.com/checkout?klarna_order_id={checkout.order.id}",
-        "confirmation" => "https://example.com/thank-you?klarna_order_id={checkout.order.id}",
-        "push" => "https://example.com/create_order?klarna_order_id={checkout.order.id}"
+        "terms" => "https://www.example.com/terms.html",
+        "cancellation_terms" => "https://www.example.com/terms/cancellation.html",
+        "checkout" => "https://www.example.com/checkout.html",
+        "confirmation" => "https://www.example.com/confirmation.html",
+
+        // Callbacks
+        "push" => "https://www.example.com/api/push",
+        "validation" => "https://www.example.com/api/validation",
+        "shipping_option_update" => "https://www.example.com/api/shipment",
+        "address_update" => "https://www.example.com/api/address",
+        "notification" => "https://www.example.com/api/pending",
+        "country_change" => "https://www.example.com/api/country"
     ]
 ];
 
