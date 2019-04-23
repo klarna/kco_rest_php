@@ -157,7 +157,12 @@ Headers : $debugHeaders
 DEBUG_BODY;
         }
 
-        $response = $this->connector->send($request);
+        $exception = null;
+        try {
+            $response = $this->connector->send($request);
+        } catch (ConnectorException $exception) {
+            $response = $exception->getResponse();
+        }
 
         if ($debug) {
             $debugHeaders = json_encode($response->getHeaders());
@@ -168,6 +173,10 @@ Headers : $debugHeaders
    Body : {$response->getBody()}
 \n
 DEBUG_BODY;
+        }
+
+        if (!is_null($exception)) {
+            throw $exception;
         }
 
         return new ResponseValidator($response);
