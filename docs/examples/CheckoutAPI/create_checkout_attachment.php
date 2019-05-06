@@ -103,12 +103,12 @@ $order = [
         "address_update" => "https://www.example.com/api/address",
         "notification" => "https://www.example.com/api/pending",
         "country_change" => "https://www.example.com/api/country"
-    ]
+    ],
     "attachment" => [
         "content_type" => "application/vnd.klarna.internal.emd-v2+json",
         "body" => json_encode($emd)
     ]
-    ];
+];
 
 try {
     $checkout = new Klarna\Rest\Checkout\Order($connector);
