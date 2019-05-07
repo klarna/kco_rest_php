@@ -20,6 +20,7 @@
 namespace Klarna\Rest;
 
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ClientException;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Rest\Transport\ResponseValidator;
@@ -160,7 +161,9 @@ DEBUG_BODY;
         $exception = null;
         try {
             $response = $this->connector->send($request);
-        } catch (ConnectorException $exception) {
+        } catch (Exception $exception) {
+            $response = $exception->getResponse();
+        } catch (\Throwable $exception) {
             $response = $exception->getResponse();
         }
 
