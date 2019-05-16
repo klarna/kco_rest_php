@@ -20,7 +20,6 @@
 namespace Klarna\Rest;
 
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\ClientException;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Rest\Transport\ResponseValidator;
