@@ -31,7 +31,6 @@
         "phploc/phploc": "2.0.*",
         "sebastian/phpcpd": "2.0.*",
         "php-coveralls/php-coveralls": "^2.1",
-        "phpunit/phpcov": "^2.0",
         "apigen/apigen": "4.0.*",
         "klarna/apigen-theme": "~2.0"
     },
