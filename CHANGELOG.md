@@ -1,3 +1,11 @@
+## v4.1.5 - 2019-05-21
+- Debug mode: Request body and headers were not displayed when getting 400 HTTP response code. Fixed;
+- Remove unused phpunit/phpcov package;
+- Add .gitattributes file to remove needless load from composer imports;
+- Examples: Checkout API: Fix typo in the attachments file;
+- Examples: Checkout API: Add more callback URLs;
+- Examples: Add "How to set a discount" example.
+
 ## v4.1.4 - 2019-03-15
 - Add full support of Instant Shopping API;
 - Repo now has an Apache 2.0 LICENSE file on its root;
