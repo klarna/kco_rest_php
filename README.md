@@ -101,6 +101,11 @@ define('DEBUG_SDK', true);
 // some code here
 ```
 
+**Be aware, the SDK just checks if the `DEBUG_SDK` is defined! It means you will see the debug information
+by using `define('DEBUG_SDK', false);` or `export DEBUG_SDK=no`**
+
+More information about the DEBUG_SDK flag can be found here: https://github.com/klarna/kco_rest_php/issues/32
+
 The output will look like:
 
 ```
