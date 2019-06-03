@@ -47,11 +47,6 @@ class ResourceTest extends TestCase
     protected $connector;
 
     /**
-     * @var \GuzzleHttp\ClientInterface
-     */
-    protected $client;
-
-    /**
      * @var \Klarna\Rest\Transport\UserAgentInterface
      */
     protected $userAgent;
@@ -117,57 +112,5 @@ class ResourceTest extends TestCase
         
         $r->setLocation('/new/location');
         $this->assertEquals('/new/location', $r->getLocation());
-    }
-
-    /**
-     * Tests fetching request.
-     *
-     * @return void
-     */
-    public function testFetchRequest()
-    {
-        $this->client->expects($this->any())
-        ->method('send')
-        ->will($this->returnValue(new Response(
-            '200',
-            ['Content-Type' => 'application/json'],
-            '{"id": "new_id"}'
-        )));
-
-        $r = $this->getMockForAbstractClass('Klarna\Rest\Resource', [$this->connector]);
-        $r->setLocation('https://example.com/api');
-
-        $this->assertEquals(null, $r->getId());
-        $r->fetch();
-        $this->assertEquals('new_id', $r->getId());
-    }
-
-    /**
-     * Tests fetching request in DebugMode.
-     *
-     * @return void
-     */
-    public function testFetchRequestDebugMode()
-    {
-        $this->client->expects($this->any())
-        ->method('send')
-        ->will($this->returnValue(new Response(
-            '200',
-            ['Content-Type' => 'application/json'],
-            '{"id": "new_id"}'
-        )));
-
-        $r = $this->getMockForAbstractClass('Klarna\Rest\Resource', [$this->connector]);
-        $r->setLocation('https://example.com/api');
-
-        putenv('DEBUG_SDK=true');
-        ob_start();
-        $r->fetch();
-        $output = ob_get_contents();
-        ob_end_clean();
-        
-        $this->assertTrue((boolean)preg_match('#GET : https://example.com/api#sim', $output));
-        $this->assertTrue((boolean)preg_match('#Headers.*?Host.*?example.com#sim', $output));
-        $this->assertTrue((boolean)preg_match('#Body : {"id": "new_id"}#sim', $output));
     }
 }

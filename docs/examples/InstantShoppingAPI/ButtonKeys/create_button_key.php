@@ -77,7 +77,7 @@ try {
             'unit_price' => 10000,
             'product_url' => 'https://www.estore.com/products/f2a8d7e34',
             'image_url' => 'https://www.exampleobjects.com/logo.png',
-            'product_identifiers' => 
+            'product_identifiers' =>
             [
               'category_path' => 'Electronics Store > Computers & Tablets > Desktops',
               'global_trade_item_number' => '735858293167',
@@ -104,7 +104,6 @@ try {
 
     echo 'Button has been successfully created' . PHP_EOL;
     print_r($button);
-
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

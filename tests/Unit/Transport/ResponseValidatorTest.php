@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Tests\Unit\Transport;
 
 use Klarna\Rest\Transport\ResponseValidator;
+use Klarna\Rest\Transport\ApiResponse;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -42,7 +43,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->response = $this->getMockBuilder(ResponseInterface::class)
+        $this->response = $this->getMockBuilder(ApiResponse::class)
             ->getMock();
 
         $this->validator = new ResponseValidator($this->response);
@@ -80,10 +81,6 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     public function testGetLocation()
     {
         $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->will($this->returnValue(true));
-
-        $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Location')
             ->will($this->returnValue(['a location']));
@@ -98,11 +95,6 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLocationException()
     {
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Location')
-            ->will($this->returnValue(false));
-
         $this->setExpectedException(
             'RuntimeException',
             'Response is missing a Location header'
@@ -118,10 +110,6 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testContentType()
     {
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->will($this->returnValue(true));
-
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
@@ -141,10 +129,6 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     public function testCharsetContentType()
     {
         $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->will($this->returnValue(true));
-
-        $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
             ->will($this->returnValue(['application/json; charset=utf-8']));
@@ -162,11 +146,6 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testContentTypeMissingException()
     {
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(false));
-
         $this->setExpectedException(
             'RuntimeException',
             'Response is missing a Content-Type header'
@@ -182,11 +161,6 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testContentTypeWrongException()
     {
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(true));
-
         $this->response->expects($this->once())
             ->method('getHeader')
             ->with('Content-Type')
@@ -208,7 +182,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     public function testStatus()
     {
         $this->response->expects($this->once())
-            ->method('getStatusCode')
+            ->method('getStatus')
             ->will($this->returnValue('200'));
 
         $this->assertSame($this->validator, $this->validator->status('200'));
@@ -222,7 +196,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     public function testStatuses()
     {
         $this->response->expects($this->once())
-            ->method('getStatusCode')
+            ->method('getStatus')
             ->will($this->returnValue('204'));
 
         $this->assertSame(
@@ -239,7 +213,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     public function testStatusException()
     {
         $this->response->expects($this->once())
-            ->method('getStatusCode')
+            ->method('getStatus')
             ->will($this->returnValue('201'));
 
         $this->setExpectedException(
@@ -258,7 +232,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
     public function testStatusesException()
     {
         $this->response->expects($this->once())
-            ->method('getStatusCode')
+            ->method('getStatus')
             ->will($this->returnValue('200'));
 
         $this->setExpectedException(

@@ -74,7 +74,6 @@ try {
 
     echo 'Button has been successfully updated' . PHP_EOL;
     print_r($button);
-
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

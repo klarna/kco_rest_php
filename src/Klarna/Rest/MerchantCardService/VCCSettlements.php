@@ -21,7 +21,7 @@ namespace Klarna\Rest\MerchantCardService;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Exceptions\NotApplicableException;
 
@@ -43,10 +43,10 @@ class VCCSettlements extends Resource
     /**
      * Constructs a session instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $sessionId   Session ID
      */
-    public function __construct(Connector $connector)
+    public function __construct(ConnectorInterface $connector)
     {
         parent::__construct($connector);
     }

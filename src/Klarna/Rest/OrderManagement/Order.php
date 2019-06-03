@@ -21,7 +21,7 @@ namespace Klarna\Rest\OrderManagement;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -54,10 +54,10 @@ class Order extends Resource
     /**
      * Constructs an order instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $orderId   Order ID
      */
-    public function __construct(Connector $connector, $orderId)
+    public function __construct(ConnectorInterface $connector, $orderId)
     {
         parent::__construct($connector);
 

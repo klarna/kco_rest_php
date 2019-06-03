@@ -50,7 +50,6 @@ try {
     $button = $buttonsApi->retrieve();
 
     print_r($button->getArrayCopy());
-
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

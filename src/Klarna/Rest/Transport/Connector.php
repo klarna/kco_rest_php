@@ -92,6 +92,111 @@ class Connector implements ConnectorInterface
     }
 
     /**
+     * Sends HTTP GET request to specified path.
+     *
+     * @param path URL path.
+     * @param headers HTTP request headers
+     * @return Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
+     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     */
+    public function get($path, $headers = [])
+    {
+        $request = $this->createRequest($path, Method::GET, $headers);
+        $response = $this->send($request);
+
+        return $this->getApiResponse($response);
+    }
+
+    /**
+     * Sends HTTP POST request to specified path.
+     *
+     * @param path URL path.
+     * @param data Data to be sent to API server in a payload.
+     * @param headers HTTP request headers
+     * @return Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     */
+    public function post($path, $data = null, $headers = [])
+    {
+        $request = $this->createRequest($path, Method::POST, $headers, $data);
+        $response = $this->send($request);
+
+        return $this->getApiResponse($response);
+    }
+
+    /**
+     * Sends HTTP PUT request to specified path.
+     *
+     * @param path URL path.
+     * @param data Data to be sent to API server in a payload.
+     * @param headers HTTP request headers
+     * @return Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     */
+    public function put($path, $data = null, $headers = [])
+    {
+        $request = $this->createRequest($path, Method::PUT, $headers, $data);
+        $response = $this->send($request);
+
+        return $this->getApiResponse($response);
+    }
+
+    /**
+     * Sends HTTP PATCH request to specified path.
+     *
+     * @param path URL path.
+     * @param data Data to be sent to API server in a payload.
+     * @param headers HTTP request headers
+     * @return Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     */
+    public function patch($path, $data = null, $headers = [])
+    {
+        $request = $this->createRequest($path, Method::PATCH, $headers, $data);
+        $response = $this->send($request);
+
+        return $this->getApiResponse($response);
+    }
+
+    /**
+     * Sends HTTP DELETE request to specified path.
+     *
+     * @param path URL path.
+     * @param data Data to be sent to API server in a payload.
+     * @param headers HTTP request headers
+     * @return Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     */
+    public function delete($path, $data = null, $headers = [])
+    {
+        $request = $this->createRequest($path, Method::DELETE, $headers, $data);
+        $response = $this->send($request);
+
+        return $this->getApiResponse($response);
+    }
+
+    /**
+     * Converts ResponseInterface to ApiResponse.
+     *
+     * @param response ResponseInterface intance
+     * @return ApiResponse
+     */
+    protected function getApiResponse(ResponseInterface $response)
+    {
+        return new ApiResponse(
+            $response->getStatusCode(),
+            $response->getBody()->getContents(),
+            $response->getHeaders()
+        );
+    }
+
+    /**
+     * @deprecated No longer used and not recommended. Use direct get, post, put, delete and patch methods instead.
      * Creates a request object.
      *
      * @param string $url     URL
@@ -106,6 +211,7 @@ class Connector implements ConnectorInterface
     }
 
     /**
+     * @deprecated No longer used and not recommended. Use direct get, post, put, delete and patch methods instead.
      * Sends the request.
      *
      * @param RequestInterface $request Request to send

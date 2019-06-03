@@ -21,7 +21,7 @@ namespace Klarna\Rest\OrderManagement;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -45,11 +45,11 @@ class Refund extends Resource
     /**
      * Constructs a Refund instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $orderUrl  Parent order resource url
      * @param string    $refundId  Refund ID
      */
-    public function __construct(Connector $connector, $orderUrl, $refundId = null)
+    public function __construct(ConnectorInterface $connector, $orderUrl, $refundId = null)
     {
         parent::__construct($connector);
 

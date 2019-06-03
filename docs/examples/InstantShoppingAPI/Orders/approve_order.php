@@ -115,7 +115,6 @@ try {
 
     echo 'The order has been approved' . PHP_EOL;
     print_r($status);
-    
 } catch (Exception $e) {
     echo 'Caught exception => ' . $e->getMessage() . "\n";
 }

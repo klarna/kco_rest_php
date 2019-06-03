@@ -21,7 +21,7 @@ namespace Klarna\Rest\OrderManagement;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -47,11 +47,11 @@ class Capture extends Resource
     /**
      * Constructs a Capture instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $orderUrl  Parent order resource url
      * @param string    $captureId Capture ID
      */
-    public function __construct(Connector $connector, $orderUrl, $captureId = null)
+    public function __construct(ConnectorInterface $connector, $orderUrl, $captureId = null)
     {
         parent::__construct($connector);
 

@@ -19,7 +19,7 @@
 
 namespace Klarna\Rest\Transport;
 
-use Psr\Http\Message\ResponseInterface;
+use Klarna\Rest\Transport\ApiResponse;
 
 /**
  * HTTP response validator helper class.
@@ -29,16 +29,16 @@ class ResponseValidator
     /**
      * HTTP response to validate against.
      *
-     * @var ResponseInterface
+     * @var ApiResponse
      */
     protected $response;
 
     /**
      * Constructs a response validator instance.
      *
-     * @param ResponseInterface $response Response to validate
+     * @param ApiResponse $response Response to validate
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(ApiResponse $response)
     {
         $this->response = $response;
     }
@@ -46,7 +46,7 @@ class ResponseValidator
     /**
      * Gets the response object.
      *
-     * @return ResponseInterface
+     * @return ApiResponse
      */
     public function getResponse()
     {
@@ -64,7 +64,7 @@ class ResponseValidator
      */
     public function status($status)
     {
-        $httpStatus = (string) $this->response->getStatusCode();
+        $httpStatus = (string) $this->response->getStatus();
         if (is_array($status) && !in_array($httpStatus, $status)) {
             throw new \RuntimeException(
                 "Unexpected response status code: {$httpStatus}"
@@ -105,11 +105,10 @@ class ResponseValidator
      */
     public function contentType($mediaType)
     {
-        if (!$this->response->hasHeader('Content-Type')) {
+        $contentType = $this->response->getHeader('Content-Type');
+        if (empty($contentType)) {
             throw new \RuntimeException('Response is missing a Content-Type header');
         }
-
-        $contentType = $this->response->getHeader('Content-Type');
         $mediaFound = false;
         foreach ($contentType as $type) {
             if (preg_match('#' . $mediaType . '#', $type)) {
@@ -162,10 +161,10 @@ class ResponseValidator
      */
     public function getLocation()
     {
-        if (!$this->response->hasHeader('Location')) {
+        $location = $this->response->getHeader('Location');
+        if (empty($location)) {
             throw new \RuntimeException('Response is missing a Location header');
         }
-
-        return $this->response->getHeader('Location')[0];
+        return $location[0];
     }
 }

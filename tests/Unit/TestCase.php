@@ -20,8 +20,7 @@
 namespace Klarna\Rest\Tests\Unit;
 
 use Klarna\Rest\Transport\Connector;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Klarna\Rest\Transport\ApiResponse;
 
 /**
  * Base unit test case class.
@@ -32,12 +31,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected $response;
 
-    /**
-     */
     protected $request;
 
     /**
-     * @var \Klarna\Rest\Transport\Connector
+     * @var \Klarna\Rest\Transport\ConnectorInterface
      */
     protected $connector;
 
@@ -46,10 +43,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->request = $this->getMockBuilder(RequestInterface::class)
-            ->getMock();
-
-        $this->response = $this->getMockBuilder(ResponseInterface::class)
+        $this->response = $this->getMockBuilder(ApiResponse::class)
             ->getMock();
 
         $this->connector = $this->getMockBuilder(Connector::class)

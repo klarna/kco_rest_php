@@ -96,7 +96,6 @@ try {
     New Order Amount: $checkout[order_amount]
        New Order Tax: $checkout[order_tax_amount]
 ORDER;
-
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

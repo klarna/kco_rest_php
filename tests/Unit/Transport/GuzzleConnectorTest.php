@@ -19,6 +19,8 @@
 
 namespace Klarna\Rest\Tests\Unit\Transport;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Tests\Unit\TestCase;
@@ -29,7 +31,7 @@ use Klarna\Rest\Transport\UserAgent;
 /**
  * Unit test cases for the connector class.
  */
-class ConnectorTest extends TestCase
+class GuzzleConnectorTest extends TestCase
 {
     const USERNAME = '1234';
 
@@ -43,6 +45,9 @@ class ConnectorTest extends TestCase
      * @var Connector
      */
     protected $object;
+
+    protected $request;
+    protected $response;
 
     /**
      * @var \GuzzleHttp\ClientInterface
@@ -60,6 +65,9 @@ class ConnectorTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+
+        $this->request = $this->getMockBuilder(RequestInterface::class)->getMock();
+        $this->response = $this->getMockBuilder(ResponseInterface::class)->getMock();
 
         $this->client = $this->getMockBuilder(ClientInterface::class)
             ->getMock();

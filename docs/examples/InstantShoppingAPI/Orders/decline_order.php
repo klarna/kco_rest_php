@@ -55,7 +55,6 @@ try {
     ];
     $orderApi->decline($data);
     echo 'The order has been declined';
-    
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
