@@ -141,26 +141,21 @@ abstract class Resource extends \ArrayObject
     protected function request($method, $url, array $headers = [], $body = null)
     {
         switch ($method) {
-            case Method::GET: {
+            case Method::GET:
                 $response = $this->connector->get($url, $headers);
                 break;
-            }
-            case Method::POST: {
+            case Method::POST:
                 $response = $this->connector->post($url, $body, $headers);
                 break;
-            }
-            case Method::PUT: {
+            case Method::PUT:
                 $response = $this->connector->put($url, $body, $headers);
                 break;
-            }
-            case Method::DELETE: {
+            case Method::DELETE:
                 $response = $this->connector->delete($url, $body, $headers);
                 break;
-            }
-            case Method::PATCH: {
+            case Method::PATCH:
                 $response = $this->connector->patch($url, $body, $headers);
                 break;
-            }
             default:
                 throw new \RuntimeException('Unknown request method' + $method);
         }
