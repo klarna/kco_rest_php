@@ -19,9 +19,6 @@
 
 namespace Klarna\Rest\Transport\Exception;
 
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\ResponseInterface;
-
 /**
  * ConnectorException is used to represent a API error response.
  */
@@ -52,11 +49,11 @@ class ConnectorException extends \RuntimeException
      * Constructs a connector exception instance.
      *
      * @param array             $data Error data
-     * @param RequestException  $prev Previous exception
+     * @param \Exception  $prev Previous exception
      */
     public function __construct(
         array $data,
-        RequestException $prev
+        \Exception $prev
     ) {
         $data = self::setDefaultData($data);
 
@@ -114,13 +111,14 @@ class ConnectorException extends \RuntimeException
     }
 
     /**
+     * @deprecated Function is not longer used. Will always return null
      * Gets the HTTP response for this API error.
      *
-     * @return ResponseInterface
+     * @return null
      */
     public function getResponse()
     {
-        return $this->getPrevious()->getResponse();
+        return null;
     }
 
     private static function setDefaultData($data)
@@ -136,6 +134,12 @@ class ConnectorException extends \RuntimeException
                 $data[$field] = $default;
             }
         }
+
+        // We need to have a special check for error_message and merge the message to error_messages
+        if (isset($data['error_message'])) {
+            array_push($data['error_messages'], $data['error_message']);
+        }
+
         return $data;
     }
 }

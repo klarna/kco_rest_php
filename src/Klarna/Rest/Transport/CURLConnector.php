@@ -98,9 +98,11 @@ class CURLConnector implements ConnectorInterface
      *
      * @param path URL path
      * @param headers HTTP request headers
-     * @return Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
+     * @return ApiResponse Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched
+     *                      or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
      */
     public function get($path, $headers = [])
     {
@@ -113,9 +115,10 @@ class CURLConnector implements ConnectorInterface
      * @param path URL path.
      * @param data Data to be sent to API server in a payload.
      * @param headers HTTP request headers
-     * @return Processed response
+     * @return ApiResponse Processed response
      * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
      */
     public function post($path, $data = null, $headers = [])
     {
@@ -128,9 +131,10 @@ class CURLConnector implements ConnectorInterface
      * @param path URL path.
      * @param data Data to be sent to API server in a payload.
      * @param headers HTTP request headers
-     * @return Processed response
+     * @return ApiResponse Processed response
      * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
      */
     public function put($path, $data = null, $headers = [])
     {
@@ -143,9 +147,10 @@ class CURLConnector implements ConnectorInterface
      * @param path URL path.
      * @param data Data to be sent to API server in a payload.
      * @param headers HTTP request headers
-     * @return Processed response
+     * @return ApiResponse Processed response
      * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
      */
     public function patch($path, $data = null, $headers = [])
     {
@@ -158,25 +163,41 @@ class CURLConnector implements ConnectorInterface
      * @param path URL path.
      * @param data Data to be sent to API server in a payload.
      * @param headers HTTP request headers
-     * @return Processed response
+     * @return ApiResponse Processed response
      * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
      */
     public function delete($path, $data = null, $headers = [])
     {
         return $this->request(Method::DELETE, $path, $headers, $data);
     }
 
+    /**
+     * Performs HTTP(S) request.
+     *
+     * @param  mixed $method HTTP method
+     * @param  mixed $url URL
+     * @param  mixed $headers Request headers
+     * @param  mixed $data Payload
+     *
+     * @return ApiResponse processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
+     */
     protected function request($method, $url, array $headers = [], $data = null)
     {
         $headers = array_merge([
-           'Content-Type' => self::DEFAULT_CONTENT_TYPE,
-           'User-Agent' => $this->userAgent,
+           'User-Agent' => (string) $this->userAgent,
         ], $headers);
 
         if (isset($this->options['headers'])) {
             $headers = array_merge($headers, $this->options['headers']);
         }
+        array_walk($headers, function (&$v, $k) {
+            $v = $k . ': ' . $v;
+        });
 
         $ch = curl_init();
 
@@ -198,7 +219,7 @@ class CURLConnector implements ConnectorInterface
 
         if ($method == Method::GET) {
             curl_setopt($ch, CURLOPT_HTTPGET, 1);
-        } elseif ($method == self::POST) {
+        } elseif ($method == Method::POST) {
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         } else {
@@ -224,23 +245,37 @@ class CURLConnector implements ConnectorInterface
             }
         }
 
-        $content = curl_exec($ch);
+        $rawContent = curl_exec($ch);
+        
         $errno = curl_errno($ch);
         $error = curl_error($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         curl_close($ch);
 
-        if (!empty($content)) {
-            while (strpos(ltrim($content), 'HTTP/') === 0) {
-                list($headers, $content) = preg_split("/(\r?\n){2}/", $content, 2);
+        // Check the TCP transport issues
+        if (!empty($errno)) {
+            throw new \RuntimeException($error, $errno);
+        }
+
+        list($rawHeaders, $content) = preg_split("/(\r?\n){2}/", $rawContent, 2);
+        $headers = self::parseHeaders($rawHeaders);
+
+        if ($http_code < 200 || $http_code >= 300) {
+            // We got a bad response. Try to parse it and get the Klarna Error information
+            if (!isset($headers['Content-Type'])
+                || !in_array(self::DEFAULT_CONTENT_TYPE, $headers['Content-Type'])) {
+                throw new \RuntimeException($content, $http_code);
             }
-        }
 
-        if (!empty($error)) {
-            // TODO: Process errors
-        }
+            $data = \json_decode($response->getBody(), true);
 
-        return $content;
+            if (!is_array($data) || !array_key_exists('error_code', $data)) {
+                throw new \RuntimeException($content, $http_code);
+            }
+            throw new ConnectorException($data, $e);
+        }
+        return new ApiResponse($http_code, $content, $headers);
     }
 
     /**
@@ -260,5 +295,20 @@ class CURLConnector implements ConnectorInterface
         UserAgentInterface $userAgent = null
     ) {
         return new static($merchantId, $sharedSecret, $baseUrl, $userAgent);
+    }
+
+    protected static function parseHeaders($rawHeaders)
+    {
+        $headers = [];
+        foreach (explode("\r\n", $rawHeaders) as $i => $line) {
+            if ($i == 0) {
+                // The first line contains the HTTP response information
+                $headers['Http'] = $line;
+                continue;
+            }
+            list($key, $value) = explode(': ', $line);
+            $headers[ucwords($key, '-_')][] = $value;
+        }
+        return $headers;
     }
 }

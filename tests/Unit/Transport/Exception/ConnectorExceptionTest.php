@@ -60,7 +60,6 @@ class ConnectorExceptionTest extends \PHPUnit_Framework_TestCase
         $exception = new ConnectorException($data, $previous);
 
         $this->assertEquals(500, $exception->getCode());
-        $this->assertSame($response, $exception->getResponse());
 
         $this->assertContains(
             $data['error_messages'][0],

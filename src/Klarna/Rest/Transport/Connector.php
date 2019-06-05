@@ -226,7 +226,9 @@ class Connector implements ConnectorInterface
     public function send(RequestInterface $request, array $options = [])
     {
         $requestOptions = $this->client->getConfig('request');
-        $options = array_merge($requestOptions, $options);
+        if (is_array($requestOptions)) {
+            $options = array_merge($requestOptions, $options);
+        }
         $options['auth'] = [$this->merchantId, $this->sharedSecret, 'basic'];
 
         try {

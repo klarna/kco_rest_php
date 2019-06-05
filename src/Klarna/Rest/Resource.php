@@ -220,7 +220,12 @@ abstract class Resource extends \ArrayObject
      */
     protected function patch($url, array $data)
     {
-        return $this->request('PATCH', $url, ['Content-Type' => 'application/json'], json_encode($data));
+        return $this->request(
+            'PATCH',
+            $url,
+            ['Content-Type' => 'application/json'],
+            json_encode($data)
+        );
     }
 
     /**
@@ -237,7 +242,12 @@ abstract class Resource extends \ArrayObject
      */
     protected function put($url, array $data)
     {
-        return $this->request('PUT', $url, ['Content-Type' => 'application/json'], json_encode($data));
+        return $this->request(
+            'PUT',
+            $url,
+            ['Content-Type' => 'application/json'],
+            json_encode($data)
+        );
     }
 
     /**
