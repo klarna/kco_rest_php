@@ -84,6 +84,7 @@ class Orders extends Resource
     public function create(array $data)
     {
         return $this->post($this->getLocation() . '/order', $data)
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();
@@ -104,6 +105,7 @@ class Orders extends Resource
     public function cancelAuthorization()
     {
         $this->delete($this->getLocation())
+            ->expectSuccessfull()
             ->status('204');
         // ->contentType('application/json');
         // TODO: We cannot check the Content-type here because of an inconsistency
@@ -129,6 +131,7 @@ class Orders extends Resource
     public function generateToken(array $data)
     {
         $response = $this->post($this->getLocation() . '/customer-token', $data)
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

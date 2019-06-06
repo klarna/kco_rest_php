@@ -137,6 +137,7 @@ class Order extends Resource
     public function acknowledge()
     {
         $this->post($this->getLocation() . '/acknowledge')
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -155,6 +156,7 @@ class Order extends Resource
     public function cancel()
     {
         $this->post($this->getLocation() . '/cancel')
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -175,6 +177,7 @@ class Order extends Resource
     public function updateAuthorization(array $data)
     {
         $this->patch($this->getLocation() . '/authorization', $data)
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -193,6 +196,7 @@ class Order extends Resource
     public function extendAuthorizationTime()
     {
         $this->post($this->getLocation() . '/extend-authorization-time')
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -213,6 +217,7 @@ class Order extends Resource
     public function updateMerchantReferences(array $data)
     {
         $this->patch($this->getLocation() . '/merchant-references', $data)
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -233,6 +238,7 @@ class Order extends Resource
     public function updateCustomerDetails(array $data)
     {
         $this->patch($this->getLocation() . '/customer-details', $data)
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -271,6 +277,7 @@ class Order extends Resource
     public function releaseRemainingAuthorization()
     {
         $this->post($this->getLocation() . '/release-remaining-authorization')
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;

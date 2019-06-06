@@ -76,6 +76,7 @@ class Transactions extends Resource
     public function getTransactions(array $params = [])
     {
         return $this->get(self::$path . '?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

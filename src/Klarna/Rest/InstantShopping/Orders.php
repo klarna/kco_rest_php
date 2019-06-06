@@ -94,6 +94,7 @@ class Orders extends Resource
     public function decline(array $data = null)
     {
         $this->delete($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -120,6 +121,7 @@ class Orders extends Resource
     public function approve(array $data)
     {
         return $this->post($this->getLocation() . '/orders', $data)
+            ->expectSuccessfull()
             ->status('200')
             ->getJson();
     }

@@ -77,6 +77,7 @@ class Order extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('201')
             ->contentType('application/json');
 
@@ -103,6 +104,7 @@ class Order extends Resource
     public function update(array $data)
     {
         $response = $this->post($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

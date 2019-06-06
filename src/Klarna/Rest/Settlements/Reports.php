@@ -75,6 +75,7 @@ class Reports extends Resource
     public function getCSVPayoutReport($paymentReference)
     {
         return $this->get(self::$path . "/payout-with-transactions?payment_reference={$paymentReference}")
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('text/csv')
             ->getBody();
@@ -97,6 +98,7 @@ class Reports extends Resource
     public function getPDFPayoutReport($paymentReference)
     {
         return $this->get(self::$path . "/payout?payment_reference={$paymentReference}")
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/pdf')
             ->getBody();
@@ -121,6 +123,7 @@ class Reports extends Resource
     public function getCSVPayoutsSummaryReport(array $params = [])
     {
         return $this->get(self::$path . '/payouts-summary-with-transactions?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('text/csv')
             ->getBody();
@@ -145,6 +148,7 @@ class Reports extends Resource
     public function getPDFPayoutsSummaryReport(array $params = [])
     {
         return $this->get(self::$path . '/payouts-summary?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/pdf')
             ->getBody();

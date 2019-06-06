@@ -81,6 +81,7 @@ class Payouts extends Resource
     public function getPayout($paymentReference)
     {
         return $this->get(self::$path . "/{$paymentReference}")
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();
@@ -105,6 +106,7 @@ class Payouts extends Resource
     public function getAllPayouts(array $params = [])
     {
         return $this->get(self::$path . '?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();
@@ -129,6 +131,7 @@ class Payouts extends Resource
     public function getSummary(array $params = [])
     {
         return $this->get(self::$path . '/summary?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

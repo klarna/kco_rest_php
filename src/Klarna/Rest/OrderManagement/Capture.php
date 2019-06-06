@@ -80,6 +80,7 @@ class Capture extends Resource
     public function create(array $data)
     {
         $url = $this->post($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('201')
             ->getLocation();
 
@@ -103,6 +104,7 @@ class Capture extends Resource
     public function addShippingInfo(array $data)
     {
         $this->post($this->getLocation() . '/shipping-info', $data)
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -123,6 +125,7 @@ class Capture extends Resource
     public function updateCustomerDetails(array $data)
     {
         $this->patch($this->getLocation() . '/customer-details', $data)
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -141,6 +144,7 @@ class Capture extends Resource
     public function triggerSendout()
     {
         $this->post($this->getLocation() . '/trigger-send-out')
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;

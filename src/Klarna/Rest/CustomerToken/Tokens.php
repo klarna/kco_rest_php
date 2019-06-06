@@ -87,6 +87,7 @@ class Tokens extends Resource
             $headers,
             $data !== null ? \json_encode($data) : null
         )
+        ->expectSuccessfull()
         ->status('200')
         ->contentType('application/json')
         ->getJson();
@@ -107,6 +108,7 @@ class Tokens extends Resource
     public function updateTokenStatus(array $data)
     {
         $this->patch($this->getLocation() . '/status', $data)
+            ->expectSuccessfull()
             ->status('202');
 
         return $this;

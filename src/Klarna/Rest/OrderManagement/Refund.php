@@ -78,6 +78,7 @@ class Refund extends Resource
     public function create(array $data)
     {
         $url = $this->post($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('201')
             ->getLocation();
 

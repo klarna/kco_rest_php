@@ -75,6 +75,7 @@ class Sessions extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json');
 
@@ -104,6 +105,7 @@ class Sessions extends Resource
     public function update(array $data)
     {
         $this->post($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('204');
         // ->contentType('application/json');
         // TODO: We cannot check the Content-type here because of an inconsistency

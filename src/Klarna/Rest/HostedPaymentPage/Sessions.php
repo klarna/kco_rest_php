@@ -74,6 +74,7 @@ class Sessions extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('201')
             ->contentType('application/json')
             ->getJson();
@@ -102,6 +103,7 @@ class Sessions extends Resource
         }
 
         $this->delete($this->getLocation())
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -126,6 +128,7 @@ class Sessions extends Resource
     public function distributeLink(array $data)
     {
         $this->post($this->getLocation() . '/distribution', $data)
+            ->expectSuccessfull()
             ->status(['200', '201']);
 
         return $this;

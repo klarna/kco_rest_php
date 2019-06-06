@@ -73,6 +73,7 @@ class ButtonKeys extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('201')
             ->contentType('application/json');
 
@@ -104,6 +105,7 @@ class ButtonKeys extends Resource
         }
 
         return $this->put($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

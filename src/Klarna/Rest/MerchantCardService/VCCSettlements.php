@@ -79,6 +79,7 @@ class VCCSettlements extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('201')
             ->contentType('application/json')
             ->getJson();
@@ -108,7 +109,9 @@ class VCCSettlements extends Resource
             'GET',
             self::$path . "/$settlementId",
             ['KeyId' => $keyId]
-        )->status('200')
+        )
+        ->expectSuccessfull()
+        ->status('200')
         ->contentType('application/json')
         ->getJson();
 
@@ -137,7 +140,9 @@ class VCCSettlements extends Resource
             'GET',
             self::$path . "/order/$orderId",
             ['KeyId' => $keyId]
-        )->status('200')
+        )
+        ->expectSuccessfull()
+        ->status('200')
         ->contentType('application/json')
         ->getJson();
 
