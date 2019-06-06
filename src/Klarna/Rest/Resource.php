@@ -173,7 +173,7 @@ DEBUG_BODY;
                 $response = $this->connector->patch($url, $body, $headers);
                 break;
             default:
-                throw new \RuntimeException('Unknown request method' + $method);
+                throw new \RuntimeException('Unknown request method ' + $method);
         }
 
         if ($debug) {

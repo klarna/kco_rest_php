@@ -170,6 +170,17 @@ class ResponseValidator
         return $location[0];
     }
 
+    
+    /**
+     * Asserts and analyze the response. Checks if the reponse has SUCCESSFULL family
+     * and try to parse the Klarna error message if possbile.
+     *
+     * @throws ConnectorException if response has non-2xx HTTP CODE and contains
+     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws \RuntimeException if response has non-2xx HTTP CODE and body is not parsable
+     *
+     * @return void
+     */
     public function expectSuccessfull()
     {
         if ($this->isSuccessfull()) {
@@ -178,7 +189,7 @@ class ResponseValidator
 
         $data = json_decode($this->response->getBody(), true);
         if (is_array($data) && array_key_exists('error_code', $data)) {
-            throw new ConnectorException($data, new \RuntimeException());
+            throw new ConnectorException($data);
         }
 
         throw new \RuntimeException(

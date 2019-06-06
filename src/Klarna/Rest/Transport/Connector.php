@@ -25,13 +25,12 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\TransportException;
 use GuzzleHttp\Psr7\Request;
-use Klarna\Rest\Transport\Exception\ConnectorException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Transport connector used to authenticate and make HTTP requests against the
- * Klarna APIs.
+ * Klarna APIs. Transport uses Guzzle HTTP client to perform HTTP(s) calls.
  */
 class Connector implements ConnectorInterface
 {
@@ -99,8 +98,7 @@ class Connector implements ConnectorInterface
      * @param string $path URL path.
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function get($path, $headers = [])
@@ -117,8 +115,7 @@ class Connector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function post($path, $data = null, $headers = [])
@@ -135,8 +132,7 @@ class Connector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function put($path, $data = null, $headers = [])
@@ -153,8 +149,7 @@ class Connector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function patch($path, $data = null, $headers = [])
@@ -171,8 +166,7 @@ class Connector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function delete($path, $data = null, $headers = [])
@@ -219,7 +213,6 @@ class Connector implements ConnectorInterface
      * @param RequestInterface $request Request to send
      * @param string[] $options Request options
      *
-     * @throws ConnectorException If the API returned an error response
      * @throws RequestException   When an error is encountered
      * @throws \LogicException    When the adapter does not populate a response
      *

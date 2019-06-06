@@ -21,7 +21,6 @@ namespace Klarna\Rest\Transport;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
-use Klarna\Rest\Transport\Exception\ConnectorException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -60,8 +59,7 @@ interface ConnectorInterface
      * @param string $path URL path.
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * 
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function get($path, $headers = []);
@@ -73,8 +71,7 @@ interface ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function post($path, $data = null, $headers = []);
@@ -86,8 +83,7 @@ interface ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function put($path, $data = null, $headers = []);
@@ -99,8 +95,7 @@ interface ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function patch($path, $data = null, $headers = []);
@@ -112,8 +107,7 @@ interface ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function delete($path, $data = null, $headers = []);

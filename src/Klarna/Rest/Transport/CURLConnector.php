@@ -19,11 +19,9 @@
 
 namespace Klarna\Rest\Transport;
 
-use Klarna\Rest\Transport\Exception\ConnectorException;
-
 /**
  * Transport connector used to authenticate and make HTTP requests against the
- * Klarna APIs.
+ * Klarna APIs. Transport uses CURL to perform HTTP(s) calls.
  */
 class CURLConnector implements ConnectorInterface
 {
@@ -85,7 +83,8 @@ class CURLConnector implements ConnectorInterface
      * Sets CURL request options.
      *
      * @param options CURL options
-     * return self instance
+     *
+     * @return self instance
      */
     public function setOptions($options)
     {
@@ -99,8 +98,7 @@ class CURLConnector implements ConnectorInterface
      * @param string $path URL path.
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function get($path, $headers = [])
@@ -115,8 +113,6 @@ class CURLConnector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function post($path, $data = null, $headers = [])
@@ -131,8 +127,7 @@ class CURLConnector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function put($path, $data = null, $headers = [])
@@ -147,8 +142,7 @@ class CURLConnector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function patch($path, $data = null, $headers = [])
@@ -163,8 +157,7 @@ class CURLConnector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function delete($path, $data = null, $headers = [])
@@ -179,8 +172,7 @@ class CURLConnector implements ConnectorInterface
      * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
-     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     protected function request($method, $url, array $headers = [], $data = null)
@@ -280,6 +272,14 @@ class CURLConnector implements ConnectorInterface
         return new static($merchantId, $sharedSecret, $baseUrl, $userAgent);
     }
 
+    
+    /**
+     * Converts raw curl headers response to array.
+     *
+     * @param string $rawHeaders Headers part from the curl response
+     *
+     * @return array list of HTTP headers
+     */
     protected static function parseHeaders($rawHeaders)
     {
         $headers = [];

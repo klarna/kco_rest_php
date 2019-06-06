@@ -48,12 +48,10 @@ class ConnectorException extends \RuntimeException
     /**
      * Constructs a connector exception instance.
      *
-     * @param array             $data Error data
-     * @param \Exception  $prev Previous exception
+     * @param array $data Error data
      */
     public function __construct(
-        array $data,
-        \Exception $prev
+        array $data
     ) {
         $data = self::setDefaultData($data);
 
@@ -62,7 +60,7 @@ class ConnectorException extends \RuntimeException
         $message = "{$data['error_code']}: {$messages} (#{$data['correlation_id']})";
         $message .= $serviceVersion ? " ServiceVersion: $serviceVersion" : '';
 
-        parent::__construct($message, $prev->getCode(), $prev);
+        parent::__construct($message);
 
         $this->errorCode = $data['error_code'];
         $this->messages = $data['error_messages'];

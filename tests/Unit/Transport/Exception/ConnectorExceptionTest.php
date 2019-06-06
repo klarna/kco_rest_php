@@ -46,20 +46,7 @@ class ConnectorExceptionTest extends \PHPUnit_Framework_TestCase
             'service_version' => 123,
         ];
 
-        $request = $this->getMockBuilder(RequestInterface::class)
-            ->getMock();
-        $response = $this->getMockBuilder(ResponseInterface::class)
-            ->getMock();
-
-        $response->expects($this->once())
-            ->method('getStatusCode')
-            ->will($this->returnValue('500'));
-
-        $previous = new RequestException('Error', $request, $response);
-
-        $exception = new ConnectorException($data, $previous);
-
-        $this->assertEquals(500, $exception->getCode());
+        $exception = new ConnectorException($data);
 
         $this->assertContains(
             $data['error_messages'][0],
@@ -74,10 +61,28 @@ class ConnectorExceptionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($data['service_version'], $exception->getServiceVersion());
         $this->assertEquals($data['correlation_id'], $exception->getCorrelationId());
 
-        $this->assertSame($previous, $exception->getPrevious());
+        $this->assertNull($exception->getResponse());
+
         $this->assertEquals(
             'ERROR_CODE_1: Oh dear..., Oh no... (#corr_id_1) ServiceVersion: 123',
             $exception->getMessage()
+        );
+    }
+
+    public function testSingleErrorMessage()
+    {
+        $data = [
+            'error_code' => 'ERROR_CODE_1',
+            'error_message' => 'Oh dear...',
+            'correlation_id' => 'corr_id_1',
+            'service_version' => 123,
+        ];
+
+        $exception = new ConnectorException($data);
+
+        $this->assertContains(
+            $data['error_message'],
+            $exception->getMessages()
         );
     }
 }
