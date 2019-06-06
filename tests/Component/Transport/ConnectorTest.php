@@ -94,13 +94,11 @@ JSON;
         );
         $this->mock->append($response);
 
-        $this->setExpectedException(
-            'Klarna\Rest\Transport\Exception\ConnectorException',
-            'ERR_1: msg1, msg2 (#cid_1)'
-        );
-
         $request = $this->connector->createRequest('http://somewhere/path', 'POST');
-        $this->connector->send($request);
+        $response = $this->connector->send($request);
+        $this->assertEquals('500', $response->getStatusCode());
+        $this->assertEquals($json, $response->getBody()->getContents());
+        $this->assertEquals(['Content-Type' => ['application/json']], $response->getHeaders());
     }
 
     /**
@@ -113,10 +111,9 @@ JSON;
         $response = new Response(404);
         $this->mock->append($response);
 
-        $this->setExpectedException('GuzzleHttp\Exception\ClientException');
-
         $request = $this->connector->createRequest('http://somewhere/path', 'POST');
-        $this->connector->send($request);
+        $response = $this->connector->send($request);
+        $this->assertEquals('404', $response->getStatusCode());
     }
 
     /**

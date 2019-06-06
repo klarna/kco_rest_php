@@ -181,7 +181,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testStatus()
     {
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -195,7 +195,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testStatuses()
     {
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -212,7 +212,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testStatusException()
     {
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('201'));
 
@@ -231,7 +231,7 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testStatusesException()
     {
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 

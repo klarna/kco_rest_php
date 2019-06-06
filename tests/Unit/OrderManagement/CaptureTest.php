@@ -81,7 +81,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -123,7 +123,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -153,7 +153,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -191,7 +191,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('201'));
 
@@ -223,7 +223,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
         
@@ -253,7 +253,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('201'));
 
@@ -285,7 +285,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -311,7 +311,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -343,7 +343,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -370,7 +370,7 @@ class CaptureTest extends TestCase
             ->will($this->returnValue($this->response));
 
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -400,7 +400,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -424,7 +424,7 @@ class CaptureTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 

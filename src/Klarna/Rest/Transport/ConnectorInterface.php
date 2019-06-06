@@ -57,59 +57,64 @@ interface ConnectorInterface
     /**
      * Sends HTTP GET request to specified path.
      *
-     * @param path URL path.
-     * @param headers HTTP request headers
-     * @return Processed response
+     * @param string $path URL path.
+     * @param array $headers HTTP request headers
+     * @return ApiResponse Processed response
      * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function get($path, $headers = []);
 
     /**
      * Sends HTTP POST request to specified path.
      *
-     * @param path URL path.
-     * @param data Data to be sent to API server in a payload.
-     * @param headers HTTP request headers
-     * @return Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
+     * @return ApiResponse Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function post($path, $data = null, $headers = []);
 
     /**
      * Sends HTTP PUT request to specified path.
      *
-     * @param path URL path.
-     * @param data Data to be sent to API server in a payload.
-     * @param headers HTTP request headers
-     * @return Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
+     * @return ApiResponse Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function put($path, $data = null, $headers = []);
 
     /**
      * Sends HTTP PATCH request to specified path.
      *
-     * @param path URL path.
-     * @param data Data to be sent to API server in a payload.
-     * @param headers HTTP request headers
-     * @return Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
+     * @return ApiResponse Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function patch($path, $data = null, $headers = []);
 
     /**
      * Sends HTTP DELETE request to specified path.
      *
-     * @param path URL path.
-     * @param data Data to be sent to API server in a payload.
-     * @param headers HTTP request headers
-     * @return Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
+     * @return ApiResponse Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function delete($path, $data = null, $headers = []);
 }

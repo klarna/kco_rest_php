@@ -96,13 +96,12 @@ class CURLConnector implements ConnectorInterface
     /**
      * Sends HTTP GET request to specified path.
      *
-     * @param path URL path
-     * @param headers HTTP request headers
+     * @param string $path URL path.
+     * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched
-     *                      or response contains
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
-     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function get($path, $headers = [])
     {
@@ -112,13 +111,13 @@ class CURLConnector implements ConnectorInterface
     /**
      * Sends HTTP POST request to specified path.
      *
-     * @param path URL path.
-     * @param data Data to be sent to API server in a payload.
-     * @param headers HTTP request headers
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
-     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function post($path, $data = null, $headers = [])
     {
@@ -128,13 +127,13 @@ class CURLConnector implements ConnectorInterface
     /**
      * Sends HTTP PUT request to specified path.
      *
-     * @param path URL path.
-     * @param data Data to be sent to API server in a payload.
-     * @param headers HTTP request headers
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
-     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function put($path, $data = null, $headers = [])
     {
@@ -144,13 +143,13 @@ class CURLConnector implements ConnectorInterface
     /**
      * Sends HTTP PATCH request to specified path.
      *
-     * @param path URL path.
-     * @param data Data to be sent to API server in a payload.
-     * @param headers HTTP request headers
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
-     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function patch($path, $data = null, $headers = [])
     {
@@ -160,13 +159,13 @@ class CURLConnector implements ConnectorInterface
     /**
      * Sends HTTP DELETE request to specified path.
      *
-     * @param path URL path.
-     * @param data Data to be sent to API server in a payload.
-     * @param headers HTTP request headers
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
-     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function delete($path, $data = null, $headers = [])
     {
@@ -176,15 +175,13 @@ class CURLConnector implements ConnectorInterface
     /**
      * Performs HTTP(S) request.
      *
-     * @param  mixed $method HTTP method
-     * @param  mixed $url URL
-     * @param  mixed $headers Request headers
-     * @param  mixed $data Payload
-     *
-     * @return ApiResponse processed response
-     * @throws ConnectorException if API server returned non-20x HTTP CODE and response contains
+     * @param string $path URL path.
+     * @param string $data Data to be sent to API server in a payload. Example: json-encoded string
+     * @param array $headers HTTP request headers
+     * @return ApiResponse Processed response
+     * @throws ConnectorException if API server returned non-20x HTTP CODE, Content-Type mismatched or response contains
      *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
-     * @throws RuntimeException if any TCP transport issues occured or response has no parsable text
+     * @throws RuntimeException if HTTP transport failed to execute a call
      */
     protected function request($method, $url, array $headers = [], $data = null)
     {

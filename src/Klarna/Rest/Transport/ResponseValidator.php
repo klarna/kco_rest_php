@@ -121,7 +121,7 @@ class ResponseValidator
         if (!$mediaFound) {
             throw new \RuntimeException(
                 'Unexpected Content-Type header received: '
-                    . implode(',', $contentType) . '. Expected: ' . $mediaType
+                . implode(',', $contentType) . '. Expected: ' . $mediaType
             );
         }
 
@@ -183,7 +183,7 @@ class ResponseValidator
 
         throw new \RuntimeException(
             'Unexpected reponse HTTP status ' . $this->response->getStatus() .
-              '. Excepted HTTP status should be in 2xx range',
+            '. Excepted HTTP status should be in 2xx range',
             $this->response->getStatus()
         );
     }

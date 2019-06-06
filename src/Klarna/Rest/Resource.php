@@ -141,7 +141,7 @@ abstract class Resource extends \ArrayObject
      */
     protected function request($method, $url, array $headers = [], $body = null)
     {
-        $debug = true || getenv('DEBUG_SDK') || defined('DEBUG_SDK');
+        $debug = getenv('DEBUG_SDK') || defined('DEBUG_SDK');
 
         if ($debug) {
             $methodDebug = str_pad($method, 7, ' ', STR_PAD_LEFT);

@@ -57,7 +57,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -120,7 +120,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -149,7 +149,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -185,7 +185,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -209,7 +209,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -239,7 +239,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -263,7 +263,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -295,7 +295,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -321,7 +321,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -351,7 +351,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -375,7 +375,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -407,7 +407,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -433,7 +433,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -465,7 +465,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -491,7 +491,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -523,7 +523,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('201'));
 
@@ -554,7 +554,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -584,7 +584,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
 
@@ -608,7 +608,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -640,7 +640,7 @@ class OrderTest extends TestCase
             )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('201'));
 
@@ -669,7 +669,7 @@ class OrderTest extends TestCase
         )
         ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
@@ -746,7 +746,7 @@ class OrderTest extends TestCase
         )
         ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
