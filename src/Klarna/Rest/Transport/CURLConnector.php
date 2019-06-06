@@ -261,20 +261,6 @@ class CURLConnector implements ConnectorInterface
         list($rawHeaders, $content) = preg_split("/(\r?\n){2}/", $rawContent, 2);
         $headers = self::parseHeaders($rawHeaders);
 
-        if ($http_code < 200 || $http_code >= 300) {
-            // We got a bad response. Try to parse it and get the Klarna Error information
-            if (!isset($headers['Content-Type'])
-                || !in_array(self::DEFAULT_CONTENT_TYPE, $headers['Content-Type'])) {
-                throw new \RuntimeException($content, $http_code);
-            }
-
-            $data = \json_decode($response->getBody(), true);
-
-            if (!is_array($data) || !array_key_exists('error_code', $data)) {
-                throw new \RuntimeException($content, $http_code);
-            }
-            throw new ConnectorException($data, $e);
-        }
         return new ApiResponse($http_code, $content, $headers);
     }
 

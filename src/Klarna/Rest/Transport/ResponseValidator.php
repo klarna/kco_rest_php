@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Transport;
 
 use Klarna\Rest\Transport\ApiResponse;
+use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * HTTP response validator helper class.
@@ -119,7 +120,8 @@ class ResponseValidator
 
         if (!$mediaFound) {
             throw new \RuntimeException(
-                'Unexpected Content-Type header received: ' . implode(',', $contentType) . '. Expected: ' . $mediaType
+                'Unexpected Content-Type header received: '
+                    . implode(',', $contentType) . '. Expected: ' . $mediaType
             );
         }
 
@@ -166,5 +168,28 @@ class ResponseValidator
             throw new \RuntimeException('Response is missing a Location header');
         }
         return $location[0];
+    }
+
+    public function expectSuccessfull() {
+        if ($this->isSuccessfull()) {
+            return $this;
+        }
+
+        $data = json_decode($this->response->getBody(), true);
+        if (is_array($data) && array_key_exists('error_code', $data)) {
+            throw new ConnectorException($data, new \RuntimeException());
+        }
+
+        throw new \RuntimeException(
+            'Unexpected reponse HTTP status ' . $this->response->getStatus() .
+              '. Excepted HTTP status should be in 2xx range',
+            $this->response->getStatus()
+        );
+    }
+
+    public function isSuccessfull()
+    {
+        $status = $this->response->getStatus();
+        return $status >= 200 && $status < 300;
     }
 }

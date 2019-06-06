@@ -22,6 +22,8 @@ namespace Klarna\Rest\Transport;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\TransportException;
 use GuzzleHttp\Psr7\Request;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Psr\Http\Message\RequestInterface;
@@ -103,9 +105,7 @@ class Connector implements ConnectorInterface
     public function get($path, $headers = [])
     {
         $request = $this->createRequest($path, Method::GET, $headers);
-        $response = $this->send($request);
-
-        return $this->getApiResponse($response);
+        return $this->send($request);
     }
 
     /**
@@ -121,9 +121,7 @@ class Connector implements ConnectorInterface
     public function post($path, $data = null, $headers = [])
     {
         $request = $this->createRequest($path, Method::POST, $headers, $data);
-        $response = $this->send($request);
-
-        return $this->getApiResponse($response);
+        return $this->send($request);
     }
 
     /**
@@ -139,9 +137,7 @@ class Connector implements ConnectorInterface
     public function put($path, $data = null, $headers = [])
     {
         $request = $this->createRequest($path, Method::PUT, $headers, $data);
-        $response = $this->send($request);
-
-        return $this->getApiResponse($response);
+        return $this->send($request);
     }
 
     /**
@@ -157,9 +153,7 @@ class Connector implements ConnectorInterface
     public function patch($path, $data = null, $headers = [])
     {
         $request = $this->createRequest($path, Method::PATCH, $headers, $data);
-        $response = $this->send($request);
-
-        return $this->getApiResponse($response);
+        return $this->send($request);
     }
 
     /**
@@ -175,9 +169,7 @@ class Connector implements ConnectorInterface
     public function delete($path, $data = null, $headers = [])
     {
         $request = $this->createRequest($path, Method::DELETE, $headers, $data);
-        $response = $this->send($request);
-
-        return $this->getApiResponse($response);
+        return $this->send($request);
     }
 
     /**
@@ -230,27 +222,14 @@ class Connector implements ConnectorInterface
             $options = array_merge($requestOptions, $options);
         }
         $options['auth'] = [$this->merchantId, $this->sharedSecret, 'basic'];
+        $options['http_errors'] = false;
 
         try {
-            return $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
+            return $this->getApiResponse($response);
+            
         } catch (RequestException $e) {
-            if (!$e->hasResponse()) {
-                throw $e;
-            }
-
-            $response = $e->getResponse();
-
-            if (!in_array('application/json', $response->getHeader('Content-Type'))) {
-                throw $e;
-            }
-
-            $data = \json_decode($response->getBody(), true);
-
-            if (!is_array($data) || !array_key_exists('error_code', $data)) {
-                throw $e;
-            }
-
-            throw new ConnectorException($data, $e);
+            throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
 

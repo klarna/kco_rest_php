@@ -115,6 +115,7 @@ abstract class Resource extends \ArrayObject
     public function fetch()
     {
         $data = $this->get($this->getLocation())
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();
@@ -140,6 +141,21 @@ abstract class Resource extends \ArrayObject
      */
     protected function request($method, $url, array $headers = [], $body = null)
     {
+        $debug = true || getenv('DEBUG_SDK') || defined('DEBUG_SDK');
+
+        if ($debug) {
+            $methodDebug = str_pad($method, 7, ' ', STR_PAD_LEFT);
+            $debugHeaders = json_encode($headers);
+            echo <<<DEBUG_BODY
+DEBUG MODE: Request
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+{$methodDebug} : {$url}
+Headers : $debugHeaders
+   Body : {$body}
+\n
+DEBUG_BODY;
+        }
+
         switch ($method) {
             case Method::GET:
                 $response = $this->connector->get($url, $headers);
@@ -158,6 +174,17 @@ abstract class Resource extends \ArrayObject
                 break;
             default:
                 throw new \RuntimeException('Unknown request method' + $method);
+        }
+
+        if ($debug) {
+            $debugHeaders = json_encode($response->getHeaders());
+            echo <<<DEBUG_BODY
+DEBUG MODE: Response
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Headers : $debugHeaders
+   Body : {$response->getBody()}
+\n
+DEBUG_BODY;
         }
 
         $location =  $response->getLocation();
