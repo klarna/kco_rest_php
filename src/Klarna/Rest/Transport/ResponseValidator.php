@@ -170,7 +170,8 @@ class ResponseValidator
         return $location[0];
     }
 
-    public function expectSuccessfull() {
+    public function expectSuccessfull()
+    {
         if ($this->isSuccessfull()) {
             return $this;
         }

@@ -227,7 +227,6 @@ class Connector implements ConnectorInterface
         try {
             $response = $this->client->send($request, $options);
             return $this->getApiResponse($response);
-            
         } catch (RequestException $e) {
             throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
