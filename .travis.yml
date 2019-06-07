@@ -22,6 +22,7 @@ cache:
 
 before_script:
   - travis_wait 30 composer install --no-interaction
+  - [ ! -z "$CREDENTIALS" ] && echo $CREDENTIALS > credentials1.json || echo "Credentials not found. Skipping integration tests."[ ! -z "$CREDENTIALS" ] && echo $CREDENTIALS > credentials1.json || echo "Credentials not found. Skipping integration tests."
 
 script:
   - composer run check
