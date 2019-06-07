@@ -38,15 +38,17 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         $this->rootPath = dirname(dirname(__DIR__));
-        $path = getenv('CREDENTIALS');
-        if ($path === false) {
+        $this->credentials = json_decode(getenv('CREDENTIALS'), true);
+        
+        if (empty($this->credentials)) {
             $path = $this->rootPath . '/credentials.json';
+            if (file_exists($path)) {
+                $content = file_get_contents($path);
+                $this->credentials = json_decode($content, true);
+            }
         }
 
-        if (file_exists($path)) {
-            $content = file_get_contents($path);
-            $this->credentials = json_decode($content);
-
+        if (!empty($this->credentials) && is_array($this->credentials)) {
             foreach ($this->credentials as $field => $value) {
                 $field = strtoupper($field);
                 putenv("${field}=${value}");
