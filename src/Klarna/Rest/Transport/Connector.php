@@ -87,7 +87,7 @@ class Connector implements ConnectorInterface
         $this->sharedSecret = $sharedSecret;
 
         if ($userAgent === null) {
-            $userAgent = UserAgent::createDefault();
+            $userAgent = UserAgent::createDefault(['Guzzle/' . ClientInterface::VERSION]);
         }
         $this->userAgent = $userAgent;
     }

@@ -74,7 +74,7 @@ class CURLConnector implements ConnectorInterface
         $this->baseUrl = rtrim($baseUrl, '/');
 
         if ($userAgent === null) {
-            $userAgent = UserAgent::createDefault();
+            $userAgent = UserAgent::createDefault(['CURLConnector/' . curl_version()['version']]);
         }
         $this->userAgent = $userAgent;
     }
