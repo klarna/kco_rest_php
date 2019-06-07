@@ -1,3 +1,49 @@
+<!-- markdownlint-disable MD024 MD036 -->
+
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+
+## [Unreleased]
+
+This release has number of **[no-backward-compatibility]** flags. But these incompatible changes related
+only to the "under the hood" files. It means, if you operate only with high-level instances, like
+`Connector` and `Rest\`/`Checkout/Payments/OrderManagement/etc` resources (you have the code,
+like in the example files) - you are safe for upgrade.
+
+If you have your own implementation of REST API Services, HTTP Transport or Base Resource instance, 
+you need to check the code before go live.
+
+### Changed
+- Decouple the HTTP Transport Connector interface. Remove Guzzle hardcoded dependency  **[no-backward-compatibility]**
+- Decouple `ConnectorException`. Remove Guzzle hardcoded dependency **[partial-backward-compatibility]**
+  - Change the constructor signature. Replace `RequestException` exception with `int $code `
+  - `getResponse` method is not longer return Guzzle `ResponseInterface`. 
+    This method marked as deprecated and return `null`
+- Rename `Klarna/Rest/Transport/Connector.php` to `Klarna/Rest/Transport/GuzzleConnector.php` to 
+  make the name explicit. **[backward-compatible]**
+  The `Klarna/Rest/Transport/Connector.php` still exists, but marked as deprecated
+- Change the structure and return values for all the methods in `GuzzleConnector` (ex `Connector`)
+  to follow the new Connector interface. **[no-backward-compatibility]**
+- The exception throwing behavior: **[partial-backward-compatibility]**
+  - `GuzzleConnector` (ex `Connector`) not longer throws Guzzle related `RuntimeException` exceptions.
+    The Connector throws only `RuntimeException`
+  - The only two types of exceptions can be thrown by SDK now:
+    - `RuntimeException`
+    - `ConnectorException`
+
+### Added
+- Add new HTTP Transport `CURLTransport`. This transport does not require any package dependencies
+- Add PHP SDK SPL Autoloader
+- Add `ApiResponse` class to unify an HTTP Transport reponse
+- Extend `ResponseValidator` with `expectSuccessfull` and `isSuccessfull` methods. The methods allows
+  to validate the reponse code and parse the Klarna Error Message if possible
+
+
 ## v4.1.5 - 2019-05-21
 - Debug mode: Request body and headers were not displayed when getting 400 HTTP response code. Fixed;
 - Remove unused phpunit/phpcov package;
@@ -75,3 +121,5 @@
 
 ## v1.0.0 - 2014-10-16
 - **NEW MINT-1804** Support checkout v3 and ordermanagement v1 APIs - *Joakim.L*
+
+[Unreleased]: https://github.com/klarna/kco_rest_java/compare/v4.1.5...HEAD

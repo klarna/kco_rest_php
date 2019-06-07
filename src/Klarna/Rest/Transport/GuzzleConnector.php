@@ -232,6 +232,8 @@ class GuzzleConnector implements ConnectorInterface
             return $response;
         } catch (RequestException $e) {
             throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (Throwable $e) {
+            throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
