@@ -189,7 +189,7 @@ class ResponseValidator
 
         $data = json_decode($this->response->getBody(), true);
         if (is_array($data) && array_key_exists('error_code', $data)) {
-            throw new ConnectorException($data);
+            throw new ConnectorException($data, $this->response->getStatus());
         }
 
         throw new \RuntimeException(

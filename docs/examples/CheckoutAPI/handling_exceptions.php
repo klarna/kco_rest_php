@@ -54,6 +54,7 @@ try {
 } catch (ConnectorException $e) {
     echo 'Message: ' . $e->getMessage() . "\n";
     echo 'Code: ' . $e->getCode() . "\n";
+    echo 'ErrorCode: ' . $e->getErrorCode() . "\n";
     echo 'CorrelationID: ' . $e->getCorrelationId() . "\n";
     echo 'ServiceVersion: ' . $e->getServiceVersion() . "\n";
 } catch (Exception $e) {
