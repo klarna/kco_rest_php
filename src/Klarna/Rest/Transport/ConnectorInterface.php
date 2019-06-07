@@ -59,7 +59,7 @@ interface ConnectorInterface
      * @param string $path URL path.
      * @param array $headers HTTP request headers
      * @return ApiResponse Processed response
-     * 
+     *
      * @throws RuntimeException if HTTP transport failed to execute a call
      */
     public function get($path, $headers = []);
