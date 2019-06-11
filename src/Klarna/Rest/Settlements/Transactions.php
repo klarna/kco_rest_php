@@ -22,7 +22,7 @@ namespace Klarna\Rest\Settlements;
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Exceptions\NotApplicableException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -40,9 +40,9 @@ class Transactions extends Resource
     /**
      * Constructs a Transactions instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      */
-    public function __construct(Connector $connector)
+    public function __construct(ConnectorInterface $connector)
     {
         parent::__construct($connector);
     }
@@ -76,6 +76,7 @@ class Transactions extends Resource
     public function getTransactions(array $params = [])
     {
         return $this->get(self::$path . '?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

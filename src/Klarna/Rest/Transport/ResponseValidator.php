@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 Klarna AB
+ * Copyright 2019 Klarna AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,8 @@
 
 namespace Klarna\Rest\Transport;
 
-use Psr\Http\Message\ResponseInterface;
+use Klarna\Rest\Transport\ApiResponse;
+use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * HTTP response validator helper class.
@@ -29,16 +30,16 @@ class ResponseValidator
     /**
      * HTTP response to validate against.
      *
-     * @var ResponseInterface
+     * @var ApiResponse
      */
     protected $response;
 
     /**
      * Constructs a response validator instance.
      *
-     * @param ResponseInterface $response Response to validate
+     * @param ApiResponse $response Response to validate
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(ApiResponse $response)
     {
         $this->response = $response;
     }
@@ -46,7 +47,7 @@ class ResponseValidator
     /**
      * Gets the response object.
      *
-     * @return ResponseInterface
+     * @return ApiResponse
      */
     public function getResponse()
     {
@@ -64,7 +65,7 @@ class ResponseValidator
      */
     public function status($status)
     {
-        $httpStatus = (string) $this->response->getStatusCode();
+        $httpStatus = (string) $this->response->getStatus();
         if (is_array($status) && !in_array($httpStatus, $status)) {
             throw new \RuntimeException(
                 "Unexpected response status code: {$httpStatus}"
@@ -105,11 +106,10 @@ class ResponseValidator
      */
     public function contentType($mediaType)
     {
-        if (!$this->response->hasHeader('Content-Type')) {
+        $contentType = $this->response->getHeader('Content-Type');
+        if (empty($contentType)) {
             throw new \RuntimeException('Response is missing a Content-Type header');
         }
-
-        $contentType = $this->response->getHeader('Content-Type');
         $mediaFound = false;
         foreach ($contentType as $type) {
             if (preg_match('#' . $mediaType . '#', $type)) {
@@ -120,7 +120,8 @@ class ResponseValidator
 
         if (!$mediaFound) {
             throw new \RuntimeException(
-                'Unexpected Content-Type header received: ' . implode(',', $contentType) . '. Expected: ' . $mediaType
+                'Unexpected Content-Type header received: '
+                . implode(',', $contentType) . '. Expected: ' . $mediaType
             );
         }
 
@@ -162,10 +163,45 @@ class ResponseValidator
      */
     public function getLocation()
     {
-        if (!$this->response->hasHeader('Location')) {
+        $location = $this->response->getHeader('Location');
+        if (empty($location)) {
             throw new \RuntimeException('Response is missing a Location header');
         }
+        return $location[0];
+    }
 
-        return $this->response->getHeader('Location')[0];
+    
+    /**
+     * Asserts and analyze the response. Checks if the reponse has SUCCESSFULL family
+     * and try to parse the Klarna error message if possbile.
+     *
+     * @throws ConnectorException if response has non-2xx HTTP CODE and contains
+     *                      a <a href="https://developers.klarna.com/api/#errors">Error</a>
+     * @throws \RuntimeException if response has non-2xx HTTP CODE and body is not parsable
+     *
+     * @return void
+     */
+    public function expectSuccessfull()
+    {
+        if ($this->isSuccessfull()) {
+            return $this;
+        }
+
+        $data = json_decode($this->response->getBody(), true);
+        if (is_array($data) && array_key_exists('error_code', $data)) {
+            throw new ConnectorException($data, $this->response->getStatus());
+        }
+
+        throw new \RuntimeException(
+            'Unexpected reponse HTTP status ' . $this->response->getStatus() .
+            '. Excepted HTTP status should be in 2xx range',
+            $this->response->getStatus()
+        );
+    }
+
+    public function isSuccessfull()
+    {
+        $status = $this->response->getStatus();
+        return $status >= 200 && $status < 300;
     }
 }

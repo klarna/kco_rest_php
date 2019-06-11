@@ -47,7 +47,7 @@ $customUserAgent->setField('Hello', 'World');
 
 // Headers: "User-Agent": ["Platform/MyCustomShop_1.2.3.4.5 (seoAddon; promo) PHP/Version_5.4 Hello/World"]
 
-$connector = Klarna\Rest\Transport\Connector::create(
+$connector = Klarna\Rest\Transport\GuzzleConnector::create(
     $merchantId,
     $sharedSecret,
     $apiEndpoint,

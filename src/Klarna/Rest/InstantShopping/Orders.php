@@ -21,7 +21,7 @@ namespace Klarna\Rest\InstantShopping;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -42,10 +42,10 @@ class Orders extends Resource
     /**
      * Constructs an Order instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $authorizationToken Authorization Token
      */
-    public function __construct(Connector $connector, $authorizationToken)
+    public function __construct(ConnectorInterface $connector, $authorizationToken)
     {
         parent::__construct($connector);
 
@@ -94,6 +94,7 @@ class Orders extends Resource
     public function decline(array $data = null)
     {
         $this->delete($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -120,6 +121,7 @@ class Orders extends Resource
     public function approve(array $data)
     {
         return $this->post($this->getLocation() . '/orders', $data)
+            ->expectSuccessfull()
             ->status('200')
             ->getJson();
     }

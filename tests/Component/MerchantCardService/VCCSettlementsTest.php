@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Tests\Component\MerchantCardService;
 
 use GuzzleHttp\Psr7\Response;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\MerchantCardService\VCCSettlements;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
@@ -58,7 +59,7 @@ JSON;
         $this->assertEquals('b0ec0bbd-534c-4b1c-b28a-628bf33c3324', $data['settlement_id']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/merchantcard/v3/settlements', $request->getUri()->getPath());
         $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
         $this->assertEquals('{"order_id":"12345","key_id":"asdfg-12345"}', strval($request->getBody()));
@@ -107,7 +108,7 @@ JSON;
         $this->assertEquals('b0ec0bbd-534c-4b1c-b28a-628bf33c3324', $data['settlement_id']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertTrue($request->hasHeader('KeyId'));
         $this->assertEquals('secret-key', $request->getHeader('KeyId')[0]);
         $this->assertEquals('/merchantcard/v3/settlements/settlement-id-123', $request->getUri()->getPath());
@@ -142,7 +143,7 @@ JSON;
         $this->assertEquals('b0ec0bbd-534c-4b1c-b28a-628bf33c3324', $data['settlement_id']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertTrue($request->hasHeader('KeyId'));
         $this->assertEquals('secret-key', $request->getHeader('KeyId')[0]);
         $this->assertEquals('/merchantcard/v3/settlements/order/order-id-123', $request->getUri()->getPath());

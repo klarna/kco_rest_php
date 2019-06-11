@@ -19,6 +19,8 @@
 
 namespace Klarna\Rest\Tests\Unit\Transport;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Tests\Unit\TestCase;
@@ -29,7 +31,7 @@ use Klarna\Rest\Transport\UserAgent;
 /**
  * Unit test cases for the connector class.
  */
-class ConnectorTest extends TestCase
+class GuzzleConnectorTest extends TestCase
 {
     const USERNAME = '1234';
 
@@ -43,6 +45,9 @@ class ConnectorTest extends TestCase
      * @var Connector
      */
     protected $object;
+
+    protected $request;
+    protected $response;
 
     /**
      * @var \GuzzleHttp\ClientInterface
@@ -60,6 +65,9 @@ class ConnectorTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+
+        $this->request = $this->getMockBuilder(RequestInterface::class)->getMock();
+        $this->response = $this->getMockBuilder(ResponseInterface::class)->getMock();
 
         $this->client = $this->getMockBuilder(ClientInterface::class)
             ->getMock();
@@ -115,7 +123,7 @@ class ConnectorTest extends TestCase
             ->will($this->throwException($exception));
 
         $this->setExpectedException(
-            'GuzzleHttp\Exception\RequestException',
+            'RuntimeException',
             'Something went terribly wrong'
         );
 
@@ -129,11 +137,6 @@ class ConnectorTest extends TestCase
      */
     public function testSendConnectorExceptionNoJson()
     {
-        $this->response->expects($this->once())
-            ->method('getHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue([]));
-
         $exception = new RequestException(
             'Something went terribly wrong',
             $this->request,
@@ -146,7 +149,7 @@ class ConnectorTest extends TestCase
             ->will($this->throwException($exception));
 
         $this->setExpectedException(
-            'GuzzleHttp\Exception\RequestException',
+            'RuntimeException',
             'Something went terribly wrong'
         );
 
@@ -161,12 +164,6 @@ class ConnectorTest extends TestCase
      */
     public function testSendConnectorExceptionEmptyJson()
     {
-        $this->response->expects($this->once())
-            ->method('getHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(['application/json']));
-
-
         $exception = new RequestException(
             'Something went terribly wrong',
             $this->request,
@@ -179,7 +176,7 @@ class ConnectorTest extends TestCase
             ->will($this->throwException($exception));
 
         $this->setExpectedException(
-            'GuzzleHttp\Exception\RequestException',
+            'RuntimeException',
             'Something went terribly wrong'
         );
 
@@ -193,17 +190,6 @@ class ConnectorTest extends TestCase
      */
     public function testSendConnectorExceptionMissingFields()
     {
-        $this->response->expects($this->once())
-            ->method('getHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(['application/json']));
-
-        $data = [];
-
-        $this->response->expects($this->once())
-            ->method('getBody')
-            ->will($this->returnValue(\json_encode($data)));
-
         $exception = new RequestException(
             'Something went terribly wrong',
             $this->request,
@@ -216,7 +202,7 @@ class ConnectorTest extends TestCase
             ->will($this->throwException($exception));
 
         $this->setExpectedException(
-            'GuzzleHttp\Exception\RequestException',
+            'RuntimeException',
             'Something went terribly wrong'
         );
 
@@ -230,11 +216,6 @@ class ConnectorTest extends TestCase
      */
     public function testSendConnectorException()
     {
-        $this->response->expects($this->once())
-            ->method('getHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(['application/json']));
-
         $data = [
             'error_code' => 'ERROR_CODE_1',
             'error_messages' => [
@@ -243,10 +224,6 @@ class ConnectorTest extends TestCase
             ],
             'correlation_id' => 'corr_id_1'
         ];
-
-        $this->response->expects($this->once())
-            ->method('getBody')
-            ->will($this->returnValue(json_encode($data)));
 
         $exception = new RequestException(
             'Something went terribly wrong',
@@ -260,8 +237,8 @@ class ConnectorTest extends TestCase
             ->will($this->throwException($exception));
 
         $this->setExpectedException(
-            'Klarna\Rest\Transport\Exception\ConnectorException',
-            'ERROR_CODE_1: Oh dear..., Oh no... (#corr_id_1)'
+            'RuntimeException',
+            'Something went terribly wrong'
         );
 
         $this->object->send($this->request);

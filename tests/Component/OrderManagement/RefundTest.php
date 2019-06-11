@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Tests\Component\OrderManagement;
 
 use GuzzleHttp\Psr7\Response;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\OrderManagement\Refund;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
@@ -59,7 +60,7 @@ JSON;
         $this->assertEquals('123456', $refund->getId());
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertEquals('/path/refunds/123456', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);
@@ -84,7 +85,7 @@ JSON;
         $this->assertEquals('/path/to/order/order-id-7/refunds/new-refund-id', $location);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/path/to/order/order-id-7/refunds', $request->getUri()->getPath());
         $this->assertEquals(['application/json'], $request->getHeader('Content-Type'));
         $this->assertEquals('{"refunded_amount":"100"}', strval($request->getBody()));

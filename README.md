@@ -23,6 +23,7 @@ SDK covers all of Klarna API: https://developers.klarna.com/api/
 ### Prerequisites
 * PHP 5.5 or above
 * [API credentials](#api-credentials)
+* [Composer](https://getcomposer.org/) (optional)
 
 
 ### API Credentials
@@ -33,24 +34,20 @@ Register here to be able to test your SDK integration before go live:
 - https://playground.eu.portal.klarna.com/developer-sign-up - for EU countries
 - https://playground.us.portal.klarna.com/developer-sign-up - for the US
 
-Later you need to register as a Klarna merchant to get a production credentials
-
-- https://developers.klarna.com/en/gb/kco-v3
-
-
-
 
 ## PHP SDK Installation and Usage
 
+### Install via Composer
+
 To install the PHP SDK from the Central Composer repository use composer:
 
-```
+```shell
 composer require klarna/kco_rest
 ```
 
 Highly recommended to use version tag when installing SDK.
 
-```
+```shell
 composer require klarna/kco_rest:1.2.3.4
 ```
 
@@ -59,13 +56,30 @@ https://packagist.org/packages/klarna/kco_rest
 
 Include the SDK into your PHP file using the Composer autoloader:
 
-```
+```php
 <?php
 
 require('vendor/autoload.php');
 ```
 
+### Manual installation
 
+To install the PHP SDK manually you need to clone the repo to any folder on your machine:
+```shell
+git clone git@github.com:klarna/kco_rest_php.git /path/to/some/folder/kco_rest_php
+```
+
+Include the SDK into your PHP file using the SDK autoloader:
+```php
+<?php
+
+require('/path/to/some/folder/kco_rest_php/src/autoload.php');
+```
+
+---
+⚠️**Warning**: Using manually installed SDK requires you to use the CURLTransport instance to send HTTP requests.
+
+Read more about [How to use HTTP Transport](docs/http_transport.md)
 
 ## Documentation and Examples
 
@@ -81,13 +95,13 @@ Additional documentation can be found at https://developers.klarna.com.
 
 PHP SDK logs information to STDOUT/STDERR. To enable debug mode, set DEBUG_SDK environment variable:
 
-```
+```shell
 $ DEBUG_SDK=true php <your_program.php>
 ```
 
 or
 
-```
+```shell
 $ export DEBUG_SDK=1
 $ php <your_program.php>
 ```

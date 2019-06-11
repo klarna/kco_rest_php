@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * File containing the Connector class.
+ * File containing the abstract base resource class.
  */
 
-namespace Klarna\Rest\Transport;
+spl_autoload_register(function ($class_path) {
+    $baseDir = __DIR__;
 
-/**
- * DEPRECATED: Transport connector used to authenticate and make HTTP requests against the
- * Klarna APIs. Transport uses Guzzle HTTP client to perform HTTP(s) calls.
- *
- * @deprecated Use GuzzleConnector class instead. Keeps for the backward-compatibility purposes only.
- */
-class Connector extends GuzzleConnector
-{
-}
+    $parts = explode('\\', $class_path);
+    $class_name = array_pop($parts) . '.php';
+    $path = implode(DIRECTORY_SEPARATOR, $parts);
+    $path .= DIRECTORY_SEPARATOR . $class_name;
+    if (file_exists($baseDir . DIRECTORY_SEPARATOR . $path)) {
+        require_once $baseDir . DIRECTORY_SEPARATOR . $path;
+    }
+});

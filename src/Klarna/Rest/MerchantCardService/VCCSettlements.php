@@ -21,7 +21,7 @@ namespace Klarna\Rest\MerchantCardService;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Exceptions\NotApplicableException;
 
@@ -43,10 +43,10 @@ class VCCSettlements extends Resource
     /**
      * Constructs a session instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $sessionId   Session ID
      */
-    public function __construct(Connector $connector)
+    public function __construct(ConnectorInterface $connector)
     {
         parent::__construct($connector);
     }
@@ -79,6 +79,7 @@ class VCCSettlements extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('201')
             ->contentType('application/json')
             ->getJson();
@@ -108,7 +109,9 @@ class VCCSettlements extends Resource
             'GET',
             self::$path . "/$settlementId",
             ['KeyId' => $keyId]
-        )->status('200')
+        )
+        ->expectSuccessfull()
+        ->status('200')
         ->contentType('application/json')
         ->getJson();
 
@@ -137,7 +140,9 @@ class VCCSettlements extends Resource
             'GET',
             self::$path . "/order/$orderId",
             ['KeyId' => $keyId]
-        )->status('200')
+        )
+        ->expectSuccessfull()
+        ->status('200')
         ->contentType('application/json')
         ->getJson();
 

@@ -23,6 +23,7 @@ use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\OrderManagement\Capture;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -74,26 +75,16 @@ class CaptureTest extends TestCase
     public function testFetch()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::GET)
             ->with(
                 '/orders/1/captures/2',
-                'GET'
+                []
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
-
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(true));
 
         $this->response->expects($this->once())
             ->method('getHeader')
@@ -126,20 +117,15 @@ class CaptureTest extends TestCase
     public function testFetchInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::GET)
             ->with(
                 '/orders/1/captures/2',
-                'GET'
+                []
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('204'));
 
         $capture = new Capture($this->connector, '/orders/1', '2');
@@ -161,26 +147,16 @@ class CaptureTest extends TestCase
     public function testFetchNotJson()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::GET)
             ->with(
                 '/orders/1/captures/2',
-                'GET'
+                []
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
-
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(true));
 
         $this->response->expects($this->once())
             ->method('getHeader')
@@ -208,28 +184,17 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures',
-                'POST',
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
+                json_encode($data),
+                ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('201'));
-
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Location')
-            ->will($this->returnValue(true));
 
         $this->response->expects($this->once())
             ->method('getHeader')
@@ -251,18 +216,18 @@ class CaptureTest extends TestCase
     public function testCreateInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
+            ->method(Method::POST)
+            ->with(
+                '/orders/1/captures',
+                '{"data":"goes here"}',
+                ['Content-Type' => 'application/json']
+            )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('204'));
-
+        
         $capture = new Capture($this->connector, '/orders/1');
 
         $this->setExpectedException(
@@ -281,22 +246,17 @@ class CaptureTest extends TestCase
     public function testCreateNoLocation()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
+            ->method(Method::POST)
+            ->with(
+                '/orders/1/captures',
+                '{"data":"goes here"}',
+                ['Content-Type' => 'application/json']
+            )
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('201'));
-
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Location')
-            ->will($this->returnValue(false));
 
         $capture = new Capture($this->connector, '/orders/1');
 
@@ -318,22 +278,16 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures/2/shipping-info',
-                'POST',
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
+                '{"data":"goes here"}',
+                ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('204'));
 
         $capture = new Capture($this->connector, '/orders/1', '2');
@@ -350,22 +304,16 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures/2/shipping-info',
-                'POST',
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
+                '{"data":"goes here"}',
+                ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
 
         $capture = new Capture($this->connector, '/orders/1', '2');
@@ -388,22 +336,16 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::PATCH)
             ->with(
                 '/orders/1/captures/2/customer-details',
-                'PATCH',
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
+                '{"data":"goes here"}',
+                ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('204'));
 
         $capture = new Capture($this->connector, '/orders/1', '2');
@@ -420,22 +362,17 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::PATCH)
             ->with(
                 '/orders/1/captures/2/customer-details',
-                'PATCH',
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
+                '{"data":"goes here"}',
+                ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
 
         $capture = new Capture($this->connector, '/orders/1', '2');
@@ -456,21 +393,16 @@ class CaptureTest extends TestCase
     public function testTriggerSendout()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures/2/trigger-send-out',
-                'POST',
+                '',
                 ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('204'));
 
         $capture = new Capture($this->connector, '/orders/1', '2');
@@ -485,21 +417,16 @@ class CaptureTest extends TestCase
     public function testTriggerSendoutInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures/2/trigger-send-out',
-                'POST',
+                '',
                 ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
 
         $capture = new Capture($this->connector, '/orders/1', '2');

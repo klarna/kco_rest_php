@@ -39,7 +39,7 @@ NA_TEST_BASE_URL = 'https://api-na.playground.klarna.com'
 */
 $apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
 
-$connector = Klarna\Rest\Transport\Connector::create(
+$connector = Klarna\Rest\Transport\GuzzleConnector::create(
     $merchantId,
     $sharedSecret,
     $apiEndpoint
@@ -55,7 +55,6 @@ try {
     ];
     $orderApi->decline($data);
     echo 'The order has been declined';
-    
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }

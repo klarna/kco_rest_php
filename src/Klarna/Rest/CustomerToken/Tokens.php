@@ -21,7 +21,7 @@ namespace Klarna\Rest\CustomerToken;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -49,10 +49,10 @@ class Tokens extends Resource
     /**
      * Constructs a Tokens instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $customerToken   Customer Token
      */
-    public function __construct(Connector $connector, $customerToken)
+    public function __construct(ConnectorInterface $connector, $customerToken)
     {
         parent::__construct($connector);
 
@@ -87,6 +87,7 @@ class Tokens extends Resource
             $headers,
             $data !== null ? \json_encode($data) : null
         )
+        ->expectSuccessfull()
         ->status('200')
         ->contentType('application/json')
         ->getJson();
@@ -107,6 +108,7 @@ class Tokens extends Resource
     public function updateTokenStatus(array $data)
     {
         $this->patch($this->getLocation() . '/status', $data)
+            ->expectSuccessfull()
             ->status('202');
 
         return $this;

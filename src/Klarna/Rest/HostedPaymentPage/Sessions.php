@@ -21,7 +21,7 @@ namespace Klarna\Rest\HostedPaymentPage;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Exceptions\NotApplicableException;
 
@@ -43,10 +43,10 @@ class Sessions extends Resource
     /**
      * Constructs a session instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $sessionId   Session ID
      */
-    public function __construct(Connector $connector, $sessionId = null)
+    public function __construct(ConnectorInterface $connector, $sessionId = null)
     {
         parent::__construct($connector);
 
@@ -74,6 +74,7 @@ class Sessions extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('201')
             ->contentType('application/json')
             ->getJson();
@@ -102,6 +103,7 @@ class Sessions extends Resource
         }
 
         $this->delete($this->getLocation())
+            ->expectSuccessfull()
             ->status('204');
 
         return $this;
@@ -126,6 +128,7 @@ class Sessions extends Resource
     public function distributeLink(array $data)
     {
         $this->post($this->getLocation() . '/distribution', $data)
+            ->expectSuccessfull()
             ->status(['200', '201']);
 
         return $this;

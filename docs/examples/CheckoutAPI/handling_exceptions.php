@@ -40,7 +40,7 @@ NA_TEST_BASE_URL = 'https://api-na.playground.klarna.com'
 */
 $apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
 
-$connector = Klarna\Rest\Transport\Connector::create(
+$connector = Klarna\Rest\Transport\GuzzleConnector::create(
     $merchantId,
     $sharedSecret,
     $apiEndpoint
@@ -54,6 +54,7 @@ try {
 } catch (ConnectorException $e) {
     echo 'Message: ' . $e->getMessage() . "\n";
     echo 'Code: ' . $e->getCode() . "\n";
+    echo 'ErrorCode: ' . $e->getErrorCode() . "\n";
     echo 'CorrelationID: ' . $e->getCorrelationId() . "\n";
     echo 'ServiceVersion: ' . $e->getServiceVersion() . "\n";
 } catch (Exception $e) {

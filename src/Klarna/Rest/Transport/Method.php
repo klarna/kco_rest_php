@@ -14,17 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * File containing the Connector class.
+ * File containing the Connector interface.
  */
 
 namespace Klarna\Rest\Transport;
 
-/**
- * DEPRECATED: Transport connector used to authenticate and make HTTP requests against the
- * Klarna APIs. Transport uses Guzzle HTTP client to perform HTTP(s) calls.
- *
- * @deprecated Use GuzzleConnector class instead. Keeps for the backward-compatibility purposes only.
- */
-class Connector extends GuzzleConnector
+class Method
 {
+    const GET = 'GET';
+    const POST = 'POST';
+    const PUT = 'PUT';
+    const DELETE = 'DELETE';
+    const PATCH = 'PATCH';
 }

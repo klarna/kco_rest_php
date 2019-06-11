@@ -22,7 +22,7 @@ namespace Klarna\Rest\Settlements;
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Exceptions\NotApplicableException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -47,9 +47,9 @@ class Payouts extends Resource
     /**
      * Constructs Payouts instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      */
-    public function __construct(Connector $connector)
+    public function __construct(ConnectorInterface $connector)
     {
         parent::__construct($connector);
     }
@@ -81,6 +81,7 @@ class Payouts extends Resource
     public function getPayout($paymentReference)
     {
         return $this->get(self::$path . "/{$paymentReference}")
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();
@@ -105,6 +106,7 @@ class Payouts extends Resource
     public function getAllPayouts(array $params = [])
     {
         return $this->get(self::$path . '?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();
@@ -129,6 +131,7 @@ class Payouts extends Resource
     public function getSummary(array $params = [])
     {
         return $this->get(self::$path . '/summary?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

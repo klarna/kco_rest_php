@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Tests\Component\OrderManagement;
 
 use GuzzleHttp\Psr7\Response;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\OrderManagement\Capture;
 use Klarna\Rest\OrderManagement\Order;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
@@ -73,7 +74,7 @@ JSON;
         $this->assertEquals('0002', $order->getId());
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertEquals('/ordermanagement/v1/orders/0002', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);
@@ -98,7 +99,7 @@ JSON;
         $order->acknowledge();
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/acknowledge',
             $request->getUri()->getPath()
@@ -120,7 +121,7 @@ JSON;
         $order->cancel();
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/cancel',
             $request->getUri()->getPath()
@@ -142,7 +143,7 @@ JSON;
         $order->extendAuthorizationTime();
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/extend-authorization-time',
             $request->getUri()->getPath()
@@ -165,7 +166,7 @@ JSON;
         $order->releaseRemainingAuthorization();
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/release-remaining-authorization',
             $request->getUri()->getPath()
@@ -187,7 +188,7 @@ JSON;
         $order->updateAuthorization(['data' => 'sent in']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('PATCH', $request->getMethod());
+        $this->assertEquals(Method::PATCH, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/authorization',
             $request->getUri()->getPath()
@@ -212,7 +213,7 @@ JSON;
         $order->updateMerchantReferences(['data' => 'sent in']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('PATCH', $request->getMethod());
+        $this->assertEquals(Method::PATCH, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/merchant-references',
             $request->getUri()->getPath()
@@ -237,7 +238,7 @@ JSON;
         $order->updateCustomerDetails(['data' => 'sent in']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('PATCH', $request->getMethod());
+        $this->assertEquals(Method::PATCH, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/customer-details',
             $request->getUri()->getPath()
@@ -264,7 +265,7 @@ JSON;
         $this->assertInstanceOf('Klarna\Rest\OrderManagement\Refund', $refund);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/refunds',
             $request->getUri()->getPath()
@@ -379,7 +380,7 @@ JSON;
         $this->assertEquals('http://somewhere/a-path', $capture->getLocation());
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/captures',
             $request->getUri()->getPath()

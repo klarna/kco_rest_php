@@ -21,7 +21,7 @@ namespace Klarna\Rest\Checkout;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -48,10 +48,10 @@ class Order extends Resource
     /**
      * Constructs an order instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $orderId   Order ID
      */
-    public function __construct(Connector $connector, $orderId = null)
+    public function __construct(ConnectorInterface $connector, $orderId = null)
     {
         parent::__construct($connector);
 
@@ -77,6 +77,7 @@ class Order extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('201')
             ->contentType('application/json');
 
@@ -103,6 +104,7 @@ class Order extends Resource
     public function update(array $data)
     {
         $response = $this->post($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

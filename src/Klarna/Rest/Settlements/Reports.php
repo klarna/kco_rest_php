@@ -22,7 +22,7 @@ namespace Klarna\Rest\Settlements;
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Exceptions\NotApplicableException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -41,9 +41,9 @@ class Reports extends Resource
     /**
      * Constructs a Reports instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      */
-    public function __construct(Connector $connector)
+    public function __construct(ConnectorInterface $connector)
     {
         parent::__construct($connector);
     }
@@ -75,6 +75,7 @@ class Reports extends Resource
     public function getCSVPayoutReport($paymentReference)
     {
         return $this->get(self::$path . "/payout-with-transactions?payment_reference={$paymentReference}")
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('text/csv')
             ->getBody();
@@ -97,6 +98,7 @@ class Reports extends Resource
     public function getPDFPayoutReport($paymentReference)
     {
         return $this->get(self::$path . "/payout?payment_reference={$paymentReference}")
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/pdf')
             ->getBody();
@@ -121,6 +123,7 @@ class Reports extends Resource
     public function getCSVPayoutsSummaryReport(array $params = [])
     {
         return $this->get(self::$path . '/payouts-summary-with-transactions?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('text/csv')
             ->getBody();
@@ -145,6 +148,7 @@ class Reports extends Resource
     public function getPDFPayoutsSummaryReport(array $params = [])
     {
         return $this->get(self::$path . '/payouts-summary?' . http_build_query($params))
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/pdf')
             ->getBody();

@@ -21,6 +21,7 @@ namespace Klarna\Rest\Tests\Component\HostedPaymentPage;
 
 use GuzzleHttp\Psr7\Response;
 use Klarna\Rest\HostedPaymentPage\Sessions;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
 /**
@@ -54,7 +55,7 @@ JSON;
         $this->assertEquals(null, $session->getId());
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/hpp/v1/sessions', $request->getUri()->getPath());
         $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
         $this->assertEquals('{"data":"goes here"}', strval($request->getBody()));
@@ -81,7 +82,7 @@ JSON;
         $this->assertEquals('session-id-123', $session->getId());
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/hpp/v1/sessions/session-id-123/distribution', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);
@@ -114,7 +115,7 @@ JSON;
         $this->assertEquals('COMPLETED', $data['status']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertEquals('/hpp/v1/sessions/session-id-123', $request->getUri()->getPath());
         $this->assertEquals('', strval($request->getBody()));
 
@@ -138,7 +139,7 @@ JSON;
         $session->disable();
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('DELETE', $request->getMethod());
+        $this->assertEquals(Method::DELETE, $request->getMethod());
         $this->assertEquals('/hpp/v1/sessions/session-id-123', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);

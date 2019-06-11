@@ -21,7 +21,7 @@ namespace Klarna\Rest\InstantShopping;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Resource;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -42,11 +42,11 @@ class ButtonKeys extends Resource
     /**
      * Constructs a ButtonKey instance.
      *
-     * @param Connector $connector HTTP transport connector
+     * @param ConnectorInterface $connector HTTP transport connector
      * @param string    $buttonKey Button identifier
      * @param string    $key Button key based on setup options
      */
-    public function __construct(Connector $connector, $buttonKey = null)
+    public function __construct(ConnectorInterface $connector, $buttonKey = null)
     {
         parent::__construct($connector);
 
@@ -73,6 +73,7 @@ class ButtonKeys extends Resource
     public function create(array $data)
     {
         $response = $this->post(self::$path, $data)
+            ->expectSuccessfull()
             ->status('201')
             ->contentType('application/json');
 
@@ -104,6 +105,7 @@ class ButtonKeys extends Resource
         }
 
         return $this->put($this->getLocation(), $data)
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();

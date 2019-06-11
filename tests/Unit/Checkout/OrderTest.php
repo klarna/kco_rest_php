@@ -21,6 +21,7 @@ namespace Klarna\Tests\Unit\Rest\Checkout;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Checkout\Order;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
@@ -56,31 +57,21 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::POST)
             ->with(
                 '/checkout/v3/orders',
-                'POST',
-                ['Content-Type' => 'application/json'],
-                \json_encode($data)
+                \json_encode($data),
+                ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('201'));
 
         $this->response->expects($this->once())
             ->method('getBody')
             ->will($this->returnValue('{}'));
-
-        $this->response->method('hasHeader')
-            ->withConsecutive(['Content-Type'], ['Location'])
-            ->willReturnOnConsecutiveCalls(true, true);
 
         $this->response->method('getHeader')
             ->withConsecutive(['Content-Type'], ['Location'])
@@ -101,16 +92,11 @@ class OrderTest extends TestCase
     public function testCreateInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('204'));
 
         $order = new Order($this->connector);
@@ -131,21 +117,12 @@ class OrderTest extends TestCase
     public function testCreateNoContentType()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('201'));
-
-        $this->response->method('hasHeader')
-            ->withConsecutive(['Content-Type'], ['Location'])
-            ->willReturnOnConsecutiveCalls(false, true);
 
         $this->response->method('getHeader')
             ->withConsecutive(['Content-Type'], ['Location'])
@@ -169,25 +146,16 @@ class OrderTest extends TestCase
     public function testCreateNoLocation()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('201'));
 
         $this->response->expects($this->once())
             ->method('getBody')
             ->will($this->returnValue('{}'));
-
-        $this->response->method('hasHeader')
-            ->withConsecutive(['Content-Type'], ['Location'])
-            ->willReturnOnConsecutiveCalls(true, false);
 
         $this->response->method('getHeader')
             ->withConsecutive(['Content-Type'], ['Location'])
@@ -213,28 +181,17 @@ class OrderTest extends TestCase
         $updateData = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::POST)
             ->with(
                 '/checkout/v3/orders/12345',
-                'POST',
-                ['Content-Type' => 'application/json'],
-                \json_encode($updateData)
+                \json_encode($updateData),
+                ['Content-Type' => 'application/json']
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
-
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(true));
 
         $this->response->expects($this->once())
             ->method('getHeader')
@@ -268,16 +225,11 @@ class OrderTest extends TestCase
     public function testUpdateInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('204'));
 
         $order = new Order($this->connector);
@@ -298,22 +250,12 @@ class OrderTest extends TestCase
     public function testUpdateNotJson()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
-
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(true));
 
         $this->response->expects($this->once())
             ->method('getHeader')
@@ -338,27 +280,16 @@ class OrderTest extends TestCase
     public function testFetch()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::GET)
             ->with(
                 '/checkout/v3/orders/12345',
-                'GET',
                 []
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
-
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(true));
 
         $this->response->expects($this->once())
             ->method('getHeader')
@@ -391,21 +322,15 @@ class OrderTest extends TestCase
     public function testFetchInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::GET)
             ->with(
                 '/checkout/v3/orders/12345',
-                'GET',
                 []
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('204'));
 
         $order = new Order($this->connector, '12345');
@@ -427,27 +352,16 @@ class OrderTest extends TestCase
     public function testFetchNotJson()
     {
         $this->connector->expects($this->once())
-            ->method('createRequest')
+            ->method(Method::GET)
             ->with(
                 '/checkout/v3/orders/12345',
-                'GET',
                 []
             )
-            ->will($this->returnValue($this->request));
-
-        $this->connector->expects($this->once())
-            ->method('send')
-            ->with($this->request)
             ->will($this->returnValue($this->response));
 
-        $this->response->expects($this->once())
-            ->method('getStatusCode')
+        $this->response->expects($this->any())
+            ->method('getStatus')
             ->will($this->returnValue('200'));
-
-        $this->response->expects($this->once())
-            ->method('hasHeader')
-            ->with('Content-Type')
-            ->will($this->returnValue(true));
 
         $this->response->expects($this->once())
             ->method('getHeader')

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 Klarna AB
+ * Copyright 2019 Klarna AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,8 @@
 namespace Klarna\Rest;
 
 use GuzzleHttp\Exception\RequestException;
-use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\ConnectorInterface;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Rest\Transport\ResponseValidator;
 
@@ -58,9 +59,9 @@ abstract class Resource extends \ArrayObject
     /**
      * Constructs a resource instance.
      *
-     * @param Connector $connector HTTP transport instance.
+     * @param ConnectorInterface $connector HTTP transport instance.
      */
-    public function __construct(Connector $connector)
+    public function __construct(ConnectorInterface $connector)
     {
         $this->connector = $connector;
     }
@@ -114,6 +115,7 @@ abstract class Resource extends \ArrayObject
     public function fetch()
     {
         $data = $this->get($this->getLocation())
+            ->expectSuccessfull()
             ->status('200')
             ->contentType('application/json')
             ->getJson();
@@ -137,33 +139,41 @@ abstract class Resource extends \ArrayObject
      * @return ResponseValidator When the API replies with an error response
      *
      */
-    protected function request($method, $url, array $headers = [], $body = '')
+    protected function request($method, $url, array $headers = [], $body = null)
     {
         $debug = getenv('DEBUG_SDK') || defined('DEBUG_SDK');
 
-        $request = $this->connector->createRequest($url, $method, $headers, $body);
         if ($debug) {
-            $clientConfig = $this->connector->getClient()->getConfig();
-            $baseUri = isset($clientConfig['base_uri']) ? $clientConfig['base_uri'] : '';
-            $debugHeaders = $request->getHeaders();
-            $debugHeaders = json_encode($debugHeaders);
+            $methodDebug = str_pad($method, 7, ' ', STR_PAD_LEFT);
+            $debugHeaders = json_encode($headers);
             echo <<<DEBUG_BODY
 DEBUG MODE: Request
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    {$method} : {$baseUri}{$url}
+{$methodDebug} : {$url}
 Headers : $debugHeaders
-   Body : {$request->getBody()}
+   Body : {$body}
 \n
 DEBUG_BODY;
         }
 
-        $exception = null;
-        try {
-            $response = $this->connector->send($request);
-        } catch (Exception $exception) {
-            $response = $exception->getResponse();
-        } catch (\Throwable $exception) {
-            $response = $exception->getResponse();
+        switch ($method) {
+            case Method::GET:
+                $response = $this->connector->get($url, $headers);
+                break;
+            case Method::POST:
+                $response = $this->connector->post($url, $body, $headers);
+                break;
+            case Method::PUT:
+                $response = $this->connector->put($url, $body, $headers);
+                break;
+            case Method::DELETE:
+                $response = $this->connector->delete($url, $body, $headers);
+                break;
+            case Method::PATCH:
+                $response = $this->connector->patch($url, $body, $headers);
+                break;
+            default:
+                throw new \RuntimeException('Unknown request method ' + $method);
         }
 
         if ($debug) {
@@ -177,10 +187,11 @@ Headers : $debugHeaders
 DEBUG_BODY;
         }
 
-        if (!is_null($exception)) {
-            throw $exception;
+        $location =  $response->getLocation();
+        if (!empty($location)) {
+            $this->setLocation($location);
         }
-
+        
         return new ResponseValidator($response);
     }
 
@@ -236,7 +247,12 @@ DEBUG_BODY;
      */
     protected function patch($url, array $data)
     {
-        return $this->request('PATCH', $url, ['Content-Type' => 'application/json'], json_encode($data));
+        return $this->request(
+            'PATCH',
+            $url,
+            ['Content-Type' => 'application/json'],
+            json_encode($data)
+        );
     }
 
     /**
@@ -253,7 +269,12 @@ DEBUG_BODY;
      */
     protected function put($url, array $data)
     {
-        return $this->request('PUT', $url, ['Content-Type' => 'application/json'], json_encode($data));
+        return $this->request(
+            'PUT',
+            $url,
+            ['Content-Type' => 'application/json'],
+            json_encode($data)
+        );
     }
 
     /**
