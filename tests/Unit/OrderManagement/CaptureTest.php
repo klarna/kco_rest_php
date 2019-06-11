@@ -23,6 +23,7 @@ use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\OrderManagement\Capture;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -74,7 +75,7 @@ class CaptureTest extends TestCase
     public function testFetch()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/orders/1/captures/2',
                 []
@@ -116,7 +117,7 @@ class CaptureTest extends TestCase
     public function testFetchInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/orders/1/captures/2',
                 []
@@ -146,7 +147,7 @@ class CaptureTest extends TestCase
     public function testFetchNotJson()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/orders/1/captures/2',
                 []
@@ -183,7 +184,7 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures',
                 json_encode($data),
@@ -215,7 +216,7 @@ class CaptureTest extends TestCase
     public function testCreateInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures',
                 '{"data":"goes here"}',
@@ -245,7 +246,7 @@ class CaptureTest extends TestCase
     public function testCreateNoLocation()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures',
                 '{"data":"goes here"}',
@@ -277,7 +278,7 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures/2/shipping-info',
                 '{"data":"goes here"}',
@@ -303,7 +304,7 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures/2/shipping-info',
                 '{"data":"goes here"}',
@@ -335,7 +336,7 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('patch')
+            ->method(Method::PATCH)
             ->with(
                 '/orders/1/captures/2/customer-details',
                 '{"data":"goes here"}',
@@ -361,7 +362,7 @@ class CaptureTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('patch')
+            ->method(Method::PATCH)
             ->with(
                 '/orders/1/captures/2/customer-details',
                 '{"data":"goes here"}',
@@ -392,7 +393,7 @@ class CaptureTest extends TestCase
     public function testTriggerSendout()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures/2/trigger-send-out',
                 '',
@@ -416,7 +417,7 @@ class CaptureTest extends TestCase
     public function testTriggerSendoutInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/orders/1/captures/2/trigger-send-out',
                 '',

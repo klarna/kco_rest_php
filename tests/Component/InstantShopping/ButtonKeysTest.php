@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Tests\Component\InstantShopping;
 
 use GuzzleHttp\Psr7\Response;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\InstantShopping\ButtonKeys;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
@@ -65,7 +66,7 @@ JSON;
         $this->assertTrue($data['disabled']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/instantshopping/v1/buttons', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);
@@ -102,7 +103,7 @@ JSON;
         $this->assertTrue($data['disabled']);
         
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('PUT', $request->getMethod());
+        $this->assertEquals(Method::PUT, $request->getMethod());
         $this->assertEquals(
             '/instantshopping/v1/buttons/button-id-123456',
             $request->getUri()->getPath()
@@ -145,7 +146,7 @@ JSON;
         $this->assertTrue($button['disabled']);
         
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertEquals(
             '/instantshopping/v1/buttons/button-id-123456',
             $request->getUri()->getPath()

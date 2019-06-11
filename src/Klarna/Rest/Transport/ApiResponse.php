@@ -69,7 +69,7 @@ class ApiResponse
     }
 
     /**
-     * Sets binary body payout.
+     * Sets binary body payload.
      *
      * @param body Payout
      * @return self
@@ -81,7 +81,7 @@ class ApiResponse
     }
 
     /**
-     * Gets binary body payout.
+     * Gets binary body payload.
      *
      * @return Payout
      */

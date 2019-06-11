@@ -24,6 +24,7 @@ use Klarna\Rest\OrderManagement\Capture;
 use Klarna\Rest\OrderManagement\Order;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
@@ -51,7 +52,7 @@ class OrderTest extends TestCase
     public function testFetch()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/ordermanagement/v1/orders/12345'
             )
@@ -114,7 +115,7 @@ class OrderTest extends TestCase
     public function testFetchInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/ordermanagement/v1/orders/12345'
             )
@@ -143,7 +144,7 @@ class OrderTest extends TestCase
     public function testFetchNotJson()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/ordermanagement/v1/orders/12345'
             )
@@ -177,7 +178,7 @@ class OrderTest extends TestCase
     public function testAcknowledge()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/acknowledge',
                 '',
@@ -201,7 +202,7 @@ class OrderTest extends TestCase
     public function testAcknowledgeInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/acknowledge',
                 '',
@@ -231,7 +232,7 @@ class OrderTest extends TestCase
     public function testCancel()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/cancel',
                 '',
@@ -255,7 +256,7 @@ class OrderTest extends TestCase
     public function testCancelInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/cancel',
                 '',
@@ -287,7 +288,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('patch')
+            ->method(Method::PATCH)
             ->with(
                 '/ordermanagement/v1/orders/12345/authorization',
                 \json_encode($data),
@@ -313,7 +314,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('patch')
+            ->method(Method::PATCH)
             ->with(
                 '/ordermanagement/v1/orders/12345/authorization',
                 \json_encode($data),
@@ -343,7 +344,7 @@ class OrderTest extends TestCase
     public function testExtendAuthorizationTime()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/extend-authorization-time',
                 '',
@@ -367,7 +368,7 @@ class OrderTest extends TestCase
     public function testExtendAuthorizationTimeInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/extend-authorization-time',
                 '',
@@ -399,7 +400,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('patch')
+            ->method(Method::PATCH)
             ->with(
                 '/ordermanagement/v1/orders/12345/merchant-references',
                 \json_encode($data),
@@ -425,7 +426,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('patch')
+            ->method(Method::PATCH)
             ->with(
                 '/ordermanagement/v1/orders/12345/merchant-references',
                 \json_encode($data),
@@ -457,7 +458,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('patch')
+            ->method(Method::PATCH)
             ->with(
                 '/ordermanagement/v1/orders/12345/customer-details',
                 \json_encode($data),
@@ -483,7 +484,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('patch')
+            ->method(Method::PATCH)
             ->with(
                 '/ordermanagement/v1/orders/12345/customer-details',
                 \json_encode($data),
@@ -515,7 +516,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/refunds',
                 \json_encode($data),
@@ -546,7 +547,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/refunds',
                 \json_encode($data),
@@ -576,7 +577,7 @@ class OrderTest extends TestCase
     public function testReleaseRemainingAuthorization()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/release-remaining-authorization',
                 '',
@@ -600,7 +601,7 @@ class OrderTest extends TestCase
     public function testReleaseRemainingAuthorizationInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/release-remaining-authorization',
                 '',
@@ -632,7 +633,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/ordermanagement/v1/orders/12345/captures',
                 json_encode($data),
@@ -663,7 +664,7 @@ class OrderTest extends TestCase
     public function testFetchCapture()
     {
         $this->connector->expects($this->once())
-        ->method('get')
+        ->method(Method::GET)
         ->with(
             '/ordermanagement/v1/orders/12345/captures/2'
         )
@@ -740,7 +741,7 @@ class OrderTest extends TestCase
     public function testFetchCaptureNoCache()
     {
         $this->connector->expects($this->once())
-        ->method('get')
+        ->method(Method::GET)
         ->with(
             '/ordermanagement/v1/orders/12345/captures/2'
         )

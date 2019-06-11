@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Tests\Component\OrderManagement;
 
 use GuzzleHttp\Psr7\Response;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\OrderManagement\Capture;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
@@ -59,7 +60,7 @@ JSON;
         $this->assertEquals('1002', $capture->getId());
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertEquals('/path/captures/1002', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);
@@ -84,7 +85,7 @@ JSON;
         $this->assertEquals('http://somewhere/a-path', $location);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/path/to/order/captures', $request->getUri()->getPath());
         $this->assertEquals(['application/json'], $request->getHeader('Content-Type'));
         $this->assertEquals('{"data":"goes here"}', strval($request->getBody()));
@@ -105,7 +106,7 @@ JSON;
         $capture->addShippingInfo(['data' => 'sent in']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/order/0002/captures/1002/shipping-info',
             $request->getUri()->getPath()
@@ -130,7 +131,7 @@ JSON;
         $capture->updateCustomerDetails(['data' => 'sent in']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('PATCH', $request->getMethod());
+        $this->assertEquals(Method::PATCH, $request->getMethod());
         $this->assertEquals(
             '/order/0002/captures/1002/customer-details',
             $request->getUri()->getPath()
@@ -155,7 +156,7 @@ JSON;
         $capture->triggerSendout();
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/order/0002/captures/1002/trigger-send-out',
             $request->getUri()->getPath()

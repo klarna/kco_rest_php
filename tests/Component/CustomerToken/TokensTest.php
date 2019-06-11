@@ -21,6 +21,7 @@ namespace Klarna\Rest\Tests\Component\CustomerToken;
 
 use GuzzleHttp\Psr7\Response;
 use Klarna\Rest\CustomerToken\Tokens;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
 /**
@@ -62,7 +63,7 @@ JSON;
         $this->assertEquals('ACTIVE', $token['status']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertEquals('/customer-token/v1/tokens/my-token-id', $request->getUri()->getPath());
         $this->assertAuthorization($request);
     }
@@ -96,7 +97,7 @@ JSON;
         $this->assertEquals('ACCEPTED', $order['fraud_status']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/customer-token/v1/tokens/my-token-id/order', $request->getUri()->getPath());
         $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
         $this->assertEquals('{"amount":"123","purchase_currency":"eur"}', strval($request->getBody()));
@@ -133,7 +134,7 @@ JSON;
         $this->assertEquals('ACCEPTED', $order['fraud_status']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/customer-token/v1/tokens/my-token-id/order', $request->getUri()->getPath());
         $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
         $this->assertEquals('my-idempotency-key', $request->getHeader('Klarna-Idempotency-Key')[0]);
@@ -163,7 +164,7 @@ JSON;
         ]);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('PATCH', $request->getMethod());
+        $this->assertEquals(Method::PATCH, $request->getMethod());
         $this->assertEquals('/customer-token/v1/tokens/my-token-id/status', $request->getUri()->getPath());
         $this->assertEquals('{"status":"CANCELLED"}', strval($request->getBody()));
 

@@ -21,6 +21,7 @@ namespace Klarna\Rest\Tests\Component\Transport;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Uri;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Tests\Component\TestCase;
 use Klarna\Rest\Transport\UserAgent;
@@ -40,11 +41,11 @@ class ConnectorTest extends TestCase
     {
         $request = $this->connector->createRequest(
             'https://localhost:8888/path-here?q=1',
-            'POST'
+            Method::POST
         );
 
         $this->assertInstanceOf(RequestInterface::class, $request);
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             new Uri('https://localhost:8888/path-here?q=1'),
             $request->getUri()
@@ -66,7 +67,7 @@ class ConnectorTest extends TestCase
         $response = new Response(200);
         $this->mock->append($response);
 
-        $request = $this->connector->createRequest('http://somewhere/path', 'POST');
+        $request = $this->connector->createRequest('http://somewhere/path', Method::POST);
         $this->assertSame($response, $this->connector->send($request));
     }
 
@@ -94,7 +95,7 @@ JSON;
         );
         $this->mock->append($response);
 
-        $request = $this->connector->createRequest('http://somewhere/path', 'POST');
+        $request = $this->connector->createRequest('http://somewhere/path', Method::POST);
         $response = $this->connector->send($request);
         $this->assertEquals('500', $response->getStatusCode());
         $this->assertEquals($json, $response->getBody()->getContents());
@@ -111,7 +112,7 @@ JSON;
         $response = new Response(404);
         $this->mock->append($response);
 
-        $request = $this->connector->createRequest('http://somewhere/path', 'POST');
+        $request = $this->connector->createRequest('http://somewhere/path', Method::POST);
         $response = $this->connector->send($request);
         $this->assertEquals('404', $response->getStatusCode());
     }

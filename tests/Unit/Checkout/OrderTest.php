@@ -21,6 +21,7 @@ namespace Klarna\Tests\Unit\Rest\Checkout;
 
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Checkout\Order;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Exception\ConnectorException;
@@ -56,7 +57,7 @@ class OrderTest extends TestCase
         $data = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/checkout/v3/orders',
                 \json_encode($data),
@@ -91,7 +92,7 @@ class OrderTest extends TestCase
     public function testCreateInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
         $this->response->expects($this->any())
@@ -116,7 +117,7 @@ class OrderTest extends TestCase
     public function testCreateNoContentType()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
         $this->response->expects($this->any())
@@ -145,7 +146,7 @@ class OrderTest extends TestCase
     public function testCreateNoLocation()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
         $this->response->expects($this->any())
@@ -180,7 +181,7 @@ class OrderTest extends TestCase
         $updateData = ['data' => 'goes here'];
 
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->with(
                 '/checkout/v3/orders/12345',
                 \json_encode($updateData),
@@ -224,7 +225,7 @@ class OrderTest extends TestCase
     public function testUpdateInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
         $this->response->expects($this->any())
@@ -249,7 +250,7 @@ class OrderTest extends TestCase
     public function testUpdateNotJson()
     {
         $this->connector->expects($this->once())
-            ->method('post')
+            ->method(Method::POST)
             ->will($this->returnValue($this->response));
 
         $this->response->expects($this->any())
@@ -279,7 +280,7 @@ class OrderTest extends TestCase
     public function testFetch()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/checkout/v3/orders/12345',
                 []
@@ -321,7 +322,7 @@ class OrderTest extends TestCase
     public function testFetchInvalidStatusCode()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/checkout/v3/orders/12345',
                 []
@@ -351,7 +352,7 @@ class OrderTest extends TestCase
     public function testFetchNotJson()
     {
         $this->connector->expects($this->once())
-            ->method('get')
+            ->method(Method::GET)
             ->with(
                 '/checkout/v3/orders/12345',
                 []

@@ -21,6 +21,7 @@ namespace Klarna\Rest\Tests\Component\Checkout;
 
 use GuzzleHttp\Psr7\Response;
 use Klarna\Rest\Checkout\Order;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
 /**
@@ -49,7 +50,7 @@ class OrderTest extends ResourceTestCase
         $this->assertEquals('http://somewhere/a-path', $location);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/checkout/v3/orders', $request->getUri()->getPath());
         $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
         $this->assertEquals('{"data":"goes here"}', strval($request->getBody()));
@@ -90,7 +91,7 @@ JSON;
 
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals('/checkout/v3/orders/0001', $request->getUri()->getPath());
         $this->assertEquals('application/json', $request->getHeader('Content-Type')[0]);
         $this->assertEquals('{"data":"sent in"}', strval($request->getBody()));
@@ -129,7 +130,7 @@ JSON;
         $this->assertEquals('0002', $order->getId());
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertEquals('/checkout/v3/orders/0002', $request->getUri()->getPath());
 
         $this->assertAuthorization($request);

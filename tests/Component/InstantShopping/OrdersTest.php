@@ -20,6 +20,7 @@
 namespace Klarna\Rest\Tests\Component\InstantShopping;
 
 use GuzzleHttp\Psr7\Response;
+use Klarna\Rest\Transport\Method;
 use Klarna\Rest\InstantShopping\Orders;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
@@ -60,7 +61,7 @@ JSON;
         $this->assertEquals(50000, $order['order_amount']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(Method::GET, $request->getMethod());
         $this->assertEquals(
             '/instantshopping/v1/authorizations/auth-token-123456',
             $request->getUri()->getPath()
@@ -82,7 +83,7 @@ JSON;
         $order->decline(['data' => 'sent in']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('DELETE', $request->getMethod());
+        $this->assertEquals(Method::DELETE, $request->getMethod());
         $this->assertEquals(
             '/instantshopping/v1/authorizations/auth-token-123456',
             $request->getUri()->getPath()
@@ -124,7 +125,7 @@ JSON;
         $this->assertEquals('REJECTED', $data['fraud_status']);
 
         $request = $this->mock->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(Method::POST, $request->getMethod());
         $this->assertEquals(
             '/instantshopping/v1/authorizations/auth-token-123456/orders',
             $request->getUri()->getPath()

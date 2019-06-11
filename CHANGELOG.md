@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-This release has number of **[no-backward-compatibility]** flags. But these incompatible changes related
+This release has a number of **[no-backward-compatibility]** flags. But these incompatible changes related
 only to the "under the hood" files. It means, if you operate only with high-level instances, like
 `Connector` and `Rest\`/`Checkout/Payments/OrderManagement/etc` resources (you have the code,
 like in the example files) - you are safe for upgrade.

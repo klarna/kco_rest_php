@@ -1,16 +1,16 @@
 How to use SDK HTTP Transport
 ========================================================
 
-The SDK concept is based on using HTTP transport mechanism to send requests.
-The HTTP Transport is decoupled from the SDK architecture and uses just for sending HTTP requests.
+The SDK functionality relies on an "HTTP Transport" mechanism to handle HTTP communication 
+(requests / responses). The mechanism is decoupled from the SDK implementation itself 
+and allows for usage of different libraries that can handle the HTTP communication.
 
-This principle allows SDK the use a different mechanism and libraries to reach the destination.
 All the transports should be responsible to get the information to be send and return the result. 
 There is no any SDK/Api Resources logic inside the transport.
 
 Previously the SDK used Guzzle HTTP library and it forces SDK users to use Composer. There was no
-ability to install the Guzzle library manually. Currently, there is a new CURL Transport, that
-allows to use PHP SDK without Composer and any other extra dependencies.
+ability to install the Guzzle library manually. Currently, there is a new cURL Transport, that
+allows to use the PHP SDK without Composer and any other extra dependencies.
 
 ## Basic Transport Usage
 
@@ -46,9 +46,9 @@ $checkout = new Klarna\Rest\Checkout\Order($connector);
 $checkout->create($order);
 ```
 
-## CURL HTTP Transport (Klarna\Rest\Transport\CURLConnector)
+## cURL HTTP Transport (Klarna\Rest\Transport\CURLConnector)
 
-The transport uses PHP CURL Library (libcurl): https://www.php.net/manual/en/book.curl.php
+The transport uses PHP cURL Library (libcurl): https://www.php.net/manual/en/book.curl.php
 
 This library does not require any Composer libraries and relies only on `libcurl`. It means you
 do not have any `vendor` autoloader and need to include the SDK SPL autoloader.
@@ -61,7 +61,7 @@ $merchantId = 'K123456_abcd12345';
 $sharedSecret = 'sharedSecret';
 $apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
 
-// Create CURL HTTP Transport Connector
+// Create cURL HTTP Transport Connector
 $connector = Klarna\Rest\Transport\CURLConnector::create(
     $merchantId,
     $sharedSecret,
