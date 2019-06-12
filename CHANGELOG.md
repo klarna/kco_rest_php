@@ -7,8 +7,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [Unreleased]
+
+### Changed
+
+### Added
+
+
+## [4.2.0] - 2019-06-11
 
 This release has a number of **[no-backward-compatibility]** flags. But these incompatible changes related
 only to the "under the hood" files. It means, if you operate only with high-level instances, like
@@ -122,4 +128,5 @@ you need to check the code before go live.
 ## v1.0.0 - 2014-10-16
 - **NEW MINT-1804** Support checkout v3 and ordermanagement v1 APIs - *Joakim.L*
 
-[Unreleased]: https://github.com/klarna/kco_rest_java/compare/v4.1.5...HEAD
+[Unreleased]: https://github.com/klarna/kco_rest_java/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/klarna/kco_rest_java/compare/v4.1.5...v4.2.0
