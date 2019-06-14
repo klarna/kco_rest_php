@@ -128,5 +128,5 @@ you need to check the code before go live.
 ## v1.0.0 - 2014-10-16
 - **NEW MINT-1804** Support checkout v3 and ordermanagement v1 APIs - *Joakim.L*
 
-[Unreleased]: https://github.com/klarna/kco_rest_java/compare/v4.2.0...HEAD
-[4.2.0]: https://github.com/klarna/kco_rest_java/compare/v4.1.5...v4.2.0
+[Unreleased]: https://github.com/klarna/kco_rest_php/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/klarna/kco_rest_php/compare/v4.1.5...v4.2.0
