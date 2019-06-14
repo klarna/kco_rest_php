@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
 ## [4.2.0] - 2019-06-11
 
 This release has a number of **[no-backward-compatibility]** flags. But these incompatible changes related
@@ -20,6 +18,12 @@ like in the example files) - you are safe for upgrade.
 
 If you have your own implementation of REST API Services, HTTP Transport or Base Resource instance, 
 you need to check the code before go live.
+
+### Added
+
+- Add new HTTP Transport `CURLTransport`. This transport does not require any package dependencies
+- Add PHP SDK SPL Autoloader
+- Add `ApiResponse` class to unify an HTTP Transport reponse
 
 ### Changed
 
@@ -41,12 +45,6 @@ you need to check the code before go live.
     - `ConnectorException`
 - Extend `ResponseValidator` with `expectSuccessfull` and `isSuccessfull` methods. The methods allows
   to validate the reponse code and parse the Klarna Error Message if possible
-
-### Added
-
-- Add new HTTP Transport `CURLTransport`. This transport does not require any package dependencies
-- Add PHP SDK SPL Autoloader
-- Add `ApiResponse` class to unify an HTTP Transport reponse
 
 ## [4.1.5] - 2019-05-21
 
