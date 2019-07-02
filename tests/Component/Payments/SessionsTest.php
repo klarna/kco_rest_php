@@ -119,7 +119,9 @@ JSON;
         $session = new Sessions($this->connector, '0b1d9815');
         $session['status'] = 'incompleted';
 
+        $this->assertEquals('0b1d9815', $session->getId());
         $session->fetch();
+        $this->assertEquals('0b1d9815', $session->getId()); // Check if the ID field still exists
 
         $this->assertEquals('completed', $session['status']);
         $this->assertEquals(123, $session['order_amount']);
