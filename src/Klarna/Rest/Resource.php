@@ -101,6 +101,24 @@ abstract class Resource extends \ArrayObject
     }
 
     /**
+     * Overrides: Stores the ID KEY field in order to restore it after exchanging the array without
+     * the ID field.
+     * 
+     * @param array $array Data to be exchanged
+     */
+    public function exchangeArray($array)
+    {
+        $id = $this->getId();
+
+        if (!is_null($array)) {
+            parent::exchangeArray($array);
+        }
+        if (is_null($this->getId()) && !is_null($id)) {
+            $this->setId($id);
+        }
+    }
+
+    /**
      * Fetches the resource.
      *
      * @throws ConnectorException        When the API replies with an error response
@@ -122,6 +140,19 @@ abstract class Resource extends \ArrayObject
 
         $this->exchangeArray($data);
 
+        return $this;
+    }
+
+    /**
+     * Sets new ID KEY field.
+     *
+     * @param mixed $id ID field
+     *
+     * @return self
+     */
+    protected function setId($id)
+    {
+        $this[static::ID_FIELD] = $id;
         return $this;
     }
 
