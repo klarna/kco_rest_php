@@ -21,6 +21,8 @@
 
 require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
+// X-Example: GET /settlements/v1/reports/payouts-summary
+
 const DATE_FORMAT = 'Y-m-d\TH:m:s\Z';
 
 /**
@@ -58,3 +60,5 @@ try {
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
+
+// /X-Example: GET /settlements/v1/reports/payouts-summary

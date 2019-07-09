@@ -21,6 +21,8 @@
 
 require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
+// X-Example: POST /payments/v1/sessions
+
 /**
  * Follow the link to get your credentials: https://github.com/klarna/kco_rest_php/#api-credentials
  *
@@ -92,3 +94,5 @@ SESSION;
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
+
+// /X-Example: POST /payments/v1/sessions

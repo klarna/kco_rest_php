@@ -21,6 +21,8 @@
 
 require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
+// X-Example: DELETE /instantshopping/v1/authorizations/{authorization_token}
+
 /**
  * Follow the link to get your credentials: https://github.com/klarna/kco_rest_php/#api-credentials
  *
@@ -58,3 +60,5 @@ try {
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
+
+// /X-Example: DELETE /instantshopping/v1/authorizations/{authorization_token}

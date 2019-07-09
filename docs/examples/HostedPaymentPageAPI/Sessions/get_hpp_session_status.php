@@ -21,6 +21,8 @@
 
 require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
+// X-Example: GET /hpp/v1/sessions/{session_id}
+
 /**
  * Follow the link to get your credentials: https://github.com/klarna/kco_rest_php/#api-credentials
  *
@@ -53,3 +55,5 @@ try {
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
+
+// /X-Example: GET /hpp/v1/sessions/{session_id}
