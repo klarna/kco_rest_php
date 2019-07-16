@@ -214,7 +214,7 @@ class GuzzleConnector implements ConnectorInterface
      * @param string[] $options Request options
      *
      * @throws RequestException   When an error is encountered
-     * @throws \LogicException    When the adapter does not populate a response
+     * @throws \RuntimeException  When the adapter does not populate a response
      *
      * @return ResponseInterface
      */
@@ -232,7 +232,7 @@ class GuzzleConnector implements ConnectorInterface
             return $response;
         } catch (RequestException $e) {
             throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
