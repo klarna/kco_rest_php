@@ -1,22 +1,5 @@
 dist: trusty
 language: php
-php:
-  - '5.5'
-  - '5.6'
-  - '7.0'
-  - '7.1'
-  - '7.2'
-  - '7.3'
-  - nightly
-  - hhvm
-  - hhvm-3.18
-  - hhvm-nightly
-
-matrix:
-  allow_failures:
-    - php: nightly
-    - php: hhvm
-    - php: hhvm-nightly
 
 cache:
   directories:
@@ -29,7 +12,21 @@ script:
   - composer run check
 
 jobs:
+  allow_failures:
+    - php: nightly
+    - php: hhvm
+    - php: hhvm-nightly
   include:
+    - '5.5'
+    - '5.6'
+    - '7.0'
+    - '7.1'
+    - '7.2'
+    - '7.3'
+    - nightly
+    - hhvm
+    - hhvm-3.18
+    - hhvm-nightly
     - stage: report
       php: 5.6
       script: php vendor/bin/php-coveralls -v
