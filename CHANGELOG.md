@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [4.2.1] - 2019-10-15
+
+### Added
+
+- Test against php 7.3
+
+### Fixed
+
+- CURL Transport: Add processing of multiple HTTP headers in response.[Caught exception: Response is missing a Content-Type header #44](https://github.com/klarna/kco_rest_php/issues/44); 
+- Fix exception namespace and PHPDoc
+- Stores the KEY ID field in order to restore the ID after fetching data without the KEY field. [Payments Session ID is reset after fetch() #37](https://github.com/klarna/kco_rest_php/issues/37)
+
 ## [4.2.0] - 2019-06-11
 
 This release has a number of **[no-backward-compatibility]** flags. But these incompatible changes related
@@ -179,7 +192,8 @@ you need to check the code before go live.
 
 - **NEW MINT-1804** Support checkout v3 and ordermanagement v1 APIs - *Joakim.L*
 
-[Unreleased]: https://github.com/klarna/kco_rest_php/compare/v4.2.0...HEAD
+[Unreleased]: https://github.com/klarna/kco_rest_php/compare/v4.2.1...HEAD
+[4.2.1]: https://github.com/klarna/kco_rest_php/compare/v4.2.0...v4.2.1
 [4.2.0]: https://github.com/klarna/kco_rest_php/compare/v4.1.5...v4.2.0
 [4.1.5]: https://github.com/klarna/kco_rest_php/compare/v4.1.4...v4.1.5
 [4.1.4]: https://github.com/klarna/kco_rest_php/compare/v4.1.3...v4.1.4
