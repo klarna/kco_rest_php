@@ -234,11 +234,12 @@ class CURLConnector implements ConnectorInterface
             }
         }
 
-        $rawContent = curl_exec($ch);
+        $response = curl_exec($ch);
         
         $errno = curl_errno($ch);
         $error = curl_error($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
         curl_close($ch);
 
@@ -247,10 +248,11 @@ class CURLConnector implements ConnectorInterface
             throw new \RuntimeException($error, $errno);
         }
 
-        list($rawHeaders, $content) = preg_split("/(\r?\n){2}/", $rawContent, 2);
+        $rawHeaders = substr($response, 0, $header_size);
+        $body = substr($response, $header_size);
         $headers = self::parseHeaders($rawHeaders);
 
-        return new ApiResponse($http_code, $content, $headers);
+        return new ApiResponse($http_code, $body, $headers);
     }
 
     /**
@@ -284,8 +286,12 @@ class CURLConnector implements ConnectorInterface
     {
         $headers = [];
         foreach (explode("\r\n", $rawHeaders) as $i => $line) {
-            if ($i == 0) {
-                // The first line contains the HTTP response information
+            if (strlen($line) == 0) {
+                continue;
+            }
+
+            if (strpos($line, 'HTTP/') !== false) {
+                // The line contains the HTTP response information
                 $headers['Http'] = $line;
                 continue;
             }
