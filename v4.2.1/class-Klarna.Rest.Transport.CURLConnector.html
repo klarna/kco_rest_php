@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Klarna\Rest\Transport\CURLConnector</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?08b23951ef4599ca9cbf1f902d0e8290c9653ddd">
+	<link rel="stylesheet" href="resources/style.css?ac5b91d42df75500db6f9846ca90be4654657cf6">
+	<link rel="stylesheet" href="resources/klarna.css?618cafc96f0e7a6ac6bf8203a6338e7bcacf3de1">
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand"><img src="https://cdn.klarna.com/1.0/shared/image/generic/logo/en_gb/basic/logo_black.svg"></a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-Klarna.Rest.Transport.html" title="Summary of Klarna\Rest\Transport"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+
+
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="">
+			<input type="hidden" name="ie" value="UTF-8">
+			<input type="text" name="q" class="search-query" placeholder="Search">
+		</form>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-Klarna.html">
+							Klarna<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Exceptions.html">
+							Exceptions						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.html">
+							Rest<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Checkout.html">
+							Checkout						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.CustomerToken.html">
+							CustomerToken						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.HostedPaymentPage.html">
+							HostedPaymentPage						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.InstantShopping.html">
+							InstantShopping						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.MerchantCardService.html">
+							MerchantCardService						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.OrderManagement.html">
+							OrderManagement						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Payments.html">
+							Payments						</a>
+							</li>
+					<li>
+						<a href="namespace-Klarna.Rest.Settlements.html">
+							Settlements						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-Klarna.Rest.Transport.html">
+							Transport<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Klarna.Rest.Transport.Exception.html">
+							Exception						</a>
+							</li>
+								</ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Klarna.Rest.Transport.ApiResponse.html">ApiResponse</a></li>
+				<li class="active"><a href="class-Klarna.Rest.Transport.CURLConnector.html">CURLConnector</a></li>
+				<li><a href="class-Klarna.Rest.Transport.GuzzleConnector.html">GuzzleConnector</a></li>
+				<li><a href="class-Klarna.Rest.Transport.Method.html">Method</a></li>
+				<li><a href="class-Klarna.Rest.Transport.ResponseValidator.html">ResponseValidator</a></li>
+				<li><a href="class-Klarna.Rest.Transport.UserAgent.html">UserAgent</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Klarna.Rest.Transport.ConnectorInterface.html">ConnectorInterface</a></li>
+				<li><a href="class-Klarna.Rest.Transport.UserAgentInterface.html">UserAgentInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class CURLConnector</h1>
+
+
+	<div class="description">
+	<p>Transport connector used to authenticate and make HTTP requests against the
+Klarna APIs. Transport uses CURL to perform HTTP(s) calls.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+<b><span>Klarna\Rest\Transport\CURLConnector</span></b>			
+			 implements 
+				<a href="class-Klarna.Rest.Transport.ConnectorInterface.html"><span>Klarna\Rest\Transport\ConnectorInterface</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Klarna.html">Klarna</a>\<a href="namespace-Klarna.Rest.html">Rest</a>\<a href="namespace-Klarna.Rest.Transport.html">Transport</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Klarna.Rest.Transport.CURLConnector.html#22-303" title="Go to source code">Klarna/Rest/Transport/CURLConnector.php</a>
+		<br>
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped methods" id="methods">
+		
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#66-80" title="Go to source code">__construct</a>( <span> <var>$merchantId</var></span>, <span> <var>$sharedSecret</var></span>, <span> <var>$baseUrl</var></span>, <span><code><a href="class-Klarna.Rest.Transport.UserAgentInterface.html">Klarna\Rest\Transport\UserAgentInterface</a></code> <var>$userAgent</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="setOptions" id="_setOptions">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.Transport.CURLConnector.html">Klarna\Rest\Transport\CURLConnector</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setOptions">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#82-93" title="Go to source code">setOptions</a>( <span><code><a href="class-Klarna.Rest.Transport.CURLConnector.html#$options">Klarna\Rest\Transport\CURLConnector::<var>$options</var></a></code> <var>$options</var></span> )</code>
+
+			<div class="description short">
+				<p>Sets CURL request options.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sets CURL request options.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$options</var></dt>
+						<dd>options</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.CURLConnector.html">Klarna\Rest\Transport\CURLConnector</a></code><br>instance
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="get" id="_get">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_get">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#95-107" title="Go to source code">get</a>( <span>string <var>$path</var></span>, <span>array <var>$headers</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Sends HTTP GET request to specified path.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sends HTTP GET request to specified path.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$path</var></dt>
+						<dd>URL path.</dd>
+						<dt><var>$headers</var></dt>
+						<dd>HTTP request headers</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code><br>Processed response
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						RuntimeException<br>if HTTP transport failed to execute a call
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#_get">Klarna\Rest\Transport\ConnectorInterface::get()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="post" id="_post">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_post">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#109-121" title="Go to source code">post</a>( <span>string <var>$path</var></span>, <span>string <var>$data</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$headers</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Sends HTTP POST request to specified path.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sends HTTP POST request to specified path.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$path</var></dt>
+						<dd>URL path.</dd>
+						<dt><var>$data</var></dt>
+						<dd>Data to be sent to API server in a payload. Example: json-encoded string</dd>
+						<dt><var>$headers</var></dt>
+						<dd>HTTP request headers</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code><br>Processed response
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						RuntimeException<br>if HTTP transport failed to execute a call
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#_post">Klarna\Rest\Transport\ConnectorInterface::post()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="put" id="_put">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_put">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#123-136" title="Go to source code">put</a>( <span>string <var>$path</var></span>, <span>string <var>$data</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$headers</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Sends HTTP PUT request to specified path.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sends HTTP PUT request to specified path.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$path</var></dt>
+						<dd>URL path.</dd>
+						<dt><var>$data</var></dt>
+						<dd>Data to be sent to API server in a payload. Example: json-encoded string</dd>
+						<dt><var>$headers</var></dt>
+						<dd>HTTP request headers</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code><br>Processed response
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						RuntimeException<br>if HTTP transport failed to execute a call
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#_put">Klarna\Rest\Transport\ConnectorInterface::put()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="patch" id="_patch">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_patch">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#138-151" title="Go to source code">patch</a>( <span>string <var>$path</var></span>, <span>string <var>$data</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$headers</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Sends HTTP PATCH request to specified path.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sends HTTP PATCH request to specified path.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$path</var></dt>
+						<dd>URL path.</dd>
+						<dt><var>$data</var></dt>
+						<dd>Data to be sent to API server in a payload. Example: json-encoded string</dd>
+						<dt><var>$headers</var></dt>
+						<dd>HTTP request headers</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code><br>Processed response
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						RuntimeException<br>if HTTP transport failed to execute a call
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#_patch">Klarna\Rest\Transport\ConnectorInterface::patch()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="delete" id="_delete">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_delete">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#153-166" title="Go to source code">delete</a>( <span>string <var>$path</var></span>, <span>string <var>$data</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$headers</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Sends HTTP DELETE request to specified path.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sends HTTP DELETE request to specified path.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$path</var></dt>
+						<dd>URL path.</dd>
+						<dt><var>$data</var></dt>
+						<dd>Data to be sent to API server in a payload. Example: json-encoded string</dd>
+						<dt><var>$headers</var></dt>
+						<dd>HTTP request headers</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code><br>Processed response
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						RuntimeException<br>if HTTP transport failed to execute a call
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#_delete">Klarna\Rest\Transport\ConnectorInterface::delete()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="request" id="_request">
+
+			<td class="attributes"><code>
+				 protected 
+				<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_request">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#168-256" title="Go to source code">request</a>( <span>string <var>$method</var></span>, <span>string <var>$url</var></span>, <span>array <var>$headers</var> = []</span>, <span> <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Performs HTTP(S) request.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Performs HTTP(S) request.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$method</var></dt>
+						<dd>$path URL path.</dd>
+						<dt><var>$url</var></dt>
+						<dd>$data Data to be sent to API server in a payload. Example: json-encoded string</dd>
+						<dt><var>$headers</var></dt>
+						<dd>HTTP request headers</dd>
+						<dt><var>$data</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.ApiResponse.html">Klarna\Rest\Transport\ApiResponse</a></code><br>Processed response
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						RuntimeException<br>if HTTP transport failed to execute a call
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="create" id="_create">
+
+			<td class="attributes"><code>
+				 public static
+				<code><a href="class-Klarna.Rest.Transport.CURLConnector.html">Klarna\Rest\Transport\CURLConnector</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_create">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#258-275" title="Go to source code">create</a>( <span>string <var>$merchantId</var></span>, <span>string <var>$sharedSecret</var></span>, <span>string <var>$baseUrl</var> = <code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#EU_BASE_URL">Klarna\Rest\Transport\ConnectorInterface::<b>EU_BASE_URL</b></a></code></span>, <span><code><a href="class-Klarna.Rest.Transport.UserAgentInterface.html">Klarna\Rest\Transport\UserAgentInterface</a></code> <var>$userAgent</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+			<div class="description short">
+				<p>Factory method to create a connector instance.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Factory method to create a connector instance.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$merchantId</var></dt>
+						<dd>Merchant ID</dd>
+						<dt><var>$sharedSecret</var></dt>
+						<dd>Shared secret</dd>
+						<dt><var>$baseUrl</var></dt>
+						<dd>Base URL for HTTP requests</dd>
+						<dt><var>$userAgent</var></dt>
+						<dd>HTTP user agent to identify the client</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Klarna.Rest.Transport.CURLConnector.html">Klarna\Rest\Transport\CURLConnector</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+
+		<tr data-order="parseHeaders" id="_parseHeaders">
+
+			<td class="attributes"><code>
+				 protected static
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_parseHeaders">#</a>
+			<code><a href="source-class-Klarna.Rest.Transport.CURLConnector.html#278-302" title="Go to source code">parseHeaders</a>( <span>string <var>$rawHeaders</var></span> )</code>
+
+			<div class="description short">
+				<p>Converts raw curl headers response to array.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Converts raw curl headers response to array.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$rawHeaders</var></dt>
+						<dd>Headers part from the curl response</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>list of HTTP headers
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+		<h2>Constants summary</h2>
+		<table class="summary table table-bordered table-striped constants" id="constants">
+		<tr data-order="DEFAULT_CONTENT_TYPE" id="DEFAULT_CONTENT_TYPE">
+			
+
+			<td class="attributes"><code>string</code></td>
+			<td class="name">
+				<code>
+					<a href="source-class-Klarna.Rest.Transport.CURLConnector.html#28-31" title="Go to source code"><b>DEFAULT_CONTENT_TYPE</b></a>
+				</code>
+
+				<div class="description short">
+					<p>Default request type</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Default request type</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#DEFAULT_CONTENT_TYPE" class="anchor">#</a>
+					<code><span class="php-quote">'application/json'</span></code>
+				</div>
+			</td>
+		</tr>
+		</table>
+
+		<h3>Constants inherited from <a href="class-Klarna.Rest.Transport.ConnectorInterface.html#constants">Klarna\Rest\Transport\ConnectorInterface</a></h3>
+		<p class="elementList">
+			<code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#EU_BASE_URL"><b>EU_BASE_URL</b></a></code>, 
+			<code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#EU_TEST_BASE_URL"><b>EU_TEST_BASE_URL</b></a></code>, 
+			<code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#NA_BASE_URL"><b>NA_BASE_URL</b></a></code>, 
+			<code><a href="class-Klarna.Rest.Transport.ConnectorInterface.html#NA_TEST_BASE_URL"><b>NA_TEST_BASE_URL</b></a></code>
+		</p>
+
+
+
+		<h2>Properties summary</h2>
+		<table class="summary table table-bordered table-striped properties" id="properties">
+		
+		<tr data-order="options" id="$options">
+			<td class="attributes"><code>
+				protected  
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.Transport.CURLConnector.html#33-36" title="Go to source code"><var>$options</var></a>
+
+				<div class="description short">
+					<p>Extra CURL request options.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Extra CURL request options.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$options" class="anchor">#</a>
+					<code>[]</code>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-order="merchantId" id="$merchantId">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.Transport.CURLConnector.html#38-43" title="Go to source code"><var>$merchantId</var></a>
+
+				<div class="description short">
+					<p>Merchant ID.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Merchant ID.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$merchantId" class="anchor">#</a>
+					<code></code>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-order="sharedSecret" id="$sharedSecret">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.Transport.CURLConnector.html#45-50" title="Go to source code"><var>$sharedSecret</var></a>
+
+				<div class="description short">
+					<p>Shared secret.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Shared secret.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$sharedSecret" class="anchor">#</a>
+					<code></code>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-order="baseUrl" id="$baseUrl">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.Transport.CURLConnector.html#52-57" title="Go to source code"><var>$baseUrl</var></a>
+
+				<div class="description short">
+					<p>Base URL.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Base URL.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$baseUrl" class="anchor">#</a>
+					<code></code>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-order="userAgent" id="$userAgent">
+			<td class="attributes"><code>
+				protected  
+				<code><a href="class-Klarna.Rest.Transport.UserAgent.html">Klarna\Rest\Transport\UserAgent</a></code>
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Klarna.Rest.Transport.CURLConnector.html#59-64" title="Go to source code"><var>$userAgent</var></a>
+
+				<div class="description short">
+					<p>HTTP user agent.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>HTTP user agent.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$userAgent" class="anchor">#</a>
+					<code></code>
+				</div>
+			</td>
+		</tr>
+		</table>
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js?01984c9203cf216999b48294ce5ee40296a62819"></script>
+<script src="elementlist.js?40c8a8fc60a980c2cb07fbfc71fafebedb440bcf"></script>
+</body>
+</html>
