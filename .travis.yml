@@ -23,7 +23,6 @@ jobs:
   include:
     - stage: report
       php: 5.6
-      script: composer run check
-      script: php vendor/bin/php-coveralls -v
+      script:  composer run check && php vendor/bin/php-coveralls -v
 
 sudo: false
