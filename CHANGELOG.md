@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [4.2.2] - 2019-11-05
+
+### Changed
+
+- Remove "src" folder from a PSR4 autoload definition as fallback directory.
+
+
 ## [4.2.1] - 2019-10-15
 
 ### Added
