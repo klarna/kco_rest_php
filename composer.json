@@ -1,6 +1,6 @@
 {
     "name": "klarna/kco_rest",
-    "description": "Klarna Checkout PHP SDK",
+    "description": "Official Klarna REST PHP SDK",
     "homepage": "http://developers.klarna.com",
     "license": "Apache-2.0",
     "type": "library",
