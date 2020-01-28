@@ -54,6 +54,16 @@ interface ConnectorInterface
     const NA_TEST_BASE_URL = 'https://api-na.playground.klarna.com';
 
     /**
+     * API base URL for Oceania.
+     */
+    const OC_BASE_URL = 'https://api-oc.klarna.com';
+
+    /**
+     * Testing API base URL for Oceania.
+     */
+    const OC_TEST_BASE_URL = 'https://api-oc.playground.klarna.com';
+
+    /**
      * Sends HTTP GET request to specified path.
      *
      * @param string $path URL path.
