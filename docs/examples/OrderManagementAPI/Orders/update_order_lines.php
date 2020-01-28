@@ -38,6 +38,8 @@ EU_BASE_URL = 'https://api.klarna.com'
 EU_TEST_BASE_URL = 'https://api.playground.klarna.com'
 NA_BASE_URL = 'https://api-na.klarna.com'
 NA_TEST_BASE_URL = 'https://api-na.playground.klarna.com'
+OC_BASE_URL = 'https://api-oc.klarna.com'
+OC_TEST_BASE_URL = 'https://api-oc.playground.klarna.com'
 */
 $apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
 
