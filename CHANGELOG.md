@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.2.3] - 2020-02-14
+
+### Added
+
+- HTTP Transport: Oceania Base URLs (playground and production)
+
 
 ## [4.2.2] - 2019-11-05
 
@@ -199,7 +205,8 @@ you need to check the code before go live.
 
 - **NEW MINT-1804** Support checkout v3 and ordermanagement v1 APIs - *Joakim.L*
 
-[Unreleased]: https://github.com/klarna/kco_rest_php/compare/v4.2.2...HEAD
+[Unreleased]: https://github.com/klarna/kco_rest_php/compare/v4.2.3...HEAD
+[4.2.3]: https://github.com/klarna/kco_rest_php/compare/v4.2.2...v4.2.3
 [4.2.2]: https://github.com/klarna/kco_rest_php/compare/v4.2.1...v4.2.2
 [4.2.1]: https://github.com/klarna/kco_rest_php/compare/v4.2.0...v4.2.1
 [4.2.0]: https://github.com/klarna/kco_rest_php/compare/v4.1.5...v4.2.0
