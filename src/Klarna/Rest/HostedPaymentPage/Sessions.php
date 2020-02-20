@@ -129,7 +129,7 @@ class Sessions extends Resource
     {
         $this->post($this->getLocation() . '/distribution', $data)
             ->expectSuccessfull()
-            ->status(['200', '201']);
+            ->status(['200', '201', '204']);
 
         return $this;
     }
