@@ -19,6 +19,7 @@
 
 namespace Klarna\Rest\Tests\Unit\Transport;
 
+use PHPUnit\Framework\TestCase;
 use Klarna\Rest\Transport\ResponseValidator;
 use Klarna\Rest\Transport\ApiResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -26,7 +27,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Unit test cases for the ResponseValidator class.
  */
-class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
+class ResponseValidatorTest extends TestCase
 {
     /**
      * @var ResponseInterface

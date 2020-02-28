@@ -19,6 +19,7 @@
 
 namespace Klarna\Rest\Tests\Component;
 
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -29,7 +30,7 @@ use SebastianBergmann\PHPLOC\Log\CSV\History;
 /**
  * Base component test case class.
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends PHPUnitTestCase
 {
     const USERNAME = '1234';
 

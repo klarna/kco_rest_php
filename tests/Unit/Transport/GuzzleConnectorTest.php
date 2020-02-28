@@ -25,7 +25,6 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
-use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Rest\Transport\UserAgent;
 
 /**
@@ -259,7 +258,7 @@ class GuzzleConnectorTest extends TestCase
         );
 
         $client = $connector->getClient();
-        $this->assertInstanceOf('GuzzleHttp\ClientInterface', $client);
+        $this->assertInstanceOf(ClientInterface::class, $client);
 
         $this->assertEquals(self::BASE_URL, $client->getConfig('base_uri'));
 
@@ -283,7 +282,7 @@ class GuzzleConnectorTest extends TestCase
         );
 
         $userAgent = $connector->getUserAgent();
-        $this->assertInstanceOf('Klarna\Rest\Transport\UserAgent', $userAgent);
+        $this->assertInstanceOf(UserAgent::class, $userAgent);
         $this->assertContains('Library/Klarna.kco_rest_php', strval($userAgent));
     }
 
@@ -296,7 +295,7 @@ class GuzzleConnectorTest extends TestCase
     {
         $client = $this->object->getClient();
 
-        $this->assertInstanceOf('GuzzleHttp\ClientInterface', $client);
+        $this->assertInstanceOf(ClientInterface::class, $client);
         $this->assertSame($this->client, $client);
     }
 }

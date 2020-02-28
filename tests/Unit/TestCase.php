@@ -19,13 +19,14 @@
 
 namespace Klarna\Rest\Tests\Unit;
 
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\ApiResponse;
 
 /**
  * Base unit test case class.
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends PHPUnitTestCase
 {
     /**
      */
