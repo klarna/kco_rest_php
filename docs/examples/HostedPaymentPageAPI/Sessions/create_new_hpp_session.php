@@ -67,7 +67,7 @@ $session = [
         "payment_method_category" => "pay_later",
         "purchase_type" => "buy"
     ],
-    "payment_session_url" => "https://api.klarna.com/payments/v1/sessions/$sessionId"
+    "payment_session_url" => "$apiEndpoint/payments/v1/sessions/$sessionId"
 ];
 
 try {
