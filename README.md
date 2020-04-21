@@ -1,7 +1,20 @@
-# Official Klarna REST PHP SDK
+# [DEPRECATED] Official Klarna REST PHP SDK
 [![Packagist Version][packagist-image]](https://packagist.org/packages/klarna/kco_rest)
 [![Build Status][travis-image]](https://travis-ci.org/klarna/kco_rest_php)
 [![Coverage Status][coveralls-image]](https://coveralls.io/r/klarna/kco_rest_php?branch=v4.x)
+
+## SDK Deprecation Warning and Sunsetting
+
+Dear community, the SDK you are currently looking at is now deprecated. These are details related to sunsetting:
+* We intend to archive this repo on June 1 2020 (01/06/20)
+* Until November 1 2020 (01/11/20) high severity security issues found within the latest published version will be fixed. All support will cease after this date.
+* No new builds will follow effective April 20 (20/04/2020) apart from the fixes mentioned above.
+
+### Workarounds
+
+We are making Klarna REST API definition files available in [Swagger / OAS v2](https://swagger.io/specification/v2/) format, under the [Klarna API Reference](https://developers.klarna.com/api/) section on the [Klarna Developer Portal](https://developers.klarna.com/). These will be regularly updated as the APIs evolve.
+You can use tools like https://swagger.io/tools/swagger-codegen/ to generate your own SDKs, client libraries, etc.
+
 
 ## Shop now. Pay later.
 
