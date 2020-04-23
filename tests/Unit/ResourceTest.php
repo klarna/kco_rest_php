@@ -20,13 +20,9 @@
 namespace Klarna\Rest\Tests\Unit;
 
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Tests\Unit\TestCase;
 use Klarna\Rest\Transport\Connector;
-use Klarna\Rest\Transport\Exception\ConnectorException;
 use Klarna\Rest\Transport\UserAgent;
-use Klarna\Rest\Resource;
-use GuzzleHttp\Psr7\Response;
 
 /**
  * Unit test cases for the resource class.
@@ -109,7 +105,7 @@ class ResourceTest extends TestCase
     {
         $r = $this->getMockForAbstractClass('Klarna\Rest\Resource', [$this->connector]);
         $this->assertEquals(null, $r->getLocation());
-        
+
         $r->setLocation('/new/location');
         $this->assertEquals('/new/location', $r->getLocation());
     }

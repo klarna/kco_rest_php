@@ -19,12 +19,9 @@
 
 namespace Klarna\Tests\Unit\Rest\OrderManagement;
 
-use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\OrderManagement\Capture;
 use Klarna\Rest\Tests\Unit\TestCase;
-use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Method;
-use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Unit test cases for the capture resource.
@@ -227,7 +224,7 @@ class CaptureTest extends TestCase
         $this->response->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue('204'));
-        
+
         $capture = new Capture($this->connector, '/orders/1');
 
         $this->setExpectedException(

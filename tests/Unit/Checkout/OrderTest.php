@@ -19,12 +19,9 @@
 
 namespace Klarna\Tests\Unit\Rest\Checkout;
 
-use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\Checkout\Order;
 use Klarna\Rest\Transport\Method;
 use Klarna\Rest\Tests\Unit\TestCase;
-use Klarna\Rest\Transport\Connector;
-use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Unit test cases for the checkout order resource.

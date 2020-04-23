@@ -22,6 +22,7 @@ namespace Klarna\Rest\Tests\Component\OrderManagement;
 use GuzzleHttp\Psr7\Response;
 use Klarna\Rest\Transport\Method;
 use Klarna\Rest\OrderManagement\Capture;
+use Klarna\Rest\OrderManagement\Refund;
 use Klarna\Rest\OrderManagement\Order;
 use Klarna\Rest\Tests\Component\ResourceTestCase;
 
@@ -80,7 +81,7 @@ JSON;
         $this->assertAuthorization($request);
 
         $capture = $order['captures'][0];
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $capture);
+        $this->assertInstanceOf(Capture::class, $capture);
         $this->assertEquals($capture->getId(), $capture['capture_id']);
         $this->assertEquals('1002', $capture->getId());
         $this->assertEquals('data', $capture['test']);
@@ -262,7 +263,7 @@ JSON;
         $order = new Order($this->connector, '0002');
         $refund = $order->refund(['data' => 'sent in']);
 
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Refund', $refund);
+        $this->assertInstanceOf(Refund::class, $refund);
 
         $request = $this->mock->getLastRequest();
         $this->assertEquals(Method::POST, $request->getMethod());
@@ -302,7 +303,7 @@ JSON;
         $order = new Order($this->connector, '0002');
 
         $refund = $order->fetchRefund('refund-id-123');
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Refund', $refund);
+        $this->assertInstanceOf(Refund::class, $refund);
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/refunds/refund-id-123',
             $refund->getLocation()
@@ -357,7 +358,7 @@ JSON;
         $order->fetchRefund('refund-id-XXX');
 
         $refund = $order->fetchRefund('refund-id-123');
-        
+
         $this->assertEquals('abc', $refund['test_data']);
     }
 
@@ -376,7 +377,7 @@ JSON;
         $order = new Order($this->connector, '0002');
         $capture = $order->createCapture(['data' => 'goes here']);
 
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $capture);
+        $this->assertInstanceOf(Capture::class, $capture);
         $this->assertEquals('http://somewhere/a-path', $capture->getLocation());
 
         $request = $this->mock->getLastRequest();
@@ -418,7 +419,7 @@ JSON;
         $order = new Order($this->connector, '0002');
 
         $capture = $order->fetchCapture('1002');
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $capture);
+        $this->assertInstanceOf(Capture::class, $capture);
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/captures/1002',
             $capture->getLocation()
@@ -461,7 +462,7 @@ JSON;
         $order['captures'][] = $capture;
 
         $capture = $order->fetchCapture('1002');
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $capture);
+        $this->assertInstanceOf(Capture::class, $capture);
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/captures/1002',
             $capture->getLocation()
@@ -504,7 +505,7 @@ JSON;
         $order['captures'][] = $capture;
 
         $capture = $order->fetchCapture('1003');
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $capture);
+        $this->assertInstanceOf(Capture::class, $capture);
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/captures/1003',
             $capture->getLocation()
@@ -546,9 +547,9 @@ JSON;
         $order = new Order($this->connector, '0002');
 
         $captures = $order->fetchCaptures();
-        $this->assertEquals(2, count($captures), 'Mismatched amount of captures');
+        $this->assertCount(2, $captures, 'Mismatched amount of captures');
 
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $captures[0]);
+        $this->assertInstanceOf(Capture::class, $captures[0]);
         $this->assertEquals(
             '/ordermanagement/v1/orders/0002/captures/1001',
             $captures[0]->getLocation()

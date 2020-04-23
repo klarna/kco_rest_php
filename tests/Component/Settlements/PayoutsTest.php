@@ -118,7 +118,7 @@ JSON;
         $payout = new Payouts($this->connector);
         $data = $payout->getAllPayouts($params);
 
-        $this->assertEquals(1, count($data['payouts']));
+        $this->assertCount(1, $data['payouts']);
         $this->assertEquals(500, $data['payouts'][0]['totals']['sale_amount']);
         $this->assertEquals(10, $data['pagination']['count']);
 
@@ -165,7 +165,7 @@ JSON;
         $payout = new Payouts($this->connector);
         $data = $payout->getSummary($params);
 
-        $this->assertEquals(2, count($data));
+        $this->assertCount(2, $data);
         $this->assertEquals(550, $data[0]['summary_total_fee_correction_amount']);
         $this->assertEquals(100, $data[1]['summary_total_fee_correction_amount']);
 

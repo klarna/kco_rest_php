@@ -19,10 +19,12 @@
 
 namespace Klarna\Rest\Tests\Integration;
 
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+
 /**
  * Base unit test case class.
  */
-class TestCase extends \PHPUnit\Framework\TestCase
+class TestCase extends PHPUnitTestCase
 {
     protected $rootPath;
     protected $credentials = [];
@@ -39,7 +41,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         $this->rootPath = dirname(dirname(__DIR__));
         $this->credentials = json_decode(getenv('CREDENTIALS'), true);
-        
+
         if (empty($this->credentials)) {
             $path = $this->rootPath . '/credentials.json';
             if (file_exists($path)) {

@@ -19,13 +19,10 @@
 
 namespace Klarna\Tests\Unit\Rest\OrderManagement;
 
-use GuzzleHttp\Exception\RequestException;
 use Klarna\Rest\OrderManagement\Capture;
 use Klarna\Rest\OrderManagement\Order;
 use Klarna\Rest\Tests\Unit\TestCase;
-use Klarna\Rest\Transport\Connector;
 use Klarna\Rest\Transport\Method;
-use Klarna\Rest\Transport\Exception\ConnectorException;
 
 /**
  * Unit test cases for the order resource.
@@ -691,7 +688,7 @@ class OrderTest extends TestCase
         $order = new Order($this->connector, '12345');
         $capture = $order->fetchCapture('2');
 
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $capture);
+        $this->assertInstanceOf(Capture::class, $capture);
         $this->assertEquals('from response json', $capture['data']);
     }
 
@@ -776,7 +773,7 @@ class OrderTest extends TestCase
 
         $capture = $order->fetchCapture('2');
 
-        $this->assertInstanceOf('Klarna\Rest\OrderManagement\Capture', $capture);
+        $this->assertInstanceOf(Capture::class, $capture);
         $this->assertEquals('from response json', $capture['data']);
         $this->assertEquals('2', $capture->getId());
     }
